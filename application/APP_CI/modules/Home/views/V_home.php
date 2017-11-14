@@ -36,6 +36,7 @@
             rootVisible: false,
             xtype: 'treepanel',
             border:0,
+            height: 500,
             autoScroll : true,
             store: dttransaction
         }); 
@@ -47,20 +48,20 @@
                 if(isfolder == true){
                     if(!thisTab){
                             var newtab = Ext.getCmp('contentTAB').add({
-                                                        title: record.data.text,
-                                                        id : record.data.id,
-                                                        // closable: true,
-                                                        closeAction: 'hide',
-                                                        autoDestroy:false,
-                                                        maximizable:true,
-                                                        layout:'fit',
-                                                        width:'100%',
-                                                        loader:{
-                                                            autoLoad:true,
-                                                            url:base_url + record.data.id,
-                                                            scripts:true
-                                                        }
-                                                        });
+                                    title: record.data.text,
+                                    id : record.data.id,
+                                    // closable: true,
+                                    closeAction: 'hide',
+                                    autoDestroy:false,
+                                    maximizable:true,
+                                    layout:'fit',
+                                    width:'100%',
+                                    loader:{
+                                        autoLoad:true,
+                                        url:base_url + record.data.id,
+                                        scripts:true
+                                    }
+                                    });
                             Ext.getCmp('contentTAB').doLayout();
                             Ext.getCmp('contentTAB').setActiveTab(newtab);
                                 // console.log("buat baru" + record.internalId);
