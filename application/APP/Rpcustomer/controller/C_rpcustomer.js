@@ -2,6 +2,7 @@
 			extend: 'Ext.app.Controller',
 			views: [
 				'Almindo.Rpcustomer.view.GRID_rpcustomer',
+                                'Almindo.Rpcustomer.view.GRIDS_rpcustomer',
 				'Almindo.Rpcustomer.view.FRM_rpcustomer'
 			],
 			stores  : [
@@ -16,6 +17,11 @@
 				ref: 'GRID_rpcustomer',
 				xtype: 'GRID_rpcustomer',
 				selector: 'GRID_rpcustomer',
+				autoCreate: true
+			},{
+				ref: 'GRIDS_rpcustomer',
+				xtype: 'GRIDS_rpcustomer',
+				selector: 'GRIDS_rpcustomer',
 				autoCreate: true
 			}],
 			init: function(){
@@ -51,9 +57,11 @@
 				}
 
 			},filterasset: function (btn) {
+                            var grid = this.getGRID_rpcustomer();
+                            var store = grid.getStore();
                             var win = this.getFRM_rpcustomer();
                             var values = win.down('form').getValues();
-                            var store = Ext.getStore('Almindo.Rpcustomer.store.ST_rpcustomer');
+                            
                             
                             store.remoteFilter = false;
                             store.clearFilter();
@@ -61,74 +69,21 @@
                             store.filter([{
                                     value   : values
                                 } ]);
-                        },
-			onRowdblclick: function(me, record, item, index){							
-				var win = this.getFRM_rpcustomer();
-				win.setAction('edit');
-				win.setRecordIndex(index);
-				win.down('form').getForm().setValues(record.getData());
-							
-				win.show();
-			},
-			deleteItem:function (record) {
-				Ext.Msg.confirm('Delete Warna Glasin', 'Are you sure?', function (button) {
-					if (button == 'yes') {
-						this.doProsesCRUD('delete',record);
-					}
-				}, this);
-			},
-			doProsesCRUD : function (inAction,record){
-				var win = this.getFRM_rpcustomer();
-				var grid = this.getGRID_rpcustomer();
-				var store = grid.getStore();//Ext.getStore('ScontactStore');
-				Ext.Ajax.request({
-					url: base_url + 'Rpcustomer/' +  inAction,
-					method: 'POST',
-					type:'json',
-					params: JSON.stringify(record.data),
-					success: function(response){
-						switch(inAction) {
-							case 'delete':
-									store.load();
-									createAlert('Delete Warna Glasin', 'Delete Data Success', 'success');
-								break;
-							case 'create' :
-									store.load();
-									createAlert('Insert Warna Glasin', 'Insert Data Success', 'success');
-								break;
-							case 'update' :
-									store.load();
-									createAlert('Update Warna Glasin', 'Update Data Success', 'success');
-								break;
-						}
-                            win.down('form').getForm().reset();
-                            win.setAction('add');
-
-					},
-					failure: function(response){
-						Ext.Msg.alert('server-side failure with status code ' + response.status  , response.responseText);
-
-					}
-				});
-			},						
-			doSaveform: function(){
-				var win = this.getFRM_rpcustomer();
-				var store = Ext.getStore('Almindo.Rpcustomer.store.ST_rpcustomer');
-				var form = win.down('form');
-				var values = form.getValues();
-				var record = form.getRecord();
-				var action = win.getAction();
-				var recValue = Ext.create('Almindo.Rpcustomer.model.M_rpcustomer', values);
-				console.log(action);
-								
-				if(action == 'edit'){
-					if(form.isValid()){
-						this.doProsesCRUD('update',recValue);
-					}
-				}else{
-					if(form.isValid()){
-						this.doProsesCRUD('create',recValue);
-					}
-				}
-			}			
+                        },getData: function(grid, record){
+                            var grid = this.getGRIDS_rpcustomer();
+                            //var grid = Ext.getCmp('InboundCancelSelectedGrid');
+                            var store = grid.getStore();
+                            //store.reload();
+                                
+                            Ext.Ajax.request({
+                                url: base_url + 'Rpcustomer/getGrid',
+                                params: {transaksi_doc: record.data.transaksi_doc},
+                                method: 'POST',
+                                fields: ['transaksi_doc'],
+                                success: function(transport){
+                                    store.loadData(Ext.decode(transport.responseText));
+                                }
+                            });
+                        }	
+						
 		});
