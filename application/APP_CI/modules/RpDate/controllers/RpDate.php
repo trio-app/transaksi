@@ -2,42 +2,42 @@
 
 defined('BASEPATH') OR exit ('No direct script access allowed');
 
-class Rbydate extends MX_Controller{
+class RpDate extends MX_Controller{
 
 	public function index(){
-		$this->load->view('V_rbydate');
+		$this->load->view('V_rpdate');
 	}
 	public function read(){
-		$this->load->model('R_rbydate');
+		$this->load->model('R_rpdate');
 		$start = $this->input->post('start');
         $limit = $this->input->post('limit');
         $filter = $this->input->post('filter');
         header('Content-type: application/json');
-        print_r( $this->R_bydate->load_deafult($start,$limit,$filter))
+        print_r( $this->R_pDate->load_deafult($start,$limit,$filter))
 
 	}
 	public function create(){
 		$jsonData = file_get_contents("php://input");
 
 		//print_r(json_decode($jsonData,true));
-		$this->load->model('C_rbydate');
-		$this->C_rbydate->insertDT(json_decode($jsonData,TRUE));
+		$this->load->model('C_rpdate');
+		$this->C_rpdate->insertDT(json_decode($jsonData,TRUE));
 	}
 
 	public function update(){
 		$jsonData = file_get_contents("php://input");
 
-		$this->load->model(U_rbydate);
-		$this->U_rbydate->updateDT(json_decode($jsonData,TRUE));
+		$this->load->model(U_rpdate);
+		$this->U_rpdate->updateDT(json_decode($jsonData,TRUE));
 	}
 	public function delete(){
 		$jsonData =  file_get_contents("php://input");        
-        $this->load->model('D_rbydate');
-        $this->D_rbydate->deleteDT(json_decode($jsonData,true));
+        $this->load->model('D_rpdate');
+        $this->D_rpdate->deleteDT(json_decode($jsonData,true));
     }
     public function cbolist(){
-        $this->load->model('Rrbydate');
+        $this->load->model('Rrpdate');
         header('Content-type: application/json');
-        print_r($this->Rrbydate->cbolist());
+        print_r($this->Rrpdate->cbolist());
     }
 }
