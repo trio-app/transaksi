@@ -13,7 +13,7 @@ class RpDate extends MX_Controller{
         $limit = $this->input->post('limit');
         $filter = $this->input->post('filter');
         header('Content-type: application/json');
-        print_r( $this->R_pDate->load_deafult($start,$limit,$filter))
+        print_r( $this->R_pDate->load_deafult($start,$limit,$filter));
 
 	}
 	public function create(){
