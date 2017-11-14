@@ -13,7 +13,7 @@
 		type: 'ajax',
         actionMethods: 'POST',
 		api: {
-			read: base_url + 'Mmerk/read'
+			read: base_url + 'MMerk/read'
 		},
 		reader: {
 			type: 'json',
