@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class U_mbahan extends CI_Model {
+class C_mbahan extends CI_Model {
 
-function updateDT($dtrows)
+function insertDT($dtrows)
             {
                 $this->load->database();
                 $data = array(
@@ -25,23 +25,9 @@ function updateDT($dtrows)
                         'bahan_arahgulungan' => $dtrows['bahan_arahgulungan'],
                         'bahan_sensor' => $dtrows['bahan_sensor']
                 );
-                $this->db->where('bahan_id', $dtrows['bahan_id']);
-                $this->db->update('m_bahan', $data);
+
+                $this->db->insert('m_bahan', $data);
                 
             }
-            
-    function add_img($id, $old, $file){
-        $data = array(
-            'bahan_gambar' => $file
-        );
-        
-        $this->load->database();
-        $this->db->where('bahan_id', $id);
-        $this->db->update('m_bahan', $data);
-        
-        if(file_exists("./system/img/upload/".$old) && !empty($old)){
-            unlink("./system/img/upload/".$old);
-        }
-    }
     
 }
