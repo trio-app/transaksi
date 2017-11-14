@@ -1,6 +1,6 @@
 Ext.define('Almindo.MJBahan.model.M_mjbahan',{
 	extend: 'Ext.data.Model',
-	fields: ['jbahan_id', 'jbahan_nama']
+	fields: ['jbahan_id', 'jbahan_nama','jbahan_desc']
 });
         
 Ext.define('Almindo.MJBahan.store.ST_mjbahan',{

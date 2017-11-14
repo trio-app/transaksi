@@ -1,7 +1,7 @@
 <script>
     Ext.application({
         name: 'Almindo',
-        appFolder: 'application/app',
+        appFolder: 'application/APP',
         controllers: ['Almindo.MJBahan.controller.C_mjbahan'],
         launch: function(){
             Ext.create('Ext.container.Container', {
