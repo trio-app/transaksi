@@ -30,6 +30,10 @@
                     //columnWidth: 3/4,
                     width: '500',
                     items:[{xtype: 'GRID_rpcustomer', store: Ext.create('Almindo.Rpcustomer.store.ST_rpcustomer')}]
+                    },{
+                    //columnWidth: 3/4,
+                    width: '500',
+                    items:[{xtype: 'GRIDS_rpcustomer', store: Ext.create('Almindo.Rpcustomer.store.STS_rpcustomer')}]
                     }]
                 
             });
