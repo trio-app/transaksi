@@ -24,10 +24,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 $config['base_url'] = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/client/almindo_transaksi';
 =======
 $config['base_url'] = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/Github/transaksi';
 >>>>>>> 90d0a1e2e73b7070f2073c072ac5a0d97fb06f69
+=======
+$config['base_url'] = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/transaksi';
+>>>>>>> a2eb21e183f6cdab305cf10cc830637817f53b6f
 
 /*
 |--------------------------------------------------------------------------
