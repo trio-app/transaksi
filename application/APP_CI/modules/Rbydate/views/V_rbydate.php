@@ -20,10 +20,10 @@
                     padding: '0 0 5 5',
                     items:[{xtype: 'GRID_rbydate', store: Ext.create('Almindo.Mcustomer.store.ST_rbydate')}]
 				}]
-			})
+			});
 		}
 
-	})
+	});
 
 
 

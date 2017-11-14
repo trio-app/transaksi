@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MMerk extends MX_Controller {
+class MMerk extends MX_Controller{
 	
 	public function index(){
 
@@ -9,14 +9,15 @@ class MMerk extends MX_Controller {
 	}
 
 
- public function read(){
- 	$this->load->model('R_mmerk');
- 	$start = $this->input->post('start');
-    $limit = $this->input->post('limit');
-    $filter = $this->input->post('filter');
-    header('Content-type: application/json');
- 	print_r($this->R_mmerk->load_default($start,$limit,$filter));
- }
+     public function read(){
+        $this->load->model('R_mmerk');
+        $start = $this->input->post('start');
+        $limit = $this->input->post('limit');
+        $filter = $this->input->post('filter');
+        header('Content-type: application/json');
+        print_r( $this->R_mmerk->load_default($start,$limit,$filter));
+        
+    }
 
     public function create(){   
         $jsonData =  file_get_contents("php://input");        
@@ -36,8 +37,9 @@ class MMerk extends MX_Controller {
         $this->D_mmerk->deleteDT(json_decode($jsonData,true));
     }
     public function cbolist(){
-        $this->load->model('R_mmerk');
+        $this->load->model('Rmmerk');
         header('Content-type: application/json');
         print_r($this->R_mmerk->cbolist());
     }
+    
 }

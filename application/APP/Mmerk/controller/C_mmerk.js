@@ -1,20 +1,21 @@
 		Ext.define('Almindo.Mmerk.controller.C_mmerk',{
 			extend: 'Ext.app.Controller',
-			views : [
-				'Almindo.Mmerk.view.FRM_mmerk',
-				'Almindo.Mmerk.view.GRID_mmerk'	
+			views: [
+				'Almindo.Mmerk.view.GRID_mmerk',
+				'Almindo.Mmerk.view.FRM_mmerk'
 			],
-			stores : [ //'Almindo.Mmerk.store.ST_mmerk'
+			stores  : [
+				//'Almindo.Mmerk.store.ST_mmerk'
 			],
-			refs : [{
-				 ref: 'FRM_mmerk',
-				 xtype:'FRM_mmerk',
-				 selector: 'FRM_mmerk',
-				 autoCreate: true
-			},{
+			refs: [{
 				ref: 'FRM_mmerk',
 				xtype: 'FRM_mmerk',
 				selector: 'FRM_mmerk',
+				autoCreate: true
+			},{
+				ref: 'GRID_mmerk',
+				xtype: 'GRID_mmerk',
+				selector: 'GRID_mmerk',
 				autoCreate: true
 			}],
 			init: function(){
