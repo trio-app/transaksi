@@ -1,11 +1,11 @@
-Ext.define('Almindo.MJBahan.model.M_mjbahan',{
+Ext.define('Almindo.Mwarnaglasin.model.M_mwarnaglasin',{
 	extend: 'Ext.data.Model',
-	fields: ['jbahan_id', 'jbahan_nama']
+	fields: ['warnaglasin_id', 'warnaglasin_nama', 'warnaglasin_desc']
 });
         
-Ext.define('Almindo.MJBahan.store.ST_mjbahan',{
+Ext.define('Almindo.Mwarnaglasin.store.ST_mwarnaglasin',{
 	extend: 'Ext.data.Store',
-	model: 'Almindo.MJBahan.model.M_mjbahan',
+	model: 'Almindo.Mwarnaglasin.model.M_mwarnaglasin',
 	autoLoad: true,
 	autoSync: true,
                 pageSize: 20,
@@ -13,7 +13,7 @@ Ext.define('Almindo.MJBahan.store.ST_mjbahan',{
 		type: 'ajax',
         actionMethods: 'POST',
 		api: {
-			read: base_url + 'MJBahan/read'
+			read: base_url + 'Mwarnaglasin/read'
 		},
 		reader: {
 			type: 'json',

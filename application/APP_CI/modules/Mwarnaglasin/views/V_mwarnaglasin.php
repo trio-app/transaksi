@@ -1,23 +1,23 @@
 <script>
     Ext.application({
         name: 'Almindo',
-        appFolder: 'application/APP',
-        controllers: ['Almindo.MJBahan.controller.C_mjbahan'],
+        appFolder: 'application/app',
+        controllers: ['Almindo.Mwarnaglasin.controller.C_mwarnaglasin'],
         launch: function(){
             Ext.create('Ext.container.Container', {
                layout: 'column',
                margin: '5',
                autoScroll: true,
-               renderTo: 'ID_mjbahan',
+               renderTo: 'ID_mwarnaglasin',
                defaultType: 'container',
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mjbahan'}]
+                    items:[{xtype: 'FRM_mwarnaglasin'}]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mjbahan', store: Ext.create('Almindo.MJBahan.store.ST_mjbahan')}]
+                    items:[{xtype: 'GRID_mwarnaglasin', store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin')}]
                     }]
                 
             });
@@ -25,4 +25,4 @@
 });
 
 </script>
-<div id="ID_mjbahan"></div>
+<div id="ID_mwarnaglasin"></div>

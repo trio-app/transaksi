@@ -1,6 +1,6 @@
-Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
+Ext.define('Almindo.Mmerk.view.FRM_mmerk',{
     extend: 'Ext.form.Panel',
-    alias: 'widget.FRM_mjbahan',
+    alias: 'widget.FRM_mmerk',
     frame: false,
     border: 0,
     config: {
@@ -9,7 +9,7 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
     },   
    items: [{
         xtype: 'box',
-        html: '<p style="font-size: 14pt;">Form Master Jenis Bahan</p>',
+        html: '<p style="font-size: 14pt;">Form Master Merk</p>',
         },{
         xtype: 'form',
         border: 0,
@@ -21,16 +21,16 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
         items: [{
             readOnly: true,
             xtype: 'hidden',
-            name: 'jbahan_id',
+            name: 'merk_id',
             fieldLabel: 'ID'
         },{
-            name: 'jbahan_nama',
+            name: 'merk_nama',
             flex: 1,
-            fieldLabel: 'Nama Jenis Bahan ',
+            fieldLabel: 'Nama Merk ',
             labelAlign: 'top',
             allowBlank: false
         },{
-            name: 'jbahan_desc',
+            name: 'merk_desc',
             flex: 1,
             fieldLabel: 'Description ',
             labelAlign: 'top',

@@ -1,9 +1,9 @@
-    Ext.define('Almindo.MJBahan.view.GRID_mjbahan',{
+    Ext.define('Almindo.Mwarnaglasin.view.GRID_mwarnaglasin',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.GRID_mjbahan',
-    title: 'Master Jenis Bahan',
+    alias: 'widget.GRID_mwarnaglasin',
+    title: 'Master Data warnaglasin',
     height: 400,
-    //store: Ext.create('Almindo.MJBahan.store.ST_mcategory'),
+    //store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin'),
     initComponent: function () {
         this.tbar = [
           '->',
@@ -16,8 +16,8 @@
         ];
         this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'Nama Jenis Bahan ', dataIndex: 'jbahan_nama'},
-            { header: 'Description ', dataIndex: 'jbahan_desc'},
+            { header: 'Nama Warna Glasin ', dataIndex: 'warnaglasin_nama'},
+            { header: 'Description ', dataIndex: 'warnaglasin_desc'},
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,

@@ -1,39 +1,38 @@
-		Ext.define('Almindo.MJBahan.controller.C_mjbahan',{
+		Ext.define('Almindo.Mmerk.controller.C_mmerk',{
 			extend: 'Ext.app.Controller',
-			views: [
-				'Almindo.MJBahan.view.GRID_mjbahan',
-				'Almindo.MJBahan.view.FRM_mjbahan'
+			views : [
+				'Almindo.Mmerk.view.FRM_mmerk',
+				'Almindo.Mmerk.view.GRID_mmerk'	
 			],
-			stores  : [
-				//'Almindo.MJBahan.store.ST_mjbahan'
+			stores : [ //'Almindo.Mmerk.store.ST_mmerk'
 			],
-			refs: [{
-				ref: 'FRM_mjbahan',
-				xtype: 'FRM_mjbahan',
-				selector: 'FRM_mjbahan',
-				autoCreate: true
+			refs : [{
+				 ref: 'FRM_mmerk',
+				 xtype:'FRM_mmerk',
+				 selector: 'FRM_mmerk',
+				 autoCreate: true
 			},{
-				ref: 'GRID_mjbahan',
-				xtype: 'GRID_mjbahan',
-				selector: 'GRID_mjbahan',
+				ref: 'FRM_mmerk',
+				xtype: 'FRM_mmerk',
+				selector: 'FRM_mmerk',
 				autoCreate: true
 			}],
 			init: function(){
 				this.control({
-					'GRID_mjbahan > toolbar > textfield[itemId=searchData]': {
+					'GRID_mmerk > toolbar > textfield[itemId=searchData]': {
 						specialkey: this.searchData
 					},										
-					'GRID_mjbahan' :{
+					'GRID_mmerk' :{
 						itemdblclick: this.onRowdblclick,
 						removeitem: this.deleteItem
 					},
-					'FRM_mjbahan button[action=add]':{
+					'FRM_mmerk button[action=add]':{
 						click: this.doSaveform
 					},
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//
+				var store = Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//
 				if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
@@ -47,7 +46,7 @@
 
 			},
 			onRowdblclick: function(me, record, item, index){							
-				var win = this.getFRM_mjbahan();
+				var win = this.getFRM_mmerk();
 				win.setAction('edit');
 				win.setRecordIndex(index);
 				win.down('form').getForm().setValues(record.getData());
@@ -62,11 +61,11 @@
 				}, this);
 			},
 			doProsesCRUD : function (inAction,record){
-				var win = this.getFRM_mjbahan();
-				var grid = this.getGRID_mjbahan();
+				var win = this.getFRM_mmerk();
+				var grid = this.getGRID_mmerk();
 				var store = grid.getStore();//Ext.getStore('ScontactStore');
 				Ext.Ajax.request({
-					url: base_url + 'MJBahan/' +  inAction,
+					url: base_url + 'MMerk/' +  inAction,
 					method: 'POST',
 					type:'json',
 					params: JSON.stringify(record.data),
@@ -96,13 +95,13 @@
 				});
 			},						
 			doSaveform: function(){
-				var win = this.getFRM_mjbahan();
-				var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');
+				var win = this.getFRM_mmerk();
+				var store = Ext.getStore('Almindo.Mmerk.store.ST_mmerk');
 				var form = win.down('form');
 				var values = form.getValues();
 				var record = form.getRecord();
 				var action = win.getAction();
-				var recValue = Ext.create('Almindo.MJBahan.model.M_mjbahan', values);
+				var recValue = Ext.create('Almindo.Mmerk.model.M_mmerk', values);
 				console.log(action);
 								
 				if(action == 'edit'){

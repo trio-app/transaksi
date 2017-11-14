@@ -1,39 +1,39 @@
-		Ext.define('Almindo.MJBahan.controller.C_mjbahan',{
+		Ext.define('Almindo.Mwarnaglasin.controller.C_mwarnaglasin',{
 			extend: 'Ext.app.Controller',
 			views: [
-				'Almindo.MJBahan.view.GRID_mjbahan',
-				'Almindo.MJBahan.view.FRM_mjbahan'
+				'Almindo.Mwarnaglasin.view.GRID_mwarnaglasin',
+				'Almindo.Mwarnaglasin.view.FRM_mwarnaglasin'
 			],
 			stores  : [
-				//'Almindo.MJBahan.store.ST_mjbahan'
+				//'Almindo.Mwarnaglasin.store.ST_mwarnaglasin'
 			],
 			refs: [{
-				ref: 'FRM_mjbahan',
-				xtype: 'FRM_mjbahan',
-				selector: 'FRM_mjbahan',
+				ref: 'FRM_mwarnaglasin',
+				xtype: 'FRM_mwarnaglasin',
+				selector: 'FRM_mwarnaglasin',
 				autoCreate: true
 			},{
-				ref: 'GRID_mjbahan',
-				xtype: 'GRID_mjbahan',
-				selector: 'GRID_mjbahan',
+				ref: 'GRID_mwarnaglasin',
+				xtype: 'GRID_mwarnaglasin',
+				selector: 'GRID_mwarnaglasin',
 				autoCreate: true
 			}],
 			init: function(){
 				this.control({
-					'GRID_mjbahan > toolbar > textfield[itemId=searchData]': {
+					'GRID_mwarnaglasin > toolbar > textfield[itemId=searchData]': {
 						specialkey: this.searchData
 					},										
-					'GRID_mjbahan' :{
+					'GRID_mwarnaglasin' :{
 						itemdblclick: this.onRowdblclick,
 						removeitem: this.deleteItem
 					},
-					'FRM_mjbahan button[action=add]':{
+					'FRM_mwarnaglasin button[action=add]':{
 						click: this.doSaveform
 					},
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//
+				var store = Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//
 				if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
@@ -47,7 +47,7 @@
 
 			},
 			onRowdblclick: function(me, record, item, index){							
-				var win = this.getFRM_mjbahan();
+				var win = this.getFRM_mwarnaglasin();
 				win.setAction('edit');
 				win.setRecordIndex(index);
 				win.down('form').getForm().setValues(record.getData());
@@ -55,18 +55,18 @@
 				win.show();
 			},
 			deleteItem:function (record) {
-				Ext.Msg.confirm('Delete Jenis Bahan', 'Are you sure?', function (button) {
+				Ext.Msg.confirm('Delete Warna Glasin', 'Are you sure?', function (button) {
 					if (button == 'yes') {
 						this.doProsesCRUD('delete',record);
 					}
 				}, this);
 			},
 			doProsesCRUD : function (inAction,record){
-				var win = this.getFRM_mjbahan();
-				var grid = this.getGRID_mjbahan();
+				var win = this.getFRM_mwarnaglasin();
+				var grid = this.getGRID_mwarnaglasin();
 				var store = grid.getStore();//Ext.getStore('ScontactStore');
 				Ext.Ajax.request({
-					url: base_url + 'MJBahan/' +  inAction,
+					url: base_url + 'Mwarnaglasin/' +  inAction,
 					method: 'POST',
 					type:'json',
 					params: JSON.stringify(record.data),
@@ -74,15 +74,15 @@
 						switch(inAction) {
 							case 'delete':
 									store.load();
-									createAlert('Delete Jenis Bahan', 'Delete Data Success', 'success');
+									createAlert('Delete Warna Glasin', 'Delete Data Success', 'success');
 								break;
 							case 'create' :
 									store.load();
-									createAlert('Insert Jenis Bahan', 'Insert Data Success', 'success');
+									createAlert('Insert Warna Glasin', 'Insert Data Success', 'success');
 								break;
 							case 'update' :
 									store.load();
-									createAlert('Update Jenis Bahan', 'Update Data Success', 'success');
+									createAlert('Update Warna Glasin', 'Update Data Success', 'success');
 								break;
 						}
                             win.down('form').getForm().reset();
@@ -96,13 +96,13 @@
 				});
 			},						
 			doSaveform: function(){
-				var win = this.getFRM_mjbahan();
-				var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');
+				var win = this.getFRM_mwarnaglasin();
+				var store = Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');
 				var form = win.down('form');
 				var values = form.getValues();
 				var record = form.getRecord();
 				var action = win.getAction();
-				var recValue = Ext.create('Almindo.MJBahan.model.M_mjbahan', values);
+				var recValue = Ext.create('Almindo.Mwarnaglasin.model.M_mwarnaglasin', values);
 				console.log(action);
 								
 				if(action == 'edit'){

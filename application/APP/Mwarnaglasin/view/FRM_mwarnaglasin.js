@@ -1,6 +1,6 @@
-Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
+Ext.define('Almindo.Mwarnaglasin.view.FRM_mwarnaglasin',{
     extend: 'Ext.form.Panel',
-    alias: 'widget.FRM_mjbahan',
+    alias: 'widget.FRM_mwarnaglasin',
     frame: false,
     border: 0,
     config: {
@@ -9,7 +9,7 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
     },   
    items: [{
         xtype: 'box',
-        html: '<p style="font-size: 14pt;">Form Master Jenis Bahan</p>',
+        html: '<p style="font-size: 14pt;">Form Master Warna Glasin</p>',
         },{
         xtype: 'form',
         border: 0,
@@ -21,16 +21,16 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
         items: [{
             readOnly: true,
             xtype: 'hidden',
-            name: 'jbahan_id',
+            name: 'warnaglasin_id',
             fieldLabel: 'ID'
         },{
-            name: 'jbahan_nama',
+            name: 'warnaglasin_nama',
             flex: 1,
-            fieldLabel: 'Nama Jenis Bahan ',
+            fieldLabel: 'Nama Warna Glasin ',
             labelAlign: 'top',
             allowBlank: false
         },{
-            name: 'jbahan_desc',
+            name: 'warnaglasin_desc',
             flex: 1,
             fieldLabel: 'Description ',
             labelAlign: 'top',

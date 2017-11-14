@@ -1,23 +1,23 @@
-    Ext.define('Almindo.MJBahan.view.GRID_mjbahan',{
-    extend: 'Ext.grid.Panel',
-    alias: 'widget.GRID_mjbahan',
-    title: 'Master Jenis Bahan',
-    height: 400,
-    //store: Ext.create('Almindo.MJBahan.store.ST_mcategory'),
-    initComponent: function () {
-        this.tbar = [
-          '->',
-        {
-            xtype: 'textfield',
-            itemId:'searchData',
-            emptyText: 'Search Data',
-            fieldStyle: 'text-align: left;align:right;'
-        }    
-        ];
-        this.columns = [
+	Ext.define('Almindo.Mmerk.view.GRID_mmerk',{
+		extend: 'Ext.grid.Panel',
+		alias: 'widget.GRID_mmerk',
+		title: 'Master Data Merk',
+		height: 400,
+		//store: Ext.create('Almindo.Mmerk.store.ST_mmerk'),
+		initComponent: function(){
+			this.tbar =[
+			'->',
+			{
+				xtype: 'textfield',
+				itemId: 'searchData',
+				emptyText: 'Search Data',
+				fielStyle: 'text-align: left; align:right;'
+			}
+			];
+		this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'Nama Jenis Bahan ', dataIndex: 'jbahan_nama'},
-            { header: 'Description ', dataIndex: 'jbahan_desc'},
+            { header: 'Nama Merk ', dataIndex: 'merk_nama'},
+            { header: 'Description ', dataIndex: 'merk_desc'},
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
@@ -56,4 +56,5 @@
         }
         return null;
     }
-		});
+
+});
