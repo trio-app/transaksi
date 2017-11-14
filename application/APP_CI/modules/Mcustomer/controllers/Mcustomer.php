@@ -35,9 +35,9 @@ class Mcustomer extends MX_Controller {
         $this->D_mcustomer->deleteDT(json_decode($jsonData,true));
     }
     public function cbolist(){
-        $this->load->model('Rmcustomer');
+        $this->load->model('R_mcustomer');
         header('Content-type: application/json');
-        print_r($this->Rmcustomer->cbolist());
+        print_r($this->R_mcustomer->cbolist());
     }
             
 }
