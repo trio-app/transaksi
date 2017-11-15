@@ -1,8 +1,8 @@
 Ext.define('Almindo.Mcustomer.view.FRM_mcustomer',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_mcustomer',
-    frame: false,
-    border: 0,
+    frame: true,
+    height: 400,
     config: {
             recordIndex: 0,
             action: ''
@@ -14,6 +14,7 @@ Ext.define('Almindo.Mcustomer.view.FRM_mcustomer',{
         xtype: 'form',
         border: 0,
         layout: 'anchor',
+        bodyStyle: 'background:none;',
         defaults: {
             xtype: 'textfield',
             anchor: '100%'
@@ -30,6 +31,7 @@ Ext.define('Almindo.Mcustomer.view.FRM_mcustomer',{
             labelAlign: 'top',
             allowBlank: false
         },{
+            xtype: 'textarea',
             name: 'customer_alamat',
             flex: 1,
             fieldLabel: 'Alamat ',

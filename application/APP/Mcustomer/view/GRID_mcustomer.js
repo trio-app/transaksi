@@ -3,6 +3,7 @@
     alias: 'widget.GRID_mcustomer',
     title: 'Master Data Customer',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.Mcustomer.store.ST_mcustomer'),
     initComponent: function () {
         this.tbar = [
