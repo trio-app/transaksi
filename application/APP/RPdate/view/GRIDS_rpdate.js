@@ -12,6 +12,7 @@
                                     {
                                         xtype: 'exporterbutton',
                                         text: 'Export',
+                                        icon: extjs_url + 'resources/css/icons/grid.png',
                                         //format: 'excel',
                                         //title: 'Report Transaksi Detail Customer'
 
