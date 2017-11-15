@@ -1,6 +1,6 @@
 	Ext.define('Almindo.RPdate.model.M_rpdate',{
 		extend: 'Ext.data.Model',
-		fields: ['Amount','transaksi_customer','transaksi_doc','transaksi_date','customer_nama','trdetail_doc','trdetail_amount'']
+		fields: ['Amount','transaksi_customer','transaksi_doc','transaksi_date','customer_nama','trdetail_doc','trdetail_amount']
 	});
 
 	Ext.define('Almindo.RPdate.store.ST_rpdate',{
