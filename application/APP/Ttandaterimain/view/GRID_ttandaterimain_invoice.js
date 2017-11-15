@@ -1,38 +1,18 @@
-Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
+Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.GRID_tpackinglist_mat',
-    id: 'GRID_tpackinglist_mat',
+    alias: 'widget.GRID_ttandaterimain_invoice',
+    id: 'GRID_ttandaterimain_invoice',
     height: 240,
-    //frame: true,
-    margin: '0 10',
+    frame: true,
+    margin: '10',
     store: Ext.create('Ext.data.ArrayStore',{
         fields: [
-            'trdetailitem_id',
-            'trdetail_doc',
-            'trdetail_sjap', 
-            'trdetail_item', 
-            'trdetail_po', 
-            {name : 'trdetail_date', type : 'date'},
-            'trdetail_qty', 
-            'trdetail_unit', 
-            {name : 'trdetail_price', type: 'float' }, 
-            {name : 'trdetail_amount', type: 'float',
-                convert: function(val,row) {
-                    return row.data.trdetail_qty * row.data.trdetail_price;
-                }         
-            }, 
-            {name : 'trdetail_weight', type: 'float' },        
-            {name : 'trdetail_weighttotal', type: 'float',     
-                convert: function(val,row) {
-                    return row.data.trdetail_qty * row.data.trdetail_weight;
-                }               
-            }, 
-            {name : 'trdetail_upp', type: 'float' }, 
-            {name : 'trdetail_pack', type: 'float',  
-                convert: function(val,row) {
-                    return Math.ceil(row.data.trdetail_qty / row.data.trdetail_upp);
-                }
-            }
+            'recdetail_doc',
+            'recdetail_invoice',
+            'recdetail_delivery', 
+            'recdetail_po', 
+            'recdetail_date', 
+            {name : 'recdetail_price', type : 'float'},
         ],
         autoLoad: true,
         proxy: {
@@ -65,24 +45,28 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
     },                        
     initComponent: function(){
         this.tbar= [{
-            text: 'Tambah Material',
-            action: 'add_material',
+            text: 'Tambah Invoice',
+            action: 'add_invoice',
             icon: extjs_url + 'resources/ext-theme-classic/images/dd/drop-add.gif',
         }];
         this.columns= [
             { xtype: 'rownumberer' },
-            { header: 'NO SJ', dataIndex: 'trdetail_sjap',
+            { header: 'NO Invoice', dataIndex: 'recdetail_invoice',
                 editor: {
                     allowBlank: false
                 }
-            },
-            { header: 'Item', dataIndex: 'trdetail_item'},    
-            { header: 'PO.', dataIndex: 'trdetail_po',
+            },    
+            { header: 'NO Surat Jalan', dataIndex: 'recdetail_delivery',
+                editor: {
+                    allowBlank: false
+                }
+            },    
+            { header: 'PO.', dataIndex: 'recdetail_po',
                 editor: {
                     allowBlank: false
                 }            
             },    
-            { header: 'Date', dataIndex: 'trdetail_date', xtype:'datecolumn',  
+            { header: 'TGL Invoice', dataIndex: 'recdetail_date', xtype:'datecolumn',  
                 renderer:Ext.util.Format.dateRenderer('Y-m-d'),
                 editor: {
                     xtype: 'datefield',
@@ -95,34 +79,18 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
                     allowBlank: false
                 }
             },     
-            { header: 'Unit', dataIndex: 'trdetail_unit' },     
-            { header: 'Price', dataIndex: 'trdetail_price', xtype: 'numbercolumn' },     
-            { header: 'Amount', dataIndex: 'trdetail_amount', xtype: 'numbercolumn',
+            { header: 'Nominal', dataIndex: 'recdetail_price', xtype: 'numbercolumn',
                 editor: {
                     xtype: 'numberfield',                    
                     allowBlank: false
                 } , 
-            },    
-            { header: 'Berat Satuan (KG)', dataIndex: 'trdetail_weight', xtype: 'numbercolumn', format: '0.0000'},    
-            { header: 'Total Weight (KG)', dataIndex: 'trdetail_weighttotal', xtype: 'numbercolumn',
-                editor: {
-                    xtype: 'numberfield',                    
-                    allowBlank: false
-                } , 
-            },      
-            { header: 'UPP', dataIndex: 'trdetail_upp', xtype: 'numbercolumn'},    
-            { header: 'Total Pack', dataIndex: 'trdetail_pack', xtype: 'numbercolumn' ,
-                editor: {
-                    xtype: 'numberfield',                    
-                    allowBlank: false
-                }            
-            }, 
+            },     
         ];
 
         this.addEvents('removeitem');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
-                text: 'Delete Material / Item',
+                text: 'Delete Invoice',
                 handler: function () {
                     this.store.remove(this.getSelected());
                     //this.fireEvent('removeitem', this.getSelected())

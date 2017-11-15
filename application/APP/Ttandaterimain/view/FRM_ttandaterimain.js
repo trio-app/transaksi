@@ -1,9 +1,9 @@
-Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
+Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
     extend: 'Ext.form.Panel',
-    alias: 'widget.FRM_tpackinglist',
-    id: 'FRM_tpackinglist',
-    //frame: true,
-    margin: '10 10 0 10',
+    alias: 'widget.FRM_ttandaterimain',
+    frame: true,
+    border: 0,
+    margin: 10,
     config: {
         recordIndex: 0,
         action: ''
@@ -20,8 +20,8 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
             layout: 'hbox',
             items: [{
                 flex : 1,
-                name: 'transaksi_doc',
-                id: 'transaksi_doc',
+                name: 'receipt_doc',
+                id: 'receipt_doc',
                 xtype: 'textfield',
                 fieldLabel: 'Document Number ',
                 emptyText: 'Auto Number',
@@ -38,8 +38,8 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
         },{
             xtype: 'datefield',
             fieldLabel: 'Document Date ',
+            name:'receipt_date',
             labelWidth:120,
-            value: new Date(),
             format: 'Y-m-d'
         },{
             xtype: 'box',
@@ -133,7 +133,7 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
             xtype: 'button',
             text: 'View List Data Packing List',
             handler: function(){
-                var tab = Ext.getCmp('TAB_tpackinglist');
+                var tab = Ext.getCmp('TAB_ttandaterimain');
                 tab.setActiveTab(1);
             }
         },{
