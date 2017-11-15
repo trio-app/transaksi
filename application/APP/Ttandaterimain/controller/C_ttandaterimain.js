@@ -22,6 +22,11 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         xtype: 'WIN_ttincustomer',
         selector: 'WIN_ttincustomer',
         autoCreate: true
+    },{
+        ref: 'GRID_ttandaterimain_invoice',
+        xtype: 'GRID_ttandaterimain_invoice',
+        selector: 'GRID_ttandaterimain_invoice',
+        autoCreate: true
     }],
     init: function(){
             this.control({
@@ -59,23 +64,15 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         form.getForm().setValues(record.getData());
         win.close();
     },
-    addItem: function(me, record, item, index){
-        var win = this.getFRM_ttandaterimain();
-        win.setRecordIndex(index);
-        //alert(record.data);
-        var grid = Ext.getCmp('GRID_tandaterimain_invoice');//var myRecordDef = Ext.data.Record.create();
-        //var date = Ext.Date.format(new Date(), 'Y-m-d');
-        grid.getStore('SelectedStoreTanda').add({
+    add_invoice: function(me, record, item, index){
+        var grid = this.getGRID_ttandaterimain_invoice();
+        grid.store.add({
             recdetail_invoice : '-',
             recdetail_delivery : '-',
             recdetail_po : '-',
             recdetail_date : '-',
             recdetail_price : 0,
         });
-
-        var records = Ext.getStore('SelectedStoreTanda').getRange();
-
-        console.log(records);
 
     }
 });

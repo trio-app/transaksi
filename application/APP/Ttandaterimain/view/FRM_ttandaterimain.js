@@ -1,9 +1,8 @@
 Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_ttandaterimain',
-    frame: true,
-    border: 0,
-    margin: 10,
+    //frame: true,
+    margin: '10 10 10 10',
     config: {
         recordIndex: 0,
         action: ''
@@ -13,7 +12,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
         layout: 'hbox',
         defaults: {
             flex: 1,
-            margin: '5 0 5 10'
+            margin: '5 5 5 5'
         },
         items: [{
             xtype: 'container',
@@ -23,7 +22,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
                 name: 'receipt_doc',
                 id: 'receipt_doc',
                 xtype: 'textfield',
-                fieldLabel: 'Document Number ',
+                fieldLabel: 'No. Document',
                 emptyText: 'Auto Number',
                 readOnly: true,
                 labelWidth:120,
@@ -42,26 +41,12 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             labelWidth:120,
             format: 'Y-m-d'
         },{
-            xtype: 'box',
-            flex: 1
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 5 5 10'
-        },
-        items: [{
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Supplier ',
+            fieldLabel: 'Tujuan ',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
-            value: 'ALMINDO PRATAMA CV.'
-        },{
-            xtype: 'box',
-            flex: 2
+            value: 'ALMINDO PRATAMA CV.',
         }]
     },{
         xtype: 'container',
@@ -70,53 +55,12 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             flex: 1,
         },
         items: [{
-            margin: '5 0 5 10',
+            margin: '5 5 5 5',
             name: 'customer_nama',
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Customer ',
+            fieldLabel: 'Dikirim Dari',
             labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_cp',
-            margin: '5 0 5 10',
-            xtype: 'textfield',
-            fieldLabel: 'Contact Person ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_telp',
-            margin: '5 10 5 5',
-            xtype: 'textfield',
-            fieldLabel: 'Phone ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 0 5 10'
-        },
-        items: [{
-            readOnly: true,
-            name: 'customer_email',
-            xtype: 'textfield',
-            fieldLabel: 'Email ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_alamat',
-            flex: 2,
-            margin: '5 10',
-            xtype: 'textarea',
-            fieldLabel: 'Alamat ',
-            labelWidth: 120,
-            height: 50,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
     },{

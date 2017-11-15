@@ -3,8 +3,8 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
     alias: 'widget.GRID_ttandaterimain_invoice',
     id: 'GRID_ttandaterimain_invoice',
     height: 240,
-    frame: true,
-    margin: '10',
+    //frame: true,
+    margin: '0 10',
     store: Ext.create('Ext.data.ArrayStore',{
         fields: [
             'recdetail_doc',
@@ -66,19 +66,11 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
                     allowBlank: false
                 }            
             },    
-            { header: 'TGL Invoice', dataIndex: 'recdetail_date', xtype:'datecolumn',  
-                renderer:Ext.util.Format.dateRenderer('Y-m-d'),
+            { header: 'TGL Invoice', dataIndex: 'recdetail_date',  
                 editor: {
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                }
-            },    
-            { header: 'Qty', dataIndex: 'trdetail_qty', xtype: 'numbercolumn',
-                editor: {
-                    xtype: 'numberfield',                    
                     allowBlank: false
                 }
-            },     
+            },       
             { header: 'Nominal', dataIndex: 'recdetail_price', xtype: 'numbercolumn',
                 editor: {
                     xtype: 'numberfield',                    

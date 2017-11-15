@@ -7,6 +7,7 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
         layout: {
             type: 'hbox',
             align: 'stretch'
+            
         },
     defaults: { flex: 1 }
     },
@@ -17,9 +18,18 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
             xtype: 'FRM_ttandaterimain'
         },{
             xtype: 'GRID_ttandaterimain_invoice'
+        }],
+        buttons: [{
+            text: 'Save'
+        },{
+            text: 'Reset',
+            handler: function(){
+                var frm = Ext.getCmp('FRM_ttandaterimain');
+                frm.getForm().reset(); 
+            }
         }]
     }, {
         title: 'LIST DATA PACKING LIST',
-        layout: 'anchor',
+        layoust: 'anchor'
     }]
-})
+});
