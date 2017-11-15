@@ -58,21 +58,20 @@ Ext.define('Almindo.RPdate.controller.C_rpdate',{
 		},	
 
 		getData: function(grid, record){
-			var grid = this.getGRIDS_rpdate();
-
-			var store = grid.getStore();
-
-
-			Ext.Ajax.request({
-					url : base_url + 'RpDate/getGrid',
-					params: {transaksi_doc: record.data.transaksi_doc},
-					method: 'POST',
-					fields: ['transaksi_doc'],
-					success: function(transport){
-						store.loadData(Ext.decode(transport.responseText));
-					}
-
-			});
-		}
+                            var grid = this.getGRIDS_rpdate();
+                            //var grid = Ext.getCmp('InboundCancelSelectedGrid');
+                            var store = grid.getStore();
+                            //store.reload();
+                                
+                            Ext.Ajax.request({
+                                url: base_url + 'RpDate/getGrid',
+                                params: {transaksi_doc: record.data.transaksi_doc},
+                                method: 'POST',
+                                fields: ['transaksi_doc'],
+                                success: function(transport){
+                                    store.loadData(Ext.decode(transport.responseText));
+                                }
+                            });
+                        }	
 });
 

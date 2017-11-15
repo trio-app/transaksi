@@ -11,10 +11,10 @@ class RpDate extends MX_Controller{
 	}
 	public function getGrid(){
             //$jsonData =  file_get_contents("php://input");
-            $doc = $this->input->post('transaksi_doc');
             $this->load->model('R_rpdate');
+            $doc = $this->input->post('transaksi_doc');
             header('Content-type: application/json');
-            print_r($this->R_rpdate->getGrid($doc));
+             print_r( $this->R_rpdate->getGrid($doc));
         }   
 
 	public function read(){

@@ -51,6 +51,21 @@ class R_rpdate extends CI_Model {
                              );
                 return json_encode($data);   
         }
+        
+        function getGrid($data){
+            $this->load->database();
+            $this->db->select(' tr_packinglist_detail.*
+                            ',FALSE);
+            $this->db->select('m_item.item_nama');
+            $this->db->join('m_item', 'm_item.item_id = tr_packinglist_detail.trdetail_item', 'LEFT');
+            $this->db->join('tr_packinglist', 'tr_packinglist.transaksi_doc = tr_packinglist_detail.trdetail_doc', 'LEFT');
+            $this->db->from('tr_packinglist_detail');
+            $this->db->where('tr_packinglist_detail.trdetail_doc', $data);
+            $this->db->order_by('trdetail_date', 'DESC');
+            $query = $this->db->get();
+            $rows = $query->result_array();
+            return json_encode($rows);       
+        }
 
         function exportTransaksi($data){
         $this->load->database();
