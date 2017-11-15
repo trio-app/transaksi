@@ -19,12 +19,16 @@ Ext.define('Almindo.Tpackinglist.view.TAB_tpackinglist',{
             xtype: 'GRID_tpackinglist_mat',
         }],
         buttons: [{
-            text: 'Save'
+            text: 'Save',
+            action: 'add'
         },{
             text: 'Reset',
             handler: function(){
                 var frm = Ext.getCmp('FRM_tpackinglist');
+                var grid = Ext.getCmp('GRID_tpackinglist_mat');
+                frm.setAction('add'); 
                 frm.getForm().reset(); 
+                grid.store.reload();
             }
         }]
     }, {

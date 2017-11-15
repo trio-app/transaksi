@@ -37,6 +37,7 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
             }]
         },{
             xtype: 'datefield',
+            name: 'transaksi_date',
             fieldLabel: 'Document Date ',
             labelWidth:120,
             value: new Date(),
@@ -55,10 +56,11 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
         items: [{
             readOnly: true,
             xtype: 'textfield',
+            name: 'transaksi_supplier',
             fieldLabel: 'Supplier ',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
-            value: 'ALMINDO PRATAMA CV.'
+            value: 'ALMINDO PRATAMA.CV'
         },{
             xtype: 'box',
             flex: 2
@@ -70,8 +72,13 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
             flex: 1,
         },
         items: [{
+            fieldLabel: 'id',
+            name: 'customer_id',
+            xtype: 'hidden'
+        },{
             margin: '5 0 5 10',
             name: 'customer_nama',
+            allowBlank: false,
             readOnly: true,
             xtype: 'textfield',
             fieldLabel: 'Customer ',

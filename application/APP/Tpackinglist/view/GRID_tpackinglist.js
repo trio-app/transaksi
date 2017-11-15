@@ -3,7 +3,6 @@
     alias: 'widget.GRID_tpackinglist',
     title: 'List Data Packing List',
     height: 400,
-    frame: true,
     initComponent: function () {
         this.tbar = [
         {
@@ -35,16 +34,24 @@
         emptyMsg: "No Data Display"
         });
         this.addEvents('removeitem');
+        this.addEvents('print_file');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
                 handler: function () { this.fireEvent('removeitem', this.getSelected()) },
                 scope: this,
                 icon: extjs_url + 'resources/css/icons/delete.gif',
+            }),
+            print_file: Ext.create('Ext.Action', {
+                text: 'Print Document',
+                handler: function () { this.fireEvent('print_file', this.getSelected()) },
+                scope: this,
+                icon: extjs_url + 'resources/css/icons/page_copy.png',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
             items: [
+                this.actions.print_file,
                 this.actions.removeitem
             ]
         });

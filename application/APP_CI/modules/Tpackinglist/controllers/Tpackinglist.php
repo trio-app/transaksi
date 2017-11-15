@@ -18,23 +18,9 @@ class Tpackinglist extends CI_Controller {
             $month = date('m');
             $year = date('Y');
             $num = $this->R_tpackinglist->autoNum();
-            
-            switch (strlen($num)){
-                case 1 :
-                    $no = '000' . $num;
-                    break;
-                case 2 :
-                    $no = '00' . $num;
-                    break;
-                case 3 :
-                    $no = '0' . $num;
-                    break;
-                case 4 :
-                    $no = '' . $num;
-                    break;
-            }
-            
-            echo $month . '.' . $no . '/AP/PL/' . $year;
+            $doc = $month . '.' . $num . '/AP/PL/' . $year;
+            echo $doc;
+            return $doc;
         }        
         
         public function customer(){
@@ -68,9 +54,9 @@ class Tpackinglist extends CI_Controller {
         public function create(){        
             $jsonData =  file_get_contents("php://input");   
             $data = explode(',||,',$jsonData);
-            //print_r(json_decode($jsonData,true));
             $this->load->model('C_tpackinglist');
-            $num = $this->C_tpackinglist->insertDT(json_decode($data[0],true));
+            $doc = $this->autoNum();
+            $num = $this->C_tpackinglist->insertDT(json_decode($data[0],true), $doc);
             $this->C_tpackinglist->insertGrid(json_decode($data[1],true),$num);
             $this->C_tpackinglist->autoNum();
 
@@ -80,6 +66,7 @@ class Tpackinglist extends CI_Controller {
             $data = explode(',||,',$jsonData);
             $this->load->model('U_tpackinglist');
             $num = $this->U_tpackinglist->updateDT(json_decode($data[0],true));
+            $this->U_tpackinglist->deleteOld($num);
             $this->U_tpackinglist->updateGrid(json_decode($data[1],true),$num);
         }
         public function delete(){
@@ -104,7 +91,7 @@ class Tpackinglist extends CI_Controller {
             print_r($this->R_tpackinglist->getGrid($doc));
         }        
 
-        public function reportPreview($id = NULL){
+        public function print_file($id = NULL){
               ob_start();
                         $this->load->model('R_tpackinglist');
                         $transaksi = $this->R_tpackinglist->reportPreview($id);
@@ -117,7 +104,7 @@ class Tpackinglist extends CI_Controller {
                         $data['tr_detail'] = $this->R_tpackinglist->reportDetail($data['tr_nomor']);
 
                         //print_r($this->Rpacking_list->reportPreview($id));
-                        $this->load->view('previewPrint', $data);
+                        $this->load->view('V_tprint', $data);
                         $html = ob_get_contents();
                ob_end_clean();
 

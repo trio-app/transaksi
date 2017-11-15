@@ -8,11 +8,14 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
     store: Ext.create('Ext.data.ArrayStore',{
         fields: [
             'trdetailitem_id',
-            'trdetail_doc',
             'trdetail_sjap', 
             'trdetail_item', 
             'trdetail_po', 
-            {name : 'trdetail_date', type : 'date'},
+            {name : 'trdetail_date', type: 'date',
+                convert: function(val, row){
+                    return Ext.Date.format(val, 'Y-m-d')
+                }
+            },
             'trdetail_qty', 
             'trdetail_unit', 
             {name : 'trdetail_price', type: 'float' }, 
@@ -45,7 +48,7 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
                 autoCancel: false,
                 listeners: {
                     edit: function(editor, e){
-                        e.record.commit();
+                        //e.record.commit();
                     }
                 }
         })                            
@@ -83,11 +86,11 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
                 }            
             },    
             { header: 'Date', dataIndex: 'trdetail_date', xtype:'datecolumn',  
-                renderer:Ext.util.Format.dateRenderer('Y-m-d'),
                 editor: {
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                }
+                  xtype: 'datefield',
+                  format: 'Y-m-d'
+                },
+                renderer : Ext.util.Format.dateRenderer('Y-m-d')
             },    
             { header: 'Qty', dataIndex: 'trdetail_qty', xtype: 'numbercolumn',
                 editor: {

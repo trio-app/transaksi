@@ -34,6 +34,11 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
         xtype: 'GRID_tpackinglist_mat',
         selector: 'GRID_tpackinglist_mat',
         autoCreate: true
+    },{
+        ref: 'GRID_tpackinglist',
+        xtype: 'GRID_tpackinglist',
+        selector: 'GRID_tpackinglist',
+        autoCreate: true
     }],
     init: function(){
             this.control({
@@ -52,6 +57,14 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                     'WIN_tpitem > GRID_mitem': {
                         itemdblclick: this.addMaterial
                     },
+                    'TAB_tpackinglist button[action=add]': {
+                        click: this.doSaveform
+                    },
+                    'TAB_tpackinglist GRID_tpackinglist': {
+                        itemdblclick: this.onRowdblclick,
+                        removeitem: this.deleteItem,
+                        print_file: this.print_file
+                    }
                     
             });
     },
@@ -67,6 +80,33 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                 Ext.getCmp('transaksi_doc').setValue(transport.responseText);
             }
         }); 
+    },
+    onRowdblclick: function(me, record, item, index){
+        var form = this.getFRM_tpackinglist();
+        
+        var grid = this.getGRID_tpackinglist_mat();
+        grid.store.reload();
+        
+        Ext.Ajax.request({
+            url: base_url + 'Tpackinglist/getGrid',
+            params: {transaksi_doc: record.data.transaksi_doc},
+            method: 'POST',
+            fields: ['trdetailitem_id','trdetail_doc','trdetail_item','trdetail_po','trdetail_date','trdetail_sjap','trdetail_qty','trdetail_unit','trdetail_price','trdetail_amount','trdetail_weight','trdetail_pack'],
+            success: function(transport){
+                form.setAction('edit');
+                form.setRecordIndex(index);
+                form.getForm().setValues(record.getData());
+                Ext.getCmp('TAB_tpackinglist').setActiveTab(0);
+                grid.store.loadData(Ext.decode(transport.responseText));
+            }
+        });
+    },
+    deleteItem: function(record){
+        Ext.Msg.confirm('Delete Data', 'Are you sure?', function (button) {
+            if (button == 'yes') {
+                this.doProsesCRUD('delete',record);
+            }
+        }, this);
     },
     getCustomer: function(me, record, item, index){
         var win = this.getWIN_tpcustomer();
@@ -128,5 +168,91 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
            win.close();
         }
 
+    },
+    doSaveform: function(){
+        var form = this.getFRM_tpackinglist();
+        var values = form.getValues();
+        var action = form.getAction();
+        var recValue = Ext.create('Almindo.Tpackinglist.model.M_tpackinglist', values);
+        console.log(action);
+
+        var grid = this.getGRID_tpackinglist_mat();
+        var data = [];
+        grid.store.each(function(rec){
+            data.push(rec.data);
+        });                                  
+
+        if(action == 'edit'){
+            if(form.isValid() && (grid.store.getCount() > 0)){
+                this.doProsesCRUD('update',recValue,data);
+                //this.doSaveGrid('updateGrid', data);
+            }else{
+                alert('coy');
+            }
+        }else{
+            if(form.isValid() && (grid.store.getCount() > 0)){
+                this.doProsesCRUD('create',recValue,data);
+                //this.doSaveGrid('saveGrid', data);
+            }else{
+                alert('coy');
+            }
+        }
+    },
+    doProsesCRUD : function (inAction,record,data){
+        var form = this.getFRM_tpackinglist();
+        var grid = this.getGRID_tpackinglist_mat();
+        var grid2 = this.getGRID_tpackinglist();
+        var store = grid.getStore();
+        var store2 = grid2.getStore();
+        Ext.Ajax.request({
+                    url: base_url + 'Tpackinglist/' +  inAction,
+                    method: 'POST',
+                    type:'json',
+                    params: [JSON.stringify(record.data),'||',JSON.stringify(data)],
+                    success: function(response){
+                        switch(inAction) {
+                            case 'delete':
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Delete Packinglist', 'Delete Data Success', 'success');
+                                    //Ext.example.msg("Delete Category","Delete Success"," verb", record.data['CategoryName'] );    
+                                break;
+                            case 'create' :
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Insert Packinglist', 'Insert Data Success', 'success');
+                                break;
+                            case 'update' :
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Update Packinglist', 'Update Data Success', 'success');
+                                break;
+                        }
+                        form.setAction('add');
+
+                    },
+                    failure: function(response){
+                        //createAlert('Error ' + response.status, response.responseText, 'error');
+                        Ext.Msg.alert('server-side failure with status code ' + response.status  , response.responseText);
+
+                    }
+                });
+    },
+    print_file: function(record){
+        var previewPrint = Ext.create('Ext.window.Window', {
+            title: 'Print Preview',
+            width: 1000,
+            height: 600,
+            modal   : true,
+            closeAction: 'hide',
+            items: [{ 
+                     xtype: 'component',
+                     html : '<iframe src="'+ base_url +'Tpackinglist/print_file/'+ record.data.transaksi_id +'" width="100%" height="550px"></iframe>',
+                  }]
+        });
+        previewPrint.show();
     }
 });
