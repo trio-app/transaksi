@@ -2,7 +2,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_ttandaterimain',
     //frame: true,
-    margin: '10 10 10 10',
+    margin: '10 10 0 10',
     config: {
         recordIndex: 0,
         action: ''

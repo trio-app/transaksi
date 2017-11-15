@@ -12,7 +12,7 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
     defaults: { flex: 1 }
     },
     items: [{
-        title: 'FORM INPUT PACKING LIST',
+        title: 'FORM INPUT TANDA TERIMA IN',
         layout: 'anchor',
         items: [{
             xtype: 'FRM_ttandaterimain'
@@ -20,7 +20,8 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
             xtype: 'GRID_ttandaterimain_invoice'
         }],
         buttons: [{
-            text: 'Save'
+            text: 'Save',
+            action: 'save_invoce'
         },{
             text: 'Reset',
             handler: function(){
@@ -29,7 +30,11 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
             }
         }]
     }, {
-        title: 'LIST DATA PACKING LIST',
-        layoust: 'anchor'
+        title: 'LIST DATA TANDA TERIMA IN',
+        layoust: 'anchor',
+        items: [{
+            xtype: 'GRID_ttandaterimain',
+            store: Ext.create('Almindo.Ttandaterimain.store.ST_ttandaterimain')
+        }]
     }]
 });

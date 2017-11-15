@@ -5,6 +5,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         'Almindo.Ttandaterimain.view.FRM_ttandaterimain',
         'Almindo.Ttandaterimain.view.WIN_ttincustomer',
         'Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',
+        'Almindo.Ttandaterimain.view.GRID_ttandaterimain',
         
         
         'Almindo.Mcustomer.view.GRID_mcustomer'
@@ -27,6 +28,11 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         xtype: 'GRID_ttandaterimain_invoice',
         selector: 'GRID_ttandaterimain_invoice',
         autoCreate: true
+    },{
+        ref: 'GRID_ttandaterimain',
+        xtype: 'GRID_ttandaterimain',
+        selector: 'GRID_ttandaterimain',
+        autoCreate: true
     }],
     init: function(){
             this.control({
@@ -42,8 +48,28 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                     'GRID_ttandaterimain_invoice button[action=add_invoice]': {
                         click: this.add_invoice
                     },
+                    'TAB_ttandateriman button[action=save_invoice]': {
+                        click: this.save_invoice
+                    },
+                    'GRID_ttandaterimain > toolbar > textfield[itemId=searchData]': {
+                        specialkey: this.searchData
+                    }
                     
             });
+    },
+    searchData:function (f,e) {
+        var grid = this.getGRID_ttandaterimain();
+        var store = grid.getStore();
+        if (e.getKey() == e.ENTER) {
+            store.remoteFilter = false;
+            store.clearFilter();
+            store.remoteFilter = true;
+            store.filter([{
+                    property:'filtername',
+                    anyMatch: true,
+                    value   : f.value
+                } ]);
+        }
     },
     showCust: function(){
         var win = this.getWIN_ttincustomer();
