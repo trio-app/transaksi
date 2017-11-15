@@ -17,15 +17,15 @@
 				defaultType: 'container',
 				items: [{
 					//columnWidth: 1/4,
-					width: '20%',
+					width: '100',
                     items:[{xtype: 'FRM_rpdate'}]
                     },{
                     //columnWidth: 3/4,
-                    width: '40%',
+                    width: '250',
                     items:[{xtype: 'GRID_rpdate', store: Ext.create('Almindo.RPdate.store.ST_rpdate')}]
 					},{
 					//columnWidth: 3/4,
-                    width: '40%',
+                    width: '250',
                     items:[{xtype: 'GRIDS_rpdate', store: Ext.create('Almindo.RPdate.store.STS_rpdate')}]
 				}
 				]

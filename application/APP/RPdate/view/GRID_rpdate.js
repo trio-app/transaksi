@@ -32,27 +32,7 @@
                     {header: 'Document No.', dataIndex: 'transaksi_doc', width:150},
                     {header: 'Amount', dataIndex:'Amount',width:150, xtype:'numbercolumn', format: '0,000,000.00'}
         ];
-        this.addEvents('removeitem');
-        this.actions = {
-            removeitem: Ext.create('Ext.Action', {
-                text: 'Delete Record',
-                handler: function () { this.fireEvent('removeitem', this.getSelected()) },
-                scope: this,
-                icon: extjs_url + 'resources/css/icons/delete.gif',
-            })
-        };
-        var contextMenu = Ext.create('Ext.menu.Menu', {
-            items: [
-                this.actions.removeitem
-            ]
-        });
-        this.on({
-            itemcontextmenu: function (view, rec, node, index, e) {
-                e.stopEvent();
-                contextMenu.showAt(e.getXY());
-                return false;
-            }
-        });   
+        
         this.callParent(arguments);
     },
     getSelected: function () {
