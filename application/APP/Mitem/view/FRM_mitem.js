@@ -1,8 +1,8 @@
 Ext.define('Almindo.Mitem.view.FRM_mitem',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_mitem',
-    frame: false,
-    border: 0,
+    height: 400,
+    frame: true,
     config: {
             recordIndex: 0,
             action: ''
@@ -12,6 +12,7 @@ Ext.define('Almindo.Mitem.view.FRM_mitem',{
         html: '<p style="font-size: 14pt;">Form Master item</p>',
         },{
         xtype: 'form',
+        bodyStyle: 'background:none;',
         border: 0,
         layout: 'anchor',
         defaults: {

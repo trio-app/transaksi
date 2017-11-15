@@ -3,6 +3,7 @@
     alias: 'widget.GRID_mitem',
     title: 'Master Data item',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.Mitem.store.ST_mitem'),
     initComponent: function () {
         this.tbar = [
