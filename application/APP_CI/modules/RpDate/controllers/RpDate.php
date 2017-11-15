@@ -4,16 +4,18 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class RpDate extends MX_Controller{
 
+
+
 	public function index(){
 		$this->load->view('V_rpdate');
 	}
 	public function getGrid(){
             //$jsonData =  file_get_contents("php://input");
-            $this->load->model('R_rpdate');
             $doc = $this->input->post('transaksi_doc');
+            $this->load->model('R_rpdate');
             header('Content-type: application/json');
             print_r($this->R_rpdate->getGrid($doc));
-    }
+        }   
 
 	public function read(){
 		$this->load->model('R_rpdate');
@@ -21,7 +23,7 @@ class RpDate extends MX_Controller{
         $limit = $this->input->post('limit');
         $filter = $this->input->post('filter');
         header('Content-type: application/json');
-        print_r( $this->R_rpdate->load_deafult($start,$limit,$filter));
+        print_r( $this->R_rpdate->load_default($start,$limit,$filter));
 
 	}
 
