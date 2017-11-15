@@ -1,69 +1,69 @@
-	Ext.define('Almindo.TTerimaout.view.FRM_terimaout',{
-		extend: 'Ext.form.Panel',
-		alias: 'widget.FRM_terimaout',
-		frame: true,
-		border: 0,
-		margin:10,
-		config: {
-			recordIndex: 0,
-			action: ''
-		},
-		items: [{
-			xtype: 'container',
-			layout: 'hbox',
-			default: {
-				flex: 1,
-				margin: '5 0 5 10',
-			},
-			items: [{
-					xtype: 'container',
-					layout: 'hbox',
-					items: [{
-						flex: 1,
-						name: 'transaksi_doc',
-						id: 'transaksi_doc',
-	                xtype: 'textfield',
-	                fieldLabel: 'Document Number ',
-	                emptyText: 'Auto Number',
-	                readOnly: true,
-	                labelWidth:120,
-	                fieldStyle: 'background-color: #ffa144; background-image: none;',
-	            },{
-	                margin: '0 0 0 10',
-	                action: 'btn_document',
-	                xtype: 'button',
-	                tooltip: 'Klik untuk melihat Nomor Document',
-	                icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
-				}]
-			},{
-           		xtype: 'datefield',
-	            fieldLabel: 'Document Date ',
-	            labelWidth:120,
-	            value: new Date(),
-	            format: 'Y-m-d'
-	        },{
-	            xtype: 'box',
-	            flex: 1
-			}]
-		},{
-	        xtype: 'container',
-	        layout: 'hbox',
-	        defaults: {
-	            flex: 1,
-	            margin: '5 5 5 10'
-	        },
-	        items: [{
-	            readOnly: true,
-	            xtype: 'textfield',
-	            fieldLabel: 'Supplier ',
-	            labelWidth: 120,
-	            fieldStyle: 'background-color: #ffa144; background-image: none;',
-	            value: 'ALMINDO PRATAMA CV.'
-	        },{
-	            xtype: 'box',
-	            flex: 2
-			}]
-		},{
+Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
+    extend: 'Ext.form.Panel',
+    alias: 'widget.FRM_tterimaout',
+    frame: true,
+    border: 0,
+    margin: 10,
+    config: {
+        recordIndex: 0,
+        action: ''
+    },   
+    items: [{
+        xtype: 'container',
+        layout: 'hbox',
+        defaults: {
+            flex: 1,
+            margin: '5 0 5 10'
+        },
+        items: [{
+            xtype: 'container',
+            layout: 'hbox',
+            items: [{
+                flex : 1,
+                name: 'receipt_doc',
+                id: 'receipt_doc',
+                xtype: 'textfield',
+                fieldLabel: 'Document Number ',
+                emptyText: 'Auto Number',
+                readOnly: true,
+                labelWidth:120,
+                fieldStyle: 'background-color: #ffa144; background-image: none;',
+            },{
+                margin: '0 0 0 10',
+                action: 'btn_document',
+                xtype: 'button',
+                tooltip: 'Klik untuk melihat Nomor Document',
+                icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
+            }]
+        },{
+            xtype: 'datefield',
+            fieldLabel: 'Document Date ',
+            name:'receipt_date',
+            labelWidth:120,
+            format: 'Y-m-d'
+        },{
+            xtype: 'box',
+            flex: 1
+        }]
+    },{
+        xtype: 'container',
+        layout: 'hbox',
+        defaults: {
+            flex: 1,
+            margin: '5 5 5 10'
+        },
+        items: [{
+            readOnly: true,
+            xtype: 'textfield',
+            fieldLabel: 'Supplier ',
+            labelWidth: 120,
+            fieldStyle: 'background-color: #ffa144; background-image: none;',
+            value: 'ALMINDO PRATAMA CV.'
+        },{
+            xtype: 'box',
+            flex: 2
+        }]
+    },{
         xtype: 'container',
         layout: 'hbox',
         defaults: {
@@ -133,7 +133,7 @@
             xtype: 'button',
             text: 'View List Data Packing List',
             handler: function(){
-                var tab = Ext.getCmp('TAB_tpackinglist');
+                var tab = Ext.getCmp('TAB_tterimaout');
                 tab.setActiveTab(1);
             }
         },{
@@ -143,5 +143,4 @@
             text: 'Pilih Customer'
         }]
     }]
-
 });
