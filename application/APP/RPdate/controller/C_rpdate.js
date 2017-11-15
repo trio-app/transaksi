@@ -24,5 +24,55 @@ Ext.define('Almindo.RPdate.controller.C_rpdate',{
 				autoCreate: true
 		}],
 
+		init: function (){
+			this.control({
+				'GRID_rpdate > toolbar > button[action=export]' : {
+						click: this.exportTransaksi
+				},
+				'GRIDS_rpdate > toolbar > button[action=export]' : {
+						click: this.exportDetail
+				},
+				'FRM_rpdate button[itemId=searchfilter]' : {
+						click: this.filterasset
+				},
+				'GRID_rpdate': {
+					itemclick: this.getData
+				}
 
+			});
+		},
+
+		filterasset: function(btn){
+					var grid = this.getGRID_rpdate();
+					var store = grid.getStore();
+					var win = this.getFRM_rpdate();
+					var values = win.down('form').getValues();
+
+
+					 store.remoteFilter = false;
+					 store.clearFilter();
+					 store.remoteFilter = true;
+					 store.filter([{
+					 			value : values
+				}]);
+		},	
+
+		getData: function(grid, record){
+			var grid = this.getGRIDS_rpdate();
+
+			var store = grid.getStore();
+
+
+			Ext.Ajax.request({
+					url : base_url + 'RpDate/getGrid',
+					params: {transaksi_doc: record.data.transaksi_doc},
+					method: 'POST',
+					fields: ['transaksi_doc'],
+					success: function(transport){
+						store.loadData(Ext.decode(transport.responseText));
+					}
+
+			});
+		}
 });
+

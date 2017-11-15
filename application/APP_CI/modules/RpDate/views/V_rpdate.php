@@ -22,11 +22,11 @@
                     },{
                     //columnWidth: 3/4,
                     width: '40%',
-                    items:[{xtype: 'GRID_rpdate', /*store: Ext.create('Almindo.RPdate.store.ST_rpdate')*/}]
+                    items:[{xtype: 'GRID_rpdate', store: Ext.create('Almindo.RPdate.store.ST_rpdate')}]
 					},{
 					//columnWidth: 3/4,
                     width: '40%',
-                    items:[{xtype: 'GRIDS_rpdate', /*store: Ext.create('Almindo.RPdate.store.ST_rpdate')*/}]
+                    items:[{xtype: 'GRIDS_rpdate', store: Ext.create('Almindo.RPdate.store.STS_rpdate')}]
 				}
 				]
 			});

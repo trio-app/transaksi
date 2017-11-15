@@ -25,8 +25,6 @@
                     //title: 'Report Transaksi By Customer'
                 }]
         });
-          
-      
         this.columns = [
                     {xtype: 'rownumberer'},
                     {header: 'Customer', dataIndex: 'customer_nama', width:150},
@@ -34,7 +32,6 @@
                     {header: 'Document No.', dataIndex: 'transaksi_doc', width:150},
                     {header: 'Amount', dataIndex:'Amount',width:150, xtype:'numbercolumn', format: '0,000,000.00'}
         ];
-      
         this.addEvents('removeitem');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
