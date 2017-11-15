@@ -24,5 +24,12 @@ Ext.define('Almindo.RPdate.controller.C_rpdate',{
 				autoCreate: true
 		}],
 
-
+		init: function (){
+			this.control({
+				'GRID_rpdate > toolbar > button[action=export]' : {
+						click: this.exportTransaksi
+				},
+				
+			})
+		}
 });
