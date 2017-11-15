@@ -25,22 +25,31 @@
                             xtype: 'textfield',
                             anchor: '100%'
 			},
-			items: [{    
-                                padding: '0 10 0 0',
-                                xtype:'datefield',
-                                name:'from_date',
-                                fieldLabel: 'From',
-                                editable: false,
-                                format:'Y-m-d',
-                                allowBlank: 'false',
+			items: [{
+                            xtype: 'container',
+                            layout: 'hbox',
+                            defaultType: 'textfield', 
+                            //margin : '5 0',
+                            items :[{           
+                                    padding: '0 25 0 0',
+                                    xtype:'datefield',
+                                    name:'from_date',
+                                    fieldLabel: 'From',
+                                    labelWidth:'5',
+                                    editable: false,
+                                    format:'Y-m-d',
+                                    width:'30%',
+                                    allowBlank: 'false',
                             },{    
-                                    padding: '0 10 0 0',
+                                    padding: '0 25 0 0',
                                     xtype:'datefield',
                                     name:'to_date',
                                     fieldLabel: 'To',
+                                    labelWidth:'5',
                                     editable: false,
                                     alue: Ext.Date.add(new Date(),Ext.Date.format,'Y-m-d'),
                                     format:'Y-m-d',
+                                    width:'30%',
                                     allowBlank: 'false',
                                         
                             },{
@@ -48,7 +57,8 @@
                                 itemId: 'searchfilter',
                                 text: 'Search',
                                 action: 'searchfilter'
-                            }]           
-			         }]                                                   
+                            }]
+                    }]           
+			    }]                                                   
                       
-            });
+        });

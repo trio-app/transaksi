@@ -17,13 +17,18 @@
 				defaultType: 'container',
 				items: [{
 					//columnWidth: 1/4,
-					width: '500',
+					width: '20%',
                     items:[{xtype: 'FRM_rpdate'}]
                     },{
                     //columnWidth: 3/4,
-                    width: '500',
-                    items:[{xtype: 'GRID_rpdate', store: Ext.create('Almindo.RPdate.store.ST_rpdate')}]
-				}]
+                    width: '40%',
+                    items:[{xtype: 'GRID_rpdate', /*store: Ext.create('Almindo.RPdate.store.ST_rpdate')*/}]
+					},{
+					//columnWidth: 3/4,
+                    width: '40%',
+                    items:[{xtype: 'GRIDS_rpdate', /*store: Ext.create('Almindo.RPdate.store.ST_rpdate')*/}]
+				}
+				]
 			});
 		}
 
