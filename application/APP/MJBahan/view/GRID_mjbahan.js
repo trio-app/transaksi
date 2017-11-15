@@ -3,6 +3,7 @@
     alias: 'widget.GRID_mjbahan',
     title: 'Master Jenis Bahan',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.MJBahan.store.ST_mcategory'),
     initComponent: function () {
         this.tbar = [

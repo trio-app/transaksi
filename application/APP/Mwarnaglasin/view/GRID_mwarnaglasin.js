@@ -3,6 +3,7 @@
     alias: 'widget.GRID_mwarnaglasin',
     title: 'Master Data warnaglasin',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin'),
     initComponent: function () {
         this.tbar = [

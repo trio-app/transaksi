@@ -129,6 +129,14 @@ Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
             xtype: 'box',
             flex: 1
         },{
+            icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
+            xtype: 'button',
+            text: 'View List Data Packing List',
+            handler: function(){
+                var tab = Ext.getCmp('TAB_tpackinglist');
+                tab.setActiveTab(1);
+            }
+        },{
             icon: base_url + 'system/img/user_add.gif',
             xtype: 'button',
             action: 'add_cust',

@@ -1,8 +1,8 @@
 Ext.define('Almindo.Mwarnaglasin.view.FRM_mwarnaglasin',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_mwarnaglasin',
-    frame: false,
-    border: 0,
+    frame: true,
+    height: 400,
     config: {
             recordIndex: 0,
             action: ''
@@ -12,6 +12,7 @@ Ext.define('Almindo.Mwarnaglasin.view.FRM_mwarnaglasin',{
         html: '<p style="font-size: 14pt;">Form Master Warna Glasin</p>',
         },{
         xtype: 'form',
+        bodyStyle: 'background:none;',
         border: 0,
         layout: 'anchor',
         defaults: {

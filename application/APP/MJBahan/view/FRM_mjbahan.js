@@ -1,8 +1,8 @@
 Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_mjbahan',
-    frame: false,
-    border: 0,
+    frame: true,
+    height: 400,
     config: {
             recordIndex: 0,
             action: ''
@@ -12,6 +12,7 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
         html: '<p style="font-size: 14pt;">Form Master Jenis Bahan</p>',
         },{
         xtype: 'form',
+        bodyStyle: 'background:none;',
         border: 0,
         layout: 'anchor',
         defaults: {

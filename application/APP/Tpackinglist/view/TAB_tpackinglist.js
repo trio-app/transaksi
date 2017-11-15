@@ -1,6 +1,7 @@
 Ext.define('Almindo.Tpackinglist.view.TAB_tpackinglist',{
     extend: 'Ext.tab.Panel',
     alias: 'widget.TAB_tpackinglist',
+    id: 'TAB_tpackinglist',
     activeTab: 0,
     tabBar: {
         layout: {

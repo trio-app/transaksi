@@ -3,6 +3,7 @@
 		alias: 'widget.GRID_mmerk',
 		title: 'Master Data Merk',
 		height: 400,
+                frame: true,
 		//store: Ext.create('Almindo.Mmerk.store.ST_mmerk'),
 		initComponent: function(){
 			this.tbar =[
