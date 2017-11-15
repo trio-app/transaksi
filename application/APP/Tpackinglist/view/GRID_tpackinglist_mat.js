@@ -3,8 +3,8 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
     alias: 'widget.GRID_tpackinglist_mat',
     id: 'GRID_tpackinglist_mat',
     height: 240,
-    frame: true,
-    margin: '10',
+    //frame: true,
+    margin: '0 10',
     store: Ext.create('Ext.data.ArrayStore',{
         fields: [
             'trdetailitem_id',
@@ -75,7 +75,7 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
                 editor: {
                     allowBlank: false
                 }
-            },    
+            },
             { header: 'Item', dataIndex: 'trdetail_item'},    
             { header: 'PO.', dataIndex: 'trdetail_po',
                 editor: {

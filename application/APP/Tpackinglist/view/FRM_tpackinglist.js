@@ -1,9 +1,9 @@
 Ext.define('Almindo.Tpackinglist.view.FRM_tpackinglist',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tpackinglist',
-    frame: true,
-    border: 0,
-    margin: 10,
+    id: 'FRM_tpackinglist',
+    //frame: true,
+    margin: '10 10 0 10',
     config: {
         recordIndex: 0,
         action: ''
