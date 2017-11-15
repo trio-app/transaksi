@@ -1,7 +1,8 @@
-Etx.define('Almindo.RPdate.controller.C_rpdate',{
+Ext.define('Almindo.RPdate.controller.C_rpdate',{
 	extend : 'Ext.app.Controller',
 	views: ['Almindo.RPdate.view.FRM_rpdate',
-			'Almindo.RPdate.view.GRID_rbdyate'
+			'Almindo.RPdate.view.GRID_rpdate',
+			'Almindo.RPdate.view.GRIDS_rpdate'
 		],
 	store : [
 				//'Almindo.RPdate.store.ST_rpdate'
@@ -16,8 +17,12 @@ Etx.define('Almindo.RPdate.controller.C_rpdate',{
 				xtype: 'GRID_rpdate',
 				selector: 'GRID_rpdate',
 				autoCreate: true
-	}],
-		init: function(){
+			},{
+				ref: 'GRIDS_rpdate',
+				xtype: 'GRIDS_rpdate',
+				selector: 'GRIDS_rpdate',
+				autoCreate: true
+		}],
 
-		},
-})
+
+});
