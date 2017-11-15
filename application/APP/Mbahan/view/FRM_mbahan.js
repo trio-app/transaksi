@@ -34,6 +34,7 @@ Ext.define('Almindo.Mbahan.view.FRM_mbahan',{
                 fieldLabel: 'ID'
             },{
                 name: 'bahan_nama',
+                //fieldStyle: 'background-color: #ddd; background-image: none;',
                 flex: 2,
                 fieldLabel: 'Nama Produk ',
                 labelAlign: 'top',
