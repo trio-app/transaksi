@@ -27,10 +27,10 @@
                             pageSize: 20,
                             
                             proxy: {
-            				type: 'ajax',
-                                            actionMethods: 'POST',
+            				        type: 'ajax',
+                            actionMethods: 'POST',
             				api: {
-            					read: base_url + 'Rpcustomer/getGrid'
+            					read: base_url + 'RpDate/getGrid'
             				},
             				reader: {
             					type: 'json',

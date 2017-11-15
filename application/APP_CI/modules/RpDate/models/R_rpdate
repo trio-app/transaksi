@@ -4,10 +4,15 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 class R_rpcustomer extends CI_Model {
 	
 	function load_default($start,$limit,$filter){
-             $dtfilter = json_decode($filter,true);
+
+        $dtfilter = json_decode($filter,true);
+
         $from_date =$dtfilter[0]['value']['from_date'];
+
         $to_date=$dtfilter[0]['value']['to_date'];
+
                 $this->load->database();
+
                 $sql = "SELECT SQL_CALC_FOUND_ROWS
                                     tr_packinglist.transaksi_id,
                                     tr_packinglist.transaksi_doc,
@@ -26,7 +31,9 @@ class R_rpcustomer extends CI_Model {
                                     tr_packinglist_detail
                                     INNER JOIN tr_packinglist ON tr_packinglist.transaksi_doc = tr_packinglist_detail.trdetail_doc
                                     INNER JOIN m_customer ON m_customer.customer_id = tr_packinglist.transaksi_customer
-                                    WHERE transaksi_date BETWEEN '".$from_date."' AND '".$to_date."' GROUP by tr_packinglist_detail.trdetail_doc ORDER by tr_packinglist.transaksi_date ASC
+                                    WHERE transaksi_date BETWEEN '".$from_date."' AND '".$to_date."' 
+                                    GROUP by tr_packinglist_detail.trdetail_doc
+                                    ORDER by tr_packinglist.transaksi_date ASC
                                     
                                     
                                     ";
