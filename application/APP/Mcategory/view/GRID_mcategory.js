@@ -3,6 +3,7 @@
     alias: 'widget.GRID_mcategory',
     title: 'Master Data Category',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.Mcategory.store.ST_mcategory'),
     initComponent: function () {
         this.tbar = [

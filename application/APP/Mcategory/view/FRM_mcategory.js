@@ -1,8 +1,8 @@
 Ext.define('Almindo.Mcategory.view.FRM_mcategory',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_mcategory',
-    frame: false,
-    border: 0,
+    frame: true,
+    height: 400,
     config: {
             recordIndex: 0,
             action: ''
@@ -12,6 +12,7 @@ Ext.define('Almindo.Mcategory.view.FRM_mcategory',{
         html: '<p style="font-size: 14pt;">Form Master Category</p>',
         },{
         xtype: 'form',
+        bodyStyle: 'background:none;',
         border: 0,
         layout: 'anchor',
         defaults: {

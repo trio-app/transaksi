@@ -1,8 +1,9 @@
 Ext.define('Almindo.Munit.view.FRM_munit',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_munit',
-    frame: false,
+    frame: true,
     border: 0,
+    height: 400,
     config: {
             recordIndex: 0,
             action: ''
@@ -12,6 +13,7 @@ Ext.define('Almindo.Munit.view.FRM_munit',{
         html: '<p style="font-size: 14pt;">Form Master unit</p>',
         },{
         xtype: 'form',
+        bodyStyle: 'background:none;',
         border: 0,
         layout: 'anchor',
         defaults: {

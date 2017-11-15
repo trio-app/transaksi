@@ -3,6 +3,7 @@
     alias: 'widget.GRID_munit',
     title: 'Master Data unit',
     height: 400,
+    frame: true,
     //store: Ext.create('Almindo.Munit.store.ST_munit'),
     initComponent: function () {
         this.tbar = [
