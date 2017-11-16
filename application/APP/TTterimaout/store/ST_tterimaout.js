@@ -1,6 +1,6 @@
 		Ext.define('Almindo.TTterimaout.model.M_tterimaout',{
 			extend: 'Ext.data.Model',
-			fields: ['receipt_id', 'receipt_doc', 'receipt_date', 'receipt_from', 'receipt_to', 'customer_id', 'customer_nama']
+			fields: ['receiptout_id', 'receiptout_doc', 'receiptout_from', 'receiptout_to', 'receiptout_date', 'customer_id', 'customer_nama']
 		});
                 
                 Ext.define('Almindo.TTterimaout.store.ST_tterimaout',{

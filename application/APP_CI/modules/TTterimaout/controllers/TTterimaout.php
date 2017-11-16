@@ -82,7 +82,7 @@ class TTterimaout extends CI_Controller {
             print_r( $this->R_tterimaout->load_customerTT($start,$limit,$filter));          
         }        
     
-    public function reportPreview($id = NULL){
+    public function print_file($id = NULL){
           ob_start();
                     $this->load->model('R_tterimaout');
                     $rec = $this->R_tterimaout->reportPreview($id);

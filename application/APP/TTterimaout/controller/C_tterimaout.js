@@ -3,9 +3,11 @@
 		views:[ 'Almindo.TTterimaout.view.FRM_tterimaout',
 				'Almindo.TTterimaout.view.TAB_tterimaout',
 				'Almindo.TTterimaout.view.GRID_tterimaout_inv',
-				//'Almindo.TTterimaout.view.WIN_tterimaitem',
-				'Almindo.TTterimaout.view.WIN_tterimacust',
-				//'Almindo.TTterimaout.view.GRID_tterimaout',
+				//'Almindo.TTterimaout.view.WOUT_tterimaitem',
+				'Almindo.TTterimaout.view.WOUT_tterimacust',
+				'Almindo.TTterimaout.view.GRID_tterimaout',
+
+				'Almindo.Mcustomer.view.GRID_mcustomer'
 		],	
 		stores:[
 		],
@@ -21,9 +23,9 @@
 				selector:'GRID_tterimaout',
 				autoCreate: true
 			},{
-				ref:'WIN_tterimacust',
-				xtype:'WIN_tterimacust',
-				selector:'WIN_tterimacust',
+				ref:'WOUT_tterimacust',
+				xtype:'WOUT_tterimacust',
+				selector:'WOUT_tterimacust',
 				autoCreate: true
 			},{
 				ref:'GRID_tterimaout_inv',
@@ -39,7 +41,7 @@
                     'FRM_tterimaout button[action=btn_document]': {
                         click: this.showDocument
                     },
-                    'WIN_tterimacust > GRID_mcustomer': {
+                    'WOUT_tterimacust > GRID_mcustomer': {
                         itemdblclick: this.getCustomer
                     },
                     'GRID_tterimaout_inv button[action=add_invoice]': {
@@ -70,7 +72,147 @@
 	                          }
 	     		
 	     },
+	     showCust: function(){
+	     	var win = this.getWOUT_tterimacust();
+	     	win.show();
+	     },
+	     showDocument: function(){
+	     	Ext.Ajax.request({
+	     		url: base_url + 'TTterimaout/autoNum',
+	     		method: 'POST',
+	     		success: function(transport){
+	     			Ext.getCmp('receipt_doc').setValue(transport.responseText);
 
+	     		}
+	     	});
+	     },
+	     getCustomer: function(me, record, item, index){
+	     	var win = this.getWOUT_tterimacust();
+	     	var form = this.getFRM_tterimaout();
+	     	form.getForm().setValues(record.getData());
+	     	win.close();
+	     },
+	     add_invoice: function (me,record, item, index){
+	     	var grid = this.getGRID_tterimaout_inv();
+	     	grid.store.add({
+	     		recdetailout_invoice : '-',
+	     		recdetailout_deilvery: '-',
+	     		recdetailout_po : '-',
+	     		recdetailout_date : '-',
+	     		recdetailout_price: 0,  
+	     	});
+	     },
+	     doSaveform: function(){
+	        var form = this.getFRM_tterimaout();
+	        var values = form.getValues();
+	        var action = form.getAction();
+	        var recValue = Ext.create('Almindo.TTterimaout.model.M_tterimaout', values);
+	        console.log(action);
 
-         
+	        var grid = this.getGRID_tterimaout_inv();
+	        var data = [];
+	        grid.store.each(function(rec){
+	            data.push(rec.data);
+	        });                                  
+
+	        if(action == 'edit'){
+	            if(form.isValid() && (grid.store.getCount() > 0)){
+	                this.doProsesCRUD('update',recValue,data);
+	                //this.doSaveGrid('updateGrid', data);
+	            }else{
+	                alert('coy');
+	            }
+	        }else{
+	            if(form.isValid() && (grid.store.getCount() > 0)){
+	                this.doProsesCRUD('create',recValue,data);
+	                //this.doSaveGrid('saveGrid', data);
+	            }else{
+	                alert('coy');
+	            }
+	        }
+	    },
+	    doProsesCRUD : function (inAction,record,data){
+	        var form = this.getFRM_tterimaout();
+	        var grid = this.getGRID_tterimaout_inv();
+	        var grid2 = this.getGRID_tterimaout();
+	        var store = grid.getStore();
+	        var store2 = grid2.getStore();
+	        Ext.Ajax.request({
+                    url: base_url + 'TTterimaout/' +  inAction,
+                    method: 'POST',
+                    type:'json',
+                    params: [JSON.stringify(record.data),'||',JSON.stringify(data)],
+                    success: function(response){
+                        switch(inAction) {
+                            case 'delete':
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Delete Tanda Terima OUT', 'Delete Data Success', 'success');
+                                    //Ext.example.msg("Delete Category","Delete Success"," verb", record.data['CategoryName'] );    
+                                break;
+                            case 'create' :
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Insert Tanda Terima OUT', 'Insert Data Success', 'success');
+                                break;
+                            case 'update' :
+                                    form.getForm().reset();
+                                    store.load();
+                                    store2.load();
+                                    createAlert('Update Tanda Terima OUT', 'Update Data Success', 'success');
+                                break;
+                        }
+                        form.setAction('add');
+
+                    },
+                    failure: function(response){
+                        //createAlert('Error ' + response.status, response.responseText, 'error');
+                        Ext.Msg.alert('server-side failure with status code ' + response.status  , response.responseText);
+
+                    }
+                });
+    },
+    onRowdblclick: function(me, record, item, index){
+        var form = this.getFRM_tterimaout();
+        
+        var grid = this.getGRID_tterimaout_inv();
+        grid.store.reload();
+        
+        Ext.Ajax.request({
+            url: base_url + 'TTterimaout/getGrid',
+            params: {recdetail_doc: record.data.receipt_doc},
+            method: 'POST',
+            fields: ['recdetail_id','recdetail_doc','recdetail_invoice','recdetail_delivery','recdetail_po','recdetail_date','recdetail_price'],
+            success: function(transport){
+                form.setAction('edit');
+                form.setRecordIndex(index);
+                form.getForm().setValues(record.getData());
+                Ext.getCmp('TAB_tterimaout').setActiveTab(0);
+                grid.store.loadData(Ext.decode(transport.responseText));
+            }
+        });
+    },
+    deleteItem: function(record){
+        Ext.Msg.confirm('Delete Data', 'Are you sure?', function (button) {
+            if (button == 'yes') {
+                this.doProsesCRUD('delete',record);
+            }
+        }, this);
+    },
+    print_file: function(record){
+        var previewPrint = Ext.create('Ext.window.Window', {
+            title: 'Print Preview',
+            width: 1000,
+            height: 600,
+            modal   : true,
+            closeAction: 'hide',
+            items: [{ 
+                     xtype: 'component',
+                     html : '<iframe src="'+ base_url +'TTterimaout/print_file/'+ record.data.receipt_id +'" width="100%" height="550px"></iframe>',
+                  }]
+        });
+        previewPrint.show();
+    }   
     });
