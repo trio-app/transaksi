@@ -1,4 +1,4 @@
-Ext.define('Almindo.TTterimaout.view.TAB_tterimaout'{
+Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
  extend: 'Ext.tab.Panel',
     alias: 'widget.TAB_tterimaout',
     id: 'TAB_tterimaout',
@@ -15,11 +15,25 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout'{
         layout: 'anchor',
         items: [{
             xtype: 'FRM_tterimaout'
-        },/*{
-            xtype: 'GRID_ttandaterimain_invoice'
-        }*/]
+        },{
+            xtype: 'GRID_tterimaout_inv'
+        }],
+
+         buttons: [{
+            text: 'Save'
+        },{
+            text: 'Reset',
+            handler: function(){
+                var frm = Ext.getCmp('FRM_tpackinglist');
+                frm.getForm().reset(); 
+            }
+        }]
     }, {
         title: 'LIST DATA TANDA TERIMA OUT',
         layout: 'anchor',
+       /* items: [{
+            xtype: 'GRID_tterimaout',
+                store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout')
+        }] */
     }]
 })

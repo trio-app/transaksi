@@ -1,6 +1,6 @@
 		Ext.define('Almindo.Ttandaterimain.model.M_ttandaterimain',{
 			extend: 'Ext.data.Model',
-			fields: ['receipt_id', 'receipt_doc', 'receipt_date', 'customer_id', 'customer_nama']
+			fields: ['receipt_id', 'receipt_doc', 'receipt_date', 'receipt_from', 'receipt_to', 'customer_id', 'customer_nama']
 		});
                 
                 Ext.define('Almindo.Ttandaterimain.store.ST_ttandaterimain',{

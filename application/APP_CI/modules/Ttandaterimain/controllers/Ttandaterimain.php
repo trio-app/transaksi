@@ -85,7 +85,7 @@ class Ttandaterimain extends CI_Controller {
             print_r( $this->R_ttandaterimain->load_customerTT($start,$limit,$filter));          
         }        
     
-    public function reportPreview($id = NULL){
+    public function print_file($id = NULL){
           ob_start();
                     $this->load->model('R_ttandaterimain');
                     $rec = $this->R_ttandaterimain->reportPreview($id);
@@ -98,7 +98,7 @@ class Ttandaterimain extends CI_Controller {
                     $data['rec_detail'] = $this->R_ttandaterimain->reportDetail($rec['receipt_doc']);
                     
                     //print_r($this->Rpacking_list->reportPreview($id));
-                    $this->load->view('previewPrint', $data);
+                    $this->load->view('V_tprint', $data);
                     $html = ob_get_contents();
           ob_end_clean();
                     
