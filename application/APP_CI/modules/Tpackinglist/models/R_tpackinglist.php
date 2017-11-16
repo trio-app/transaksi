@@ -118,7 +118,9 @@ class R_tpackinglist extends CI_Model {
             $this->db->from('tr_packinglist');
             $this->db->join('m_customer', 'm_customer.customer_id = tr_packinglist.transaksi_customer', 'LEFT');
             $this->db->where("tr_packinglist.transaksi_id <>", 0);
-            $this->db->like('tr_packinglist.transaksi_doc',$dtfilter[0]['value']);   
+            $this->db->like('tr_packinglist.transaksi_doc',$dtfilter[0]['value']);
+            $this->db->or_like('m_customer.customer_nama',$dtfilter[0]['value']);
+            $this->db->or_like('tr_packinglist.transaksi_date',$dtfilter[0]['value']);
             $this->db->limit($limit,$start);
             $this->db->order_by("tr_packinglist.transaksi_id","DESC");
             $query = $this->db->get();
