@@ -6,7 +6,14 @@
     frame: true,
     initComponent: function () {
         this.tbar = [
-        
+        {
+            text: 'Tambah Invoice',
+            icon: extjs_url + 'resources/ext-theme-classic/images/dd/drop-add.gif',
+            handler: function(){
+                var tab = Ext.getCmp('TAB_tterimaout');
+                tab.setActiveTab(0);
+            }
+        },
           '->',
         {
             xtype: 'textfield',

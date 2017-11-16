@@ -1,9 +1,9 @@
 Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tterimaout',
-    frame: true,
+    //frame: true,
     border: 0,
-    margin: 10,
+    margin: '10 10 0 10',
     config: {
         recordIndex: 0,
         action: ''
@@ -29,7 +29,7 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 labelWidth:120,
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
             },{
-                margin: '5 5 5 5',
+                margin: '0 0 0 10',
                 action: 'btn_document',
                 xtype: 'button',
                 tooltip: 'Klik untuk melihat Nomor Document',
@@ -69,7 +69,7 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             readOnly: true,
             xtype: 'textfield',
             fieldLabel: 'Tujuan ',
-            labelWidth: 100,
+            labelWidth: 120,
             allowBlank: false,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
