@@ -1,5 +1,5 @@
 Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
- extend: 'Ext.tab.Panel',
+    extend: 'Ext.tab.Panel',
     alias: 'widget.TAB_tterimaout',
     id: 'TAB_tterimaout',
     activeTab: 0,
@@ -24,7 +24,7 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
         },{
             text: 'Reset',
             handler: function(){
-               var frm = Ext.getCmp('FRM_tterimaout');
+                var frm = Ext.getCmp('FRM_tterimaout');
                 var grid = Ext.getCmp('GRID_tterimaout_inv');
                 frm.setAction('add');
                 frm.getForm().reset(); 

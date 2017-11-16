@@ -1,6 +1,7 @@
 Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tterimaout',
+    id:'FRM_tterimaout',
     //frame: true,
     margin: '10 10 0 10',
     config: {
