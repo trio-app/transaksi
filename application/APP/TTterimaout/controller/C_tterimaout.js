@@ -3,8 +3,8 @@
 		views:[ 'Almindo.TTterimaout.view.FRM_tterimaout',
 				'Almindo.TTterimaout.view.TAB_tterimaout',
 				'Almindo.TTterimaout.view.GRID_tterimaout_inv',
-				//'Almindo.TTterimaout.view.WOUT_tterimaitem',
-				'Almindo.TTterimaout.view.WOUT_tterimacust',
+				//'Almindo.TTterimaout.view.WIN_tterimaitem',
+				'Almindo.TTterimaout.view.WIN_tterimacust',
 				'Almindo.TTterimaout.view.GRID_tterimaout',
 
 				'Almindo.Mcustomer.view.GRID_mcustomer'
@@ -23,9 +23,9 @@
 				selector:'GRID_tterimaout',
 				autoCreate: true
 			},{
-				ref:'WOUT_tterimacust',
-				xtype:'WOUT_tterimacust',
-				selector:'WOUT_tterimacust',
+				ref:'WIN_tterimacust',
+				xtype:'WIN_tterimacust',
+				selector:'WIN_tterimacust',
 				autoCreate: true
 			},{
 				ref:'GRID_tterimaout_inv',
@@ -41,7 +41,7 @@
                     'FRM_tterimaout button[action=btn_document]': {
                         click: this.showDocument
                     },
-                    'WOUT_tterimacust > GRID_mcustomer': {
+                    'WIN_tterimacust > GRID_mcustomer': {
                         itemdblclick: this.getCustomer
                     },
                     'GRID_tterimaout_inv button[action=add_invoice]': {
@@ -73,7 +73,7 @@
 	     		
 	     },
 	     showCust: function(){
-	     	var win = this.getWOUT_tterimacust();
+	     	var win = this.getWIN_tterimacust();
 	     	win.show();
 	     },
 	     showDocument: function(){
@@ -81,13 +81,13 @@
 	     		url: base_url + 'TTterimaout/autoNum',
 	     		method: 'POST',
 	     		success: function(transport){
-	     			Ext.getCmp('receipt_doc').setValue(transport.responseText);
+	     			Ext.getCmp('receiptout_doc').setValue(transport.responseText);
 
 	     		}
 	     	});
 	     },
 	     getCustomer: function(me, record, item, index){
-	     	var win = this.getWOUT_tterimacust();
+	     	var win = this.getWIN_tterimacust();
 	     	var form = this.getFRM_tterimaout();
 	     	form.getForm().setValues(record.getData());
 	     	win.close();
@@ -95,11 +95,11 @@
 	     add_invoice: function (me,record, item, index){
 	     	var grid = this.getGRID_tterimaout_inv();
 	     	grid.store.add({
-	     		recdetailout_invoice : '-',
-	     		recdetailout_deilvery: '-',
-	     		recdetailout_po : '-',
-	     		recdetailout_date : '-',
-	     		recdetailout_price: 0,  
+	     		recdetailoutout_invoice : '-',
+	     		recdetailoutout_deilvery: '-',
+	     		recdetailoutout_po : '-',
+	     		recdetailoutout_date : '-',
+	     		recdetailoutout_price: 0,  
 	     	});
 	     },
 	     doSaveform: function(){
@@ -182,9 +182,9 @@
         
         Ext.Ajax.request({
             url: base_url + 'TTterimaout/getGrid',
-            params: {recdetail_doc: record.data.receipt_doc},
+            params: {recdetailout_doc: record.data.receiptout_doc},
             method: 'POST',
-            fields: ['recdetail_id','recdetail_doc','recdetail_invoice','recdetail_delivery','recdetail_po','recdetail_date','recdetail_price'],
+            fields: ['recdetailout_id','recdetailout_doc','recdetailout_invoice','recdetailout_delivery','recdetailout_po','recdetailout_date','recdetailout_price'],
             success: function(transport){
                 form.setAction('edit');
                 form.setRecordIndex(index);
@@ -210,7 +210,7 @@
             closeAction: 'hide',
             items: [{ 
                      xtype: 'component',
-                     html : '<iframe src="'+ base_url +'TTterimaout/print_file/'+ record.data.receipt_id +'" width="100%" height="550px"></iframe>',
+                     html : '<iframe src="'+ base_url +'TTterimaout/print_file/'+ record.data.receiptout_id +'" width="100%" height="550px"></iframe>',
                   }]
         });
         previewPrint.show();

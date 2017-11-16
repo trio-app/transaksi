@@ -2,7 +2,7 @@ Ext.define('Almindo.TTterimaout.view.GRID_tterimaout_inv',{
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.GRID_tterimaout_inv',
 	id:'GRID_tterimaout_inv',
-	heigth: 250,
+	height: 250,
 	//farame: true,
 	margin: '0 10',
 	store: Ext.create('Ext.data.ArrayStore',{

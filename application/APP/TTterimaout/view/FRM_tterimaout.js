@@ -20,8 +20,8 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             layout: 'hbox',
             items: [{
                 flex : 1,
-                name: 'receipt_doc',
-                id: 'receipt_doc',
+                name: 'receiptout_doc',
+                id: 'receiptout_doc',
                 xtype: 'textfield',
                 fieldLabel: 'Document Number ',
                 emptyText: 'Auto Number',
@@ -34,13 +34,14 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 xtype: 'button',
                 tooltip: 'Klik untuk melihat Nomor Document',
                 icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
+            },{
+                xtype: 'datefield',
+                fieldLabel: 'Document Date :',
+                name:'receiptout_date',
+                margin: '0 0 0 10',
+                labelWidth:120,
+                format: 'Y-m-d'
             }]
-        },{
-            xtype: 'datefield',
-            fieldLabel: 'Document Date ',
-            name:'receipt_date',
-            labelWidth:120,
-            format: 'Y-m-d'
         },{
             xtype: 'box',
             flex: 1
@@ -92,31 +93,6 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             xtype: 'textfield',
             fieldLabel: 'Phone ',
             labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 0 5 10'
-        },
-        items: [{
-            readOnly: true,
-            name: 'customer_email',
-            xtype: 'textfield',
-            fieldLabel: 'Email ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_alamat',
-            flex: 2,
-            margin: '5 10',
-            xtype: 'textarea',
-            fieldLabel: 'Alamat ',
-            labelWidth: 120,
-            height: 50,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
     },{
