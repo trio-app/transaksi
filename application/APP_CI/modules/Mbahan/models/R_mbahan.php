@@ -11,7 +11,9 @@ class R_mbahan extends CI_Model {
                             ',FALSE);
             $this->db->from('m_bahan');
             $this->db->where("m_bahan.bahan_id <>", 0);
-            $this->db->like('m_bahan.bahan_jenis',$dtfilter[0]['value']);   
+            $this->db->like('m_bahan.bahan_nama',$dtfilter[0]['value']);
+            $this->db->or_like('m_bahan.bahan_merk',$dtfilter[0]['value']);
+            $this->db->or_like('m_bahan.bahan_jenis',$dtfilter[0]['value']); 
             $this->db->limit($limit,$start);
             $this->db->order_by("m_bahan.bahan_id","DESC");
             $query = $this->db->get();

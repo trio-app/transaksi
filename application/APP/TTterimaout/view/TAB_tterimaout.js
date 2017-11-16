@@ -31,9 +31,9 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
     }, {
         title: 'LIST DATA TANDA TERIMA OUT',
         layout: 'anchor',
-       /* items: [{
+       items: [{
             xtype: 'GRID_tterimaout',
-                store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout')
-        }] */
+                store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout');
+        }]
     }]
 })

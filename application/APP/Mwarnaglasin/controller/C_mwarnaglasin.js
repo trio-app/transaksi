@@ -33,8 +33,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//
+				var grid = this.getGRID_mwarnaglasin();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;

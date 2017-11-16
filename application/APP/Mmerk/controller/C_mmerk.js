@@ -33,8 +33,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//Ext.getStore('Almindo.Mmerk.store.ST_mmerk');//
+				var grid = this.getGRID_mmerk();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;

@@ -55,29 +55,29 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
         }];
         this.columns= [
             { xtype: 'rownumberer' },
-            { header: 'NO Invoice', dataIndex: 'recdetail_invoice',
+            { header: 'NO Invoice', dataIndex: 'recdetail_invoice', flex: 1,
                 editor: {
                     allowBlank: false
                 }
             },    
-            { header: 'NO Surat Jalan', dataIndex: 'recdetail_delivery',
+            { header: 'NO Surat Jalan', dataIndex: 'recdetail_delivery', flex: 1,
                 editor: {
                     allowBlank: false
                 }
             },    
-            { header: 'PO.', dataIndex: 'recdetail_po',
+            { header: 'PO.', dataIndex: 'recdetail_po', flex: 1,
                 editor: {
                     allowBlank: false
                 }            
             },    
-            { header: 'TGL Invoice', dataIndex: 'recdetail_date', xtype: 'datecolumn',
+            { header: 'TGL Invoice', dataIndex: 'recdetail_date', xtype: 'datecolumn', flex: 1,
                 editor: {
                   xtype: 'datefield',
                   format: 'Y-m-d'
                 },
                 renderer : Ext.util.Format.dateRenderer('Y-m-d')
             },       
-            { header: 'Nominal', dataIndex: 'recdetail_price', xtype: 'numbercolumn',
+            { header: 'Nominal', dataIndex: 'recdetail_price', xtype: 'numbercolumn', flex: 1,
                 editor: {
                     xtype: 'numberfield',                    
                     allowBlank: false

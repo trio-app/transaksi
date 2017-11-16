@@ -54,6 +54,9 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                     'GRID_tpackinglist_mat button[action=add_material]': {
                         click: this.showMaterial
                     },
+                    'GRID_tpackinglist > toolbar > textfield[itemId=searchData]': {
+                        specialkey: this.searchData
+                    },
                     'WIN_tpitem > GRID_mitem': {
                         itemdblclick: this.addMaterial
                     },
@@ -67,6 +70,22 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                     }
                     
             });
+    },
+    searchData:function (f,e) {
+        //var store = Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//Ext.getStore('Almindo.Mwarnaglasin.store.ST_mwarnaglasin');//
+        var grid = this.getGRID_tpackinglist();
+        var store = grid.getStore();
+        if (e.getKey() == e.ENTER) {
+                store.remoteFilter = false;
+                store.clearFilter();
+                store.remoteFilter = true;
+                store.filter([{
+                        property:'filtername',
+                        anyMatch: true,
+                        value   : f.value
+                } ]);
+        }
+
     },
     showCust: function(){
         var win = this.getWIN_tpcustomer();

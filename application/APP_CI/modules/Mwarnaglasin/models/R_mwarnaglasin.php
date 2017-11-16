@@ -11,7 +11,8 @@ class R_mwarnaglasin extends CI_Model {
                             ',FALSE);
             $this->db->from('m_warnaglasin');
             $this->db->where("m_warnaglasin.warnaglasin_id <>", 0);
-            $this->db->like('m_warnaglasin.warnaglasin_nama',$dtfilter[0]['value']);   
+            $this->db->like('m_warnaglasin.warnaglasin_nama',$dtfilter[0]['value']);
+            $this->db->or_like('m_warnaglasin.warnaglasin_desc',$dtfilter[0]['value']);
             $this->db->limit($limit,$start);
             $this->db->order_by("m_warnaglasin.warnaglasin_id","DESC");
             $query = $this->db->get();

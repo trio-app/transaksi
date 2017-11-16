@@ -39,33 +39,34 @@ class TTterimaout extends CI_Controller {
 		$limit = $this->input->post('limit');
 		$filter= $this->input->post('filter');
 		header( $this->R_tterimaout->load_default($start,$limit,$filter));
+        print_r( $this->R_tterimaout->load_default($start,$limit,$filter));
 	}
 
-	public function create(){
-		$jsonData = file_get_contents("php://input");
-		$data = explode(',||,',$jsonData);
+	public function create(){        
+            $jsonData =  file_get_contents("php://input");
+            $data = explode(',||,',$jsonData);            
+            $this->load->model('C_tterimaout');
+            $doc = $this->autoNum();
+            $num = $this->C_tterimaout->insertDT(json_decode($data[0],true), $doc);
+            $this->C_tterimaout->insertGrid(json_decode($data[1],true),$num);
+            $this->C_tterimaout->autoNum();
 
-		$this->load->model('C_tterimaout');
-		$num = $this->C_tterimaout->insertDT(json_decode($data[0],true));
-        $this->C_tterimaout->insertGrid(json_decode($data[1],true),$num);
-        $this->C_tterimaout->autoNum();
-	}
-	
-	public function update(){
-        $jsonData =  file_get_contents("php://input");    
-        $data = explode(',||,',$jsonData);
-        $this->load->model('U_tterimaout');
-        $num = $this->U_tterimaout->updateDT(json_decode($data[0],true));
-        $this->U_tterimaout->updateGrid(json_decode($data[1],true),$num);
-    }
-    public function delete(){
-        $jsonData =  file_get_contents("php://input");  
-        $data = explode(',||,',$jsonData);
-        $this->load->model('D_tterimaout');
-        $this->D_tterimaout->deleteDT(json_decode($data[0],true));
-    }  
-
-	public function getGrid(){
+        }
+        public function update(){
+            $jsonData =  file_get_contents("php://input");    
+            $data = explode(',||,',$jsonData);
+            $this->load->model('U_tterimaout');
+            $num = $this->U_tterimaout->updateDT(json_decode($data[0],true));
+            $this->U_tterimaout->updateGrid(json_decode($data[1],true),$num);
+        }
+        public function delete(){
+            $jsonData =  file_get_contents("php://input");  
+            $data = explode(',||,',$jsonData);
+            $this->load->model('D_tterimaout');
+            $this->D_tterimaout->deleteDT(json_decode($data[0],true));
+        }  
+        
+    public function getGrid(){
         $jsonData =  file_get_contents("php://input");
         $doc = $this->input->post('recdetail_doc');
         $this->load->model('R_tterimaout');
@@ -82,17 +83,17 @@ class TTterimaout extends CI_Controller {
             print_r( $this->R_tterimaout->load_customerTT($start,$limit,$filter));          
         }        
     
-    public function reportPreview($id = NULL){
+    public function print_file($id = NULL){
           ob_start();
                     $this->load->model('R_tterimaout');
                     $rec = $this->R_tterimaout->reportPreview($id);
           
-                    $data['rec_doc'] = $rec['receipt_doc'];
+                    $data['rec_doc'] = $rec['receiptout_doc'];
                     $data['rec_to'] = $rec['customer_nama'];
-                    $data['rec_from'] = $rec['receipt_from'];
-                    $data['rec_date'] = date_format(date_create($rec['receipt_date']), 'd F Y');
+                    $data['rec_from'] = $rec['receiptout_from'];
+                    $data['rec_date'] = date_format(date_create($rec['receiptout_date']), 'd F Y');
             
-                    $data['rec_detail'] = $this->R_tterimaout->reportDetail($rec['receipt_doc']);
+                    $data['rec_detail'] = $this->R_tterimaout->reportDetail($rec['receiptout_doc']);
                     
                     //print_r($this->Rpacking_list->reportPreview($id));
                     $this->load->view('previewPrint', $data);

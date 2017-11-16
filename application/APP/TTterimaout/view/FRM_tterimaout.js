@@ -1,9 +1,9 @@
 Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tterimaout',
-    frame: true,
+    //frame: true,
     border: 0,
-    margin: 10,
+    margin: '10 10 0 10',
     config: {
         recordIndex: 0,
         action: ''
@@ -13,15 +13,15 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
         layout: 'hbox',
         defaults: {
             flex: 1,
-            margin: '5 0 5 10'
+            margin: '5 5 5 5'
         },
         items: [{
             xtype: 'container',
             layout: 'hbox',
             items: [{
-                flex : 1,
-                name: 'receipt_doc',
-                id: 'receipt_doc',
+                margin: '5 5 5 5',
+                name: 'receiptout_doc',
+                id: 'receiptout_doc',
                 xtype: 'textfield',
                 fieldLabel: 'Document Number ',
                 emptyText: 'Auto Number',
@@ -34,35 +34,24 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 xtype: 'button',
                 tooltip: 'Klik untuk melihat Nomor Document',
                 icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
-            }]
-        },{
-            xtype: 'datefield',
-            fieldLabel: 'Document Date ',
-            name:'receipt_date',
-            labelWidth:120,
-            format: 'Y-m-d'
-        },{
-            xtype: 'box',
-            flex: 1
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 5 5 10'
-        },
-        items: [{
+            },{
+                xtype: 'datefield',
+                fieldLabel: 'Document Date :',
+                name:'receiptout_date',
+                margin: '5 5 5 5',
+                labelWidth:120,
+                format: 'Y-m-d'
+            },{
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Supplier ',
+            fieldLabel: 'Supplier',
+            margin: '5 5 5 5',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
             value: 'ALMINDO PRATAMA CV.'
-        },{
-            xtype: 'box',
-            flex: 2
         }]
+        
+       }]
     },{
         xtype: 'container',
         layout: 'hbox',
@@ -70,53 +59,18 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             flex: 1,
         },
         items: [{
+            name: 'customer_id',
+            margin: '5 5 5 5',
+            readOnly: true,
+            xtype: 'hidden',
+        },{
             margin: '5 0 5 10',
             name: 'customer_nama',
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Customer ',
+            fieldLabel: 'Tujuan ',
             labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_cp',
-            margin: '5 0 5 10',
-            xtype: 'textfield',
-            fieldLabel: 'Contact Person ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_telp',
-            margin: '5 10 5 5',
-            xtype: 'textfield',
-            fieldLabel: 'Phone ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 0 5 10'
-        },
-        items: [{
-            readOnly: true,
-            name: 'customer_email',
-            xtype: 'textfield',
-            fieldLabel: 'Email ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_alamat',
-            flex: 2,
-            margin: '5 10',
-            xtype: 'textarea',
-            fieldLabel: 'Alamat ',
-            labelWidth: 120,
-            height: 50,
+            allowBlank: false,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
     },{

@@ -11,6 +11,8 @@ class R_mmerk extends CI_Model {
                     ',FALSE);
     $this->db->from('m_merk');
     $this->db->where("m_merk.merk_id <>", 0);
+    $this->db->like('m_merk.merk_nama',$dtfilter[0]['value']);
+    $this->db->or_like('m_merk.merk_desc',$dtfilter[0]['value']);
     $this->db->limit($limit,$start);
     $this->db->order_by("m_merk.merk_id","DESC");
     $query = $this->db->get();

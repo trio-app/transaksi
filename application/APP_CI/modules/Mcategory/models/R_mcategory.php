@@ -11,6 +11,8 @@ function load_default($start,$limit,$filter){
                     ',FALSE);
     $this->db->from('m_category');
     $this->db->where("m_category.category_id <>", 0);
+    $this->db->like('m_category.category_nama',$dtfilter[0]['value']); 
+    $this->db->or_like('m_category.category_desc',$dtfilter[0]['value']);
     $this->db->limit($limit,$start);
     $this->db->order_by("m_category.category_id","DESC");
     $query = $this->db->get();
