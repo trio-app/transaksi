@@ -48,7 +48,7 @@
                         click: this.add_invoice
                     },
                     'TAB_tterimaout button[action=save_invoice]': {
-                        click: this.save_invoice
+                        click: this.doSaveform
                     },
                     'GRID_tterimaout > toolbar > textfield[itemId=searchData]': {
                         specialkey: this.searchData
@@ -95,11 +95,11 @@
 	     add_invoice: function (me,record, item, index){
 	     	var grid = this.getGRID_tterimaout_inv();
 	     	grid.store.add({
-	     		recdetailoutout_invoice : '-',
-	     		recdetailoutout_deilvery: '-',
-	     		recdetailoutout_po : '-',
-	     		recdetailoutout_date : '-',
-	     		recdetailoutout_price: 0,  
+	     		recdetailout_invoice : '-',
+	     		recdetailout_delivery: '-',
+	     		recdetailout_po : '-',
+	     		recdetailout_date : '-',
+	     		recdetailout_price: 0,  
 	     	});
 	     },
 	     doSaveform: function(){

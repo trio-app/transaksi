@@ -13,19 +13,23 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
     items: [{
         title: 'FORM INPUT TANDA TERIMA OUT',
         layout: 'anchor',
-        items: [{
+         items: [{
+        
             xtype: 'FRM_tterimaout'
         },{
             xtype: 'GRID_tterimaout_inv'
         }],
-
-         buttons: [{
-            text: 'Save'
+        buttons: [{
+            text: 'Save',
+            action: 'save_invoice'
         },{
             text: 'Reset',
             handler: function(){
-                var frm = Ext.getCmp('FRM_tpackinglist');
+                var frm = Ext.getCmp('FRM_tterimaout');
+                var grid = Ext.getCmp('GRID_tterimaout_inv');
+                frm.setAction('add');
                 frm.getForm().reset(); 
+                grid.store.reload();
             }
         }]
     }, {
