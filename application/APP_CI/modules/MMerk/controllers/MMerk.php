@@ -37,7 +37,7 @@ class MMerk extends MX_Controller{
         $this->D_mmerk->deleteDT(json_decode($jsonData,true));
     }
     public function cbolist(){
-        $this->load->model('Rmmerk');
+        $this->load->model('R_mmerk');
         header('Content-type: application/json');
         print_r($this->R_mmerk->cbolist());
     }

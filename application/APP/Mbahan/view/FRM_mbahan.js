@@ -96,7 +96,7 @@ Ext.define('Almindo.Mbahan.view.FRM_mbahan',{
                     proxy: {
                         type: 'ajax',
                         actionMethods: 'POST',
-                        url: base_url + 'Mmerk/cbolist',
+                        url: base_url + 'MMerk/cbolist',
                         waitMsg: 'Please Wait...',
                         reader: {
                             type: 'json'
