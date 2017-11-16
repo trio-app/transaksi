@@ -117,17 +117,17 @@
 
 	        if(action == 'edit'){
 	            if(form.isValid() && (grid.store.getCount() > 0)){
-	                this.doProsesCRUD('update',recValue,data);
+	                this.doProsesCRUD('update ',recValue,data);
 	                //this.doSaveGrid('updateGrid', data);
 	            }else{
-	                alert('coy');
+	                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
 	            }
 	        }else{
 	            if(form.isValid() && (grid.store.getCount() > 0)){
 	                this.doProsesCRUD('create',recValue,data);
 	                //this.doSaveGrid('saveGrid', data);
 	            }else{
-	                alert('coy');
+	                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
 	            }
 	        }
 	    },
@@ -165,6 +165,7 @@
                                 break;
                         }
                         form.setAction('add');
+                        box.hide();
 
                     },
                     failure: function(response){

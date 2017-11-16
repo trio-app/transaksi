@@ -72,11 +72,11 @@ Ext.define('Almindo.TTterimaout.view.GRID_tterimaout_inv',{
                 }            
             },    
             { header: 'Tgl Invoice', dataIndex: 'recdetailout_date',  flex: 1,
-                //renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s T'),
-                editor: {                  
-                    allowBlank: false
-                    //dateFormat: 'Y-m-d' 
-                }
+                editor: {
+                  xtype: 'datefield',
+                  format: 'Y-m-d'
+                },
+                renderer : Ext.util.Format.dateRenderer('Y-m-d')
 
             },    
             { header: 'Nominal', dataIndex: 'recdetailout_price', xtype: 'numbercolumn', flex: 1,
