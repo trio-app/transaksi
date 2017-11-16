@@ -13,13 +13,13 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
         layout: 'hbox',
         defaults: {
             flex: 1,
-            margin: '5 0 5 10'
+            margin: '5 5 5 5'
         },
         items: [{
             xtype: 'container',
             layout: 'hbox',
             items: [{
-                flex : 1,
+                margin: '5 5 5 5',
                 name: 'receiptout_doc',
                 id: 'receiptout_doc',
                 xtype: 'textfield',
@@ -29,7 +29,7 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 labelWidth:120,
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
             },{
-                margin: '0 0 0 10',
+                margin: '5 5 5 5',
                 action: 'btn_document',
                 xtype: 'button',
                 tooltip: 'Klik untuk melihat Nomor Document',
@@ -38,32 +38,20 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 xtype: 'datefield',
                 fieldLabel: 'Document Date :',
                 name:'receiptout_date',
-                margin: '0 0 0 10',
+                margin: '5 5 5 5',
                 labelWidth:120,
                 format: 'Y-m-d'
-            }]
-        },{
-            xtype: 'box',
-            flex: 1
-        }]
-    },{
-        xtype: 'container',
-        layout: 'hbox',
-        defaults: {
-            flex: 1,
-            margin: '5 5 5 10'
-        },
-        items: [{
+            },{
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Supplier ',
+            fieldLabel: 'Supplier',
+            margin: '5 5 5 5',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
             value: 'ALMINDO PRATAMA CV.'
-        },{
-            xtype: 'box',
-            flex: 2
         }]
+        
+       }]
     },{
         xtype: 'container',
         layout: 'hbox',
@@ -71,28 +59,18 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             flex: 1,
         },
         items: [{
+            name: 'customer_id',
+            margin: '5 5 5 5',
+            readOnly: true,
+            xtype: 'hidden',
+        },{
             margin: '5 0 5 10',
             name: 'customer_nama',
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Customer ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_cp',
-            margin: '5 0 5 10',
-            xtype: 'textfield',
-            fieldLabel: 'Contact Person ',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
-        },{
-            readOnly: true,
-            name: 'customer_telp',
-            margin: '5 10 5 5',
-            xtype: 'textfield',
-            fieldLabel: 'Phone ',
-            labelWidth: 120,
+            fieldLabel: 'Tujuan ',
+            labelWidth: 100,
+            allowBlank: false,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
     },{

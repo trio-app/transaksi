@@ -3,7 +3,7 @@
 			fields: ['receiptout_id', 'receiptout_doc', 'receiptout_from', 'receiptout_to', 'receiptout_date', 'customer_id', 'customer_nama']
 		});
                 
-                Ext.define('Almindo.TTterimaout.store.ST_tterimaout',{
+         Ext.define('Almindo.TTterimaout.store.ST_tterimaout',{
 			extend: 'Ext.data.Store',
 			model: 'Almindo.TTterimaout.model.M_tterimaout',
 			autoLoad: true,
