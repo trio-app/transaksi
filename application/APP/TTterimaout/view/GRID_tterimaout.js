@@ -24,9 +24,9 @@
         ];
         this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'No. Document', dataIndex: 'receipt_doc', flex: 1 },
+            { header: 'No. Document', dataIndex: 'receiptout_doc', flex: 1 },
             { header: 'Customer', dataIndex: 'customer_nama', flex: 1 },
-            { header: 'Date', dataIndex: 'receipt_date', flex: 1 },
+            { header: 'Date', dataIndex: 'receiptout_date', flex: 1 },
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
