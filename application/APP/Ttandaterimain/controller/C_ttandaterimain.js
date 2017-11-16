@@ -124,14 +124,14 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                 this.doProsesCRUD('update',recValue,data);
                 //this.doSaveGrid('updateGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }else{
             if(form.isValid() && (grid.store.getCount() > 0)){
                 this.doProsesCRUD('create',recValue,data);
                 //this.doSaveGrid('saveGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }
     },doProsesCRUD : function (inAction,record,data){
@@ -140,6 +140,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         var grid2 = this.getGRID_ttandaterimain();
         var store = grid.getStore();
         var store2 = grid2.getStore();
+        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
         Ext.Ajax.request({
                     url: base_url + 'Ttandaterimain/' +  inAction,
                     method: 'POST',
@@ -168,7 +169,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                                 break;
                         }
                         form.setAction('add');
-
+                        box.hide();
                     },
                     failure: function(response){
                         //createAlert('Error ' + response.status, response.responseText, 'error');
@@ -182,7 +183,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         
         var grid = this.getGRID_ttandaterimain_invoice();
         grid.store.reload();
-        
+        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
         Ext.Ajax.request({
             url: base_url + 'Ttandaterimain/getGrid',
             params: {recdetail_doc: record.data.receipt_doc},
@@ -194,6 +195,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                 form.getForm().setValues(record.getData());
                 Ext.getCmp('TAB_ttandaterimain').setActiveTab(0);
                 grid.store.loadData(Ext.decode(transport.responseText));
+                box.hide();
             }
         });
     },

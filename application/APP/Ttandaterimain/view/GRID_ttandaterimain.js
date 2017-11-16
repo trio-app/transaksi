@@ -52,8 +52,8 @@
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
             items: [
-                this.actions.removeitem,
-                this.actions.print_file
+                this.actions.print_file,
+                this.actions.removeitem
             ]
         });
         this.on({

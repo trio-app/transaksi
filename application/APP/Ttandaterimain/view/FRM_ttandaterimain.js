@@ -39,7 +39,8 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             fieldLabel: 'Document Date ',
             name:'receipt_date',
             labelWidth:120,
-            format: 'Y-m-d'
+            format: 'Y-m-d',
+            value: new Date()
         },{
             readOnly: true,
             xtype: 'textfield',
@@ -63,6 +64,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             xtype: 'hidden',
         },{
             name: 'customer_nama',
+            allowBlank: false,
             margin: '5 5 5 5',
             readOnly: true,
             xtype: 'textfield',
@@ -82,7 +84,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
         },{
             icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
             xtype: 'button',
-            text: 'View List Data Packing List',
+            text: 'View List Data Tanda Terima IN',
             handler: function(){
                 var tab = Ext.getCmp('TAB_ttandaterimain');
                 tab.setActiveTab(1);

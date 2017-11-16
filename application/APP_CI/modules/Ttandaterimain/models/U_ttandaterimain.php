@@ -9,6 +9,7 @@ class U_ttandaterimain extends CI_Model {
                         'receipt_to' => $dtrows['customer_id'],
                         'receipt_date' => $dtrows['receipt_date'],
                         'sys_update_user' => $this->session->userdata('user_login'),
+                        'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                 );
                     $this->db->where('receipt_doc', $dtrows['receipt_doc']);
                     $this->db->update('tr_receipt', $data);
@@ -31,6 +32,8 @@ function updateGrid($dtrows,$num){
                         'recdetail_po'=> $value['recdetail_po'],
                         'recdetail_date'=> $value['recdetail_date'],
                         'recdetail_price'=> $value['recdetail_price'],
+                        'sys_update_user' => $this->session->userdata('user_login'),
+                        'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                     );
                 };
     

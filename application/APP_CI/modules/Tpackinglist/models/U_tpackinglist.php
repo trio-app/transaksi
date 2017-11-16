@@ -9,6 +9,7 @@ function updateDT($dtrows){
         'transaksi_customer' => $dtrows['customer_id'],
         'transaksi_date'=> $dtrows['transaksi_date'],
         'sys_update_user' => $this->session->userdata('user_login'),
+        'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
     );
         $this->db->where('transaksi_doc', $dtrows['transaksi_doc']);
         $this->db->update('tr_packinglist', $data);
@@ -34,6 +35,8 @@ function updateDT($dtrows){
                 'trdetail_amount'=> $value['trdetail_amount'],
                 'trdetail_weight'=> $value['trdetail_weighttotal'],
                 'trdetail_pack'=> $value['trdetail_pack'],
+                'sys_update_user' => $this->session->userdata('user_login'),
+                'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
             );
         };
 

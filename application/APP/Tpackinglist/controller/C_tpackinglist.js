@@ -188,14 +188,14 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                 this.doProsesCRUD('update',recValue,data);
                 //this.doSaveGrid('updateGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }else{
             if(form.isValid() && (grid.store.getCount() > 0)){
                 this.doProsesCRUD('create',recValue,data);
                 //this.doSaveGrid('saveGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }
     },

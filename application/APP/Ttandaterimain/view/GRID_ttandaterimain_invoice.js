@@ -11,7 +11,11 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
             'recdetail_invoice',
             'recdetail_delivery', 
             'recdetail_po', 
-            'recdetail_date', 
+            {name: 'recdetail_date', type: 'date',
+                convert: function(val, row){
+                    return Ext.Date.format(val, 'Y-m-d')
+                }
+            },
             {name : 'recdetail_price', type : 'float'},
         ],
         autoLoad: true,
@@ -25,7 +29,7 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
                 autoCancel: false,
                 listeners: {
                     edit: function(editor, e){
-                        e.record.commit();
+                        //e.record.commit();
                     }
                 }
         })                            
@@ -66,10 +70,12 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
                     allowBlank: false
                 }            
             },    
-            { header: 'TGL Invoice', dataIndex: 'recdetail_date',  
+            { header: 'TGL Invoice', dataIndex: 'recdetail_date', xtype: 'datecolumn',
                 editor: {
-                    allowBlank: false
-                }
+                  xtype: 'datefield',
+                  format: 'Y-m-d'
+                },
+                renderer : Ext.util.Format.dateRenderer('Y-m-d')
             },       
             { header: 'Nominal', dataIndex: 'recdetail_price', xtype: 'numbercolumn',
                 editor: {
