@@ -180,7 +180,7 @@
         
         var grid = this.getGRID_tterimaout_inv();
         grid.store.reload();
-        
+        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
         Ext.Ajax.request({
             url: base_url + 'TTterimaout/getGrid',
             params: {recdetailout_doc: record.data.receiptout_doc},
@@ -192,6 +192,7 @@
                 form.getForm().setValues(record.getData());
                 Ext.getCmp('TAB_tterimaout').setActiveTab(0);
                 grid.store.loadData(Ext.decode(transport.responseText));
+                box.hide();
             }
         });
     },
