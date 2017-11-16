@@ -2,7 +2,7 @@
 	
 	Ext.application({
 		name: 'Almindo',
-        appFolder: 'application/app',
+        appFolder: 'application/APP',
         controllers: ['Almindo.TTterimaout.controller.C_tterimaout'],
         launch: function(){
             Ext.create('Ext.container.Container', {
