@@ -50,6 +50,11 @@
                     'TAB_tterimaout button[action=save_invoice]': {
                         click: this.doSaveform
                     },
+                    'TAB_tterimaout GRID_tterimaout': {
+                        itemdblclick: this.onRowdblclick,
+                        removeitem: this.deleteItem,
+                        print_file: this.print_file
+                    },
                     'GRID_tterimaout > toolbar > textfield[itemId=searchData]': {
                         specialkey: this.searchData
                     }
