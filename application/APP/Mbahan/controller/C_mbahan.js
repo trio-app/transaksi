@@ -57,9 +57,8 @@
                             var upload = new Ext.create('Ext.window.Window', {
                                                         title: 'Upload File Gambar',
                                                         width: 450,
-                                                        //height: 400,
+                                                        height: 500,
                                                         modal   : true,
-                                                        autoScroll: true,
                                                         closeAction: 'hide',
                                                         defaults: {
                                                             margin: '10',

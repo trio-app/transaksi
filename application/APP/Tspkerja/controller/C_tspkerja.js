@@ -1,11 +1,8 @@
-Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
+Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
     extend: 'Ext.app.Controller',
     views: [
-        'Almindo.Ttandaterimain.view.TAB_ttandaterimain',
-        'Almindo.Ttandaterimain.view.FRM_ttandaterimain',
-        'Almindo.Ttandaterimain.view.WIN_ttincustomer',
-        'Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',
-        'Almindo.Ttandaterimain.view.GRID_ttandaterimain',
+        'Almindo.Tspkerja.view.TAB_tspkerja',
+        'Almindo.Tspkerja.view.FRM_tspkerja',
         
         
         'Almindo.Mcustomer.view.GRID_mcustomer'
@@ -14,24 +11,19 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
     stores: [
     ],
     refs: [{
-        ref: 'FRM_ttandaterimain',
-        xtype: 'FRM_ttandaterimain',
-        selector: 'FRM_ttandaterimain',
+        ref: 'FRM_tspkerja',
+        xtype: 'FRM_tspkerja',
+        selector: 'FRM_tspkerja',
         autoCreate: true
     },{
-        ref: 'WIN_ttincustomer',
-        xtype: 'WIN_ttincustomer',
-        selector: 'WIN_ttincustomer',
+        ref: 'WIN_tspkerja',
+        xtype: 'WIN_tspkerja',
+        selector: 'WIN_tspkerja',
         autoCreate: true
     },{
-        ref: 'GRID_ttandaterimain_invoice',
-        xtype: 'GRID_ttandaterimain_invoice',
-        selector: 'GRID_ttandaterimain_invoice',
-        autoCreate: true
-    },{
-        ref: 'GRID_ttandaterimain',
-        xtype: 'GRID_ttandaterimain',
-        selector: 'GRID_ttandaterimain',
+        ref: 'GRID_tspkerja',
+        xtype: 'GRID_tspkerja',
+        selector: 'GRID_tspkerja',
         autoCreate: true
     }],
     init: function(){
@@ -39,7 +31,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                     'FRM_ttandaterimain button[action=add_cust]': {
                         click: this.showCust
                     },
-                    'FRM_ttandaterimain button[action=btn_document]': {
+                    'FRM_tspkerja button[action=btn_document]': {
                         click: this.showDocument
                     },
                     'WIN_ttincustomer > GRID_mcustomer': {
@@ -82,7 +74,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
     },
     showDocument: function(){
         Ext.Ajax.request({
-            url: base_url + 'Ttandaterimain/autoNum',
+            url: base_url + 'Tspkerja/autoNum',
             method: 'POST',
             success: function(transport){
                 Ext.getCmp('receipt_doc').setValue(transport.responseText);
@@ -110,7 +102,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         var form = this.getFRM_ttandaterimain();
         var values = form.getValues();
         var action = form.getAction();
-        var recValue = Ext.create('Almindo.Ttandaterimain.model.M_ttandaterimain', values);
+        var recValue = Ext.create('Almindo.Tspkerja.model.M_ttandaterimain', values);
         console.log(action);
 
         var grid = this.getGRID_ttandaterimain_invoice();
@@ -124,14 +116,14 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                 this.doProsesCRUD('update',recValue,data);
                 //this.doSaveGrid('updateGrid', data);
             }else{
-                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
+                alert('coy');
             }
         }else{
             if(form.isValid() && (grid.store.getCount() > 0)){
                 this.doProsesCRUD('create',recValue,data);
                 //this.doSaveGrid('saveGrid', data);
             }else{
-                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
+                alert('coy');
             }
         }
     },doProsesCRUD : function (inAction,record,data){
@@ -140,9 +132,8 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         var grid2 = this.getGRID_ttandaterimain();
         var store = grid.getStore();
         var store2 = grid2.getStore();
-        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
         Ext.Ajax.request({
-                    url: base_url + 'Ttandaterimain/' +  inAction,
+                    url: base_url + 'Tspkerja/' +  inAction,
                     method: 'POST',
                     type:'json',
                     params: [JSON.stringify(record.data),'||',JSON.stringify(data)],
@@ -169,7 +160,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                                 break;
                         }
                         form.setAction('add');
-                        box.hide();
+
                     },
                     failure: function(response){
                         //createAlert('Error ' + response.status, response.responseText, 'error');
@@ -183,9 +174,9 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         
         var grid = this.getGRID_ttandaterimain_invoice();
         grid.store.reload();
-        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
+        
         Ext.Ajax.request({
-            url: base_url + 'Ttandaterimain/getGrid',
+            url: base_url + 'Tspkerja/getGrid',
             params: {recdetail_doc: record.data.receipt_doc},
             method: 'POST',
             fields: ['recdetail_id','recdetail_doc','recdetail_invoice','recdetail_delivery','recdetail_po','recdetail_date','recdetail_price'],
@@ -195,7 +186,6 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                 form.getForm().setValues(record.getData());
                 Ext.getCmp('TAB_ttandaterimain').setActiveTab(0);
                 grid.store.loadData(Ext.decode(transport.responseText));
-                box.hide();
             }
         });
     },
@@ -215,7 +205,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
             closeAction: 'hide',
             items: [{ 
                      xtype: 'component',
-                     html : '<iframe src="'+ base_url +'Ttandaterimain/print_file/'+ record.data.receipt_id +'" width="100%" height="550px"></iframe>',
+                     html : '<iframe src="'+ base_url +'Tspkerja/print_file/'+ record.data.receipt_id +'" width="100%" height="550px"></iframe>',
                   }]
         });
         previewPrint.show();

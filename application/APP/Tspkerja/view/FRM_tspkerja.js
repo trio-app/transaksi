@@ -1,7 +1,7 @@
-Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
+Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
     extend: 'Ext.form.Panel',
-    alias: 'widget.FRM_ttandaterimain',
-    //frame: true,
+    alias: 'widget.FRM_tspkerja',
+    frame: true,
     margin: '10 10 0 10',
     config: {
         recordIndex: 0,
@@ -19,8 +19,8 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             layout: 'hbox',
             items: [{
                 flex : 1,
-                name: 'receipt_doc',
-                id: 'receipt_doc',
+                name: 'spk_doc',
+                id: 'spk_doc',
                 xtype: 'textfield',
                 fieldLabel: 'No. Document',
                 emptyText: 'Auto Number',
@@ -37,63 +37,76 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
         },{
             xtype: 'datefield',
             fieldLabel: 'Document Date ',
-            name:'receipt_date',
+            name:'spk_date',
             labelWidth:120,
-            format: 'Y-m-d',
-            value: new Date()
+            format: 'Y-m-d'
         },{
-            readOnly: true,
-            xtype: 'textfield',
-            fieldLabel: 'Tujuan ',
-            name: 'receipt_from',
-            labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;',
-            value: 'ALMINDO PRATAMA CV.'
-            
+            icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
+            xtype: 'button',
+            text: 'View List Data SPK',
+            flex: 0,
+            handler: function(){
+                var tab = Ext.getCmp('TAB_tspkerja');
+                tab.setActiveTab(1);
+            }
         }]
     },{
         xtype: 'container',
         layout: 'hbox',
         defaults: {
             flex: 1,
+            margin: '5 5 5 5'
         },
         items: [{
-            name: 'customer_id',
+            fieldLabel: 'No. PO',
+            name: 'spk_nopo',
             margin: '5 5 5 5',
-            readOnly: true,
-            xtype: 'hidden',
-        },{
-            name: 'customer_nama',
-            allowBlank: false,
-            margin: '5 5 5 5',
-            readOnly: true,
-            xtype: 'textfield',
-            fieldLabel: 'Dikirim Dari',
+            readOnly: false,
             labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;'
+            fieldStyle: 'background-color: #ffa144; background-image: none;',
+            xtype: 'textfield',
+            flex: 1
+        },{
+            name: 'spk_delivery',
+            readOnly: false,
+            xtype: 'datefield',
+            fieldLabel: 'Delivery Date',
+            labelWidth: 120,
+            flex: 1
+        },{
+            xtype: 'box',
+            flex: 1
         }]
     },{
         xtype: 'container',
         layout: 'hbox',
         defaults: {
-            margin: '5 10'
+            margin: '5 5 5 5',
+            flex: 1
         },
         items: [{
-            xtype: 'box',
-            flex: 1
+            xtype: 'hidden',
+            name: 'customer_id',
+            fieldLabel: 'ID',
+            allowBlank: false,
+            flex: 2
         },{
-            icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
-            xtype: 'button',
-            text: 'View List Data Tanda Terima IN',
-            handler: function(){
-                var tab = Ext.getCmp('TAB_ttandaterimain');
-                tab.setActiveTab(1);
-            }
+            xtype: 'textfield',
+            name: 'customer_nama',
+            fieldLabel: 'Customer',
+            fieldStyle: 'background-color: #ffa144; background-image: none;',
+            allowBlank: false,
+            labelWidth: 120,
+            flex: 1,
+            readOnly: true
         },{
             icon: base_url + 'system/img/user_add.gif',
             xtype: 'button',
             action: 'add_cust',
-            text: 'Pilih Customer'
+            text: 'Pilih Customer',
+        },{
+            xtype: 'box',
+            flex: 1
         }]
     }]
 });

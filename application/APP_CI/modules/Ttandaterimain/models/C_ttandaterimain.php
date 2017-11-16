@@ -8,7 +8,7 @@ class C_ttandaterimain extends CI_Model {
 
 
 
-function insertDT($dtrows)
+function insertDT($dtrows, $doc)
 
             {
 
@@ -16,7 +16,7 @@ function insertDT($dtrows)
 
                 $data = array(
 
-                        'receipt_doc' => $dtrows['receipt_doc'],
+                        'receipt_doc' => $doc,
 
                         'receipt_date' => $dtrows['receipt_date'],
 
@@ -25,14 +25,15 @@ function insertDT($dtrows)
                         'receipt_to' => $dtrows['customer_id'],
 
                         'sys_create_user' => $this->session->userdata('user_login'),
-
+                        
+                        'sys_create_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                 );
 
 
 
                 $this->db->insert('tr_receipt', $data);
 
-                return $dtrows['receipt_doc'];
+                return $doc;
 
             }
 
@@ -59,6 +60,10 @@ function insertGrid($dtrows,$num){
                         'recdetail_date'=> $value['recdetail_date'],
 
                         'recdetail_price'=> $value['recdetail_price'],
+                        
+                        'sys_create_user' => $this->session->userdata('user_login'),
+                        
+                        'sys_create_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
 
                     );
 

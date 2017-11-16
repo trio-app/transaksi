@@ -31,8 +31,9 @@ class Ttandaterimain extends CI_Controller {
             }
             
             $data['date'] = date('Y-m-d');
-            
-            echo $month. '.' . $auto . '/AP/TTI/' . $year;
+            $doc = $month. '.' . $auto . '/AP/TTI/' . $year;
+            echo $doc;
+            return $doc;
         }        
         
         public function read(){
@@ -49,7 +50,8 @@ class Ttandaterimain extends CI_Controller {
             $jsonData =  file_get_contents("php://input");
             $data = explode(',||,',$jsonData);            
             $this->load->model('C_ttandaterimain');
-            $num = $this->C_ttandaterimain->insertDT(json_decode($data[0],true));
+            $doc = $this->autoNum();
+            $num = $this->C_ttandaterimain->insertDT(json_decode($data[0],true), $doc);
             $this->C_ttandaterimain->insertGrid(json_decode($data[1],true),$num);
             $this->C_ttandaterimain->autoNum();
 

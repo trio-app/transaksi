@@ -86,7 +86,7 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
         
         var grid = this.getGRID_tpackinglist_mat();
         grid.store.reload();
-        
+        var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
         Ext.Ajax.request({
             url: base_url + 'Tpackinglist/getGrid',
             params: {transaksi_doc: record.data.transaksi_doc},
@@ -98,6 +98,7 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                 form.getForm().setValues(record.getData());
                 Ext.getCmp('TAB_tpackinglist').setActiveTab(0);
                 grid.store.loadData(Ext.decode(transport.responseText));
+                box.hide();
             }
         });
     },
@@ -187,14 +188,14 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                 this.doProsesCRUD('update',recValue,data);
                 //this.doSaveGrid('updateGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }else{
             if(form.isValid() && (grid.store.getCount() > 0)){
                 this.doProsesCRUD('create',recValue,data);
                 //this.doSaveGrid('saveGrid', data);
             }else{
-                alert('coy');
+                Ext.MessageBox.alert('Information', 'Periksa Kembali Data.');
             }
         }
     },
@@ -204,6 +205,7 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
         var grid2 = this.getGRID_tpackinglist();
         var store = grid.getStore();
         var store2 = grid2.getStore();
+        var box = Ext.MessageBox.wait('Sedang Memproses Data...', 'Harap Tunggu');
         Ext.Ajax.request({
                     url: base_url + 'Tpackinglist/' +  inAction,
                     method: 'POST',
@@ -232,6 +234,7 @@ Ext.define('Almindo.Tpackinglist.controller.C_tpackinglist',{
                                 break;
                         }
                         form.setAction('add');
+                        box.hide();
 
                     },
                     failure: function(response){
