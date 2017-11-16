@@ -2,7 +2,6 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tterimaout',
     //frame: true,
-    border: 0,
     margin: '10 10 0 10',
     config: {
         recordIndex: 0,
@@ -19,11 +18,11 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             xtype: 'container',
             layout: 'hbox',
             items: [{
-                margin: '5 5 5 5',
+                flex : 1,
                 name: 'receiptout_doc',
                 id: 'receiptout_doc',
                 xtype: 'textfield',
-                fieldLabel: 'Document Number ',
+                fieldLabel: 'No. Document',
                 emptyText: 'Auto Number',
                 readOnly: true,
                 labelWidth:120,
@@ -34,24 +33,24 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
                 xtype: 'button',
                 tooltip: 'Klik untuk melihat Nomor Document',
                 icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
-            },{
-                xtype: 'datefield',
-                fieldLabel: 'Document Date :',
-                name:'receiptout_date',
-                margin: '5 5 5 5',
-                labelWidth:120,
-                format: 'Y-m-d'
-            },{
+            }]
+        },{
+            xtype: 'datefield',
+            fieldLabel: 'Document Date ',
+            name:'receiptout_date',
+            labelWidth:120,
+            format: 'Y-m-d',
+            value: new Date()
+        },{
             readOnly: true,
             xtype: 'textfield',
-            fieldLabel: 'Supplier',
-            margin: '5 5 5 5',
+            fieldLabel: 'Dari ',
+            name: 'receiptout_from',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
             value: 'ALMINDO PRATAMA CV.'
+            
         }]
-        
-       }]
     },{
         xtype: 'container',
         layout: 'hbox',
@@ -64,13 +63,13 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
             readOnly: true,
             xtype: 'hidden',
         },{
-            margin: '5 0 5 10',
             name: 'customer_nama',
+            allowBlank: false,
+            margin: '5 5 5 5',
             readOnly: true,
             xtype: 'textfield',
             fieldLabel: 'Tujuan ',
             labelWidth: 120,
-            allowBlank: false,
             fieldStyle: 'background-color: #ffa144; background-image: none;'
         }]
     },{
@@ -85,7 +84,7 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
         },{
             icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
             xtype: 'button',
-            text: 'View List Data Packing List',
+            text: 'View List Data Tanda Terima IN',
             handler: function(){
                 var tab = Ext.getCmp('TAB_tterimaout');
                 tab.setActiveTab(1);

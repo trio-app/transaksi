@@ -33,7 +33,7 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
         layout: 'anchor',
        items: [{
             xtype: 'GRID_tterimaout',
-                store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout');
+                store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout')
         }]
     }]
 })

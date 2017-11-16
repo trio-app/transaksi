@@ -38,7 +38,7 @@ class TTterimaout extends CI_Controller {
 		$start = $this->input->post('start');
 		$limit = $this->input->post('limit');
 		$filter= $this->input->post('filter');
-		header( $this->R_tterimaout->load_default($start,$limit,$filter));
+		header('Content-type: application/json');
         print_r( $this->R_tterimaout->load_default($start,$limit,$filter));
 	}
 
