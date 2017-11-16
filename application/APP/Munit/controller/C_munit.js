@@ -33,8 +33,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Munit.store.ST_munit');//Ext.getStore('Almindo.Munit.store.ST_munit');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.Munit.store.ST_munit');//Ext.getStore('Almindo.Munit.store.ST_munit');//
+				var grid = this.getGRID_munit();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;

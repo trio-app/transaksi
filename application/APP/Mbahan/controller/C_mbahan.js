@@ -40,8 +40,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Mbahan.store.ST_mbahan');//Ext.getStore('Almindo.Mbahan.store.ST_mbahan');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.Mbahan.store.ST_mbahan');//Ext.getStore('Almindo.Mbahan.store.ST_mbahan');//
+				var grid = this.getGRID_mbahan();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;

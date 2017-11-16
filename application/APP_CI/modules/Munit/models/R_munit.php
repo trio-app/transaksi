@@ -11,6 +11,8 @@ function load_default($start,$limit,$filter){
                     ',FALSE);
     $this->db->from('m_unit');
     $this->db->where("m_unit.unit_id <>", 0);
+    $this->db->like('m_unit.unit_nama',$dtfilter[0]['value']);
+    $this->db->or_like('m_unit.unit_desc',$dtfilter[0]['value']);
     $this->db->limit($limit,$start);
     $this->db->order_by("m_unit.unit_id","DESC");
     $query = $this->db->get();

@@ -33,8 +33,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//Ext.getStore('Almindo.MJBahan.store.ST_mjbahan');//
+				var grid = this.getGRID_mjbahan();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;
