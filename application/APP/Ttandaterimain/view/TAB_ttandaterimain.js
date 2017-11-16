@@ -26,7 +26,7 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
             text: 'Reset',
             handler: function(){
                 var frm = Ext.getCmp('FRM_ttandaterimain');
-                var grid = Ext.getCmp('GRID_ttandaterimain_iinvoice');
+                var grid = Ext.getCmp('GRID_ttandaterimain_invoice');
                 frm.setAction('add');
                 frm.getForm().reset(); 
                 grid.store.reload();
