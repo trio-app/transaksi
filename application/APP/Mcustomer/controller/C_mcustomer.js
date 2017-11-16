@@ -33,8 +33,10 @@
 				});
 			},
 			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Mcustomer.store.ST_mcustomer');//Ext.getStore('Almindo.Mcustomer.store.ST_mcustomer');//
-				if (e.getKey() == e.ENTER) {
+				//var store = Ext.getStore('Almindo.Mcustomer.store.ST_mcustomer');//Ext.getStore('Almindo.Mcustomer.store.ST_mcustomer');//
+				var grid = this.getGRID_mcustomer();
+                                var store = grid.getStore();
+                                if (e.getKey() == e.ENTER) {
 					store.remoteFilter = false;
 					store.clearFilter();
 					store.remoteFilter = true;
