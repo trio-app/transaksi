@@ -44,9 +44,11 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             readOnly: true,
             xtype: 'textfield',
             fieldLabel: 'Tujuan ',
+            name: 'receipt_from',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
-            value: 'ALMINDO PRATAMA CV.',
+            value: 'ALMINDO PRATAMA CV.'
+            
         }]
     },{
         xtype: 'container',
@@ -55,8 +57,13 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             flex: 1,
         },
         items: [{
+            name: 'customer_id',
             margin: '5 5 5 5',
+            readOnly: true,
+            xtype: 'hidden',
+        },{
             name: 'customer_nama',
+            margin: '5 5 5 5',
             readOnly: true,
             xtype: 'textfield',
             fieldLabel: 'Dikirim Dari',

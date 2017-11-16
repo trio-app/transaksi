@@ -21,12 +21,15 @@ Ext.define('Almindo.Ttandaterimain.view.TAB_ttandaterimain',{
         }],
         buttons: [{
             text: 'Save',
-            action: 'save_invoce'
+            action: 'save_invoice'
         },{
             text: 'Reset',
             handler: function(){
                 var frm = Ext.getCmp('FRM_ttandaterimain');
+                var grid = Ext.getCmp('GRID_ttandaterimain_iinvoice');
+                frm.setAction('add');
                 frm.getForm().reset(); 
+                grid.store.reload();
             }
         }]
     }, {
