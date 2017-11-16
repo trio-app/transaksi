@@ -46,11 +46,6 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
         Ext.create('Ext.grid.plugin.RowEditing', {
                 clicksToMoveEditor: 1,
                 autoCancel: false,
-                listeners: {
-                    edit: function(editor, e){
-                        //e.record.commit();
-                    }
-                }
         })                            
     ],
     viewConfig : {
