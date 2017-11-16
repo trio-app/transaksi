@@ -14,7 +14,6 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
         title: 'FORM INPUT TANDA TERIMA OUT',
         layout: 'anchor',
          items: [{
-        
             xtype: 'FRM_tterimaout'
         },{
             xtype: 'GRID_tterimaout_inv'
@@ -25,7 +24,7 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
         },{
             text: 'Reset',
             handler: function(){
-                var frm = Ext.getCmp('FRM_tterimaout');
+               var frm = Ext.getCmp('FRM_tterimaout');
                 var grid = Ext.getCmp('GRID_tterimaout_inv');
                 frm.setAction('add');
                 frm.getForm().reset(); 
@@ -40,4 +39,4 @@ Ext.define('Almindo.TTterimaout.view.TAB_tterimaout',{
                 store: Ext.create('Almindo.TTterimaout.store.ST_tterimaout')
         }]
     }]
-})
+});
