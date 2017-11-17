@@ -59,7 +59,7 @@ class Tspkerja extends CI_Controller {
             $jsonData =  file_get_contents("php://input");    
             $data = explode(',||,',$jsonData);
             $this->load->model('U_tspkerja');
-            $num = $this->U_tspkerja->updateDT(json_decode($data[0],true));
+            $num = $this->U_tspkerja->updateDT(json_decode($jsonData,true));
             //print_r($data);
             //$this->Uspkerja->updateGrid(json_decode($data[1],true),$num);
         }

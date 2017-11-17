@@ -42,7 +42,8 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             fieldLabel: 'Document Date ',
             name:'spk_date',
             labelWidth:120,
-            format: 'Y-m-d'
+            format: 'Y-m-d',
+            value: new Date()
         },{
             xtype: 'container',
             layout: 'hbox',
@@ -54,7 +55,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 text: 'View List Surat Perintah Kerja',
                 icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
                 handler: function(){
-                    var tab = Ext.getCmp('TAB_tpackinglist');
+                    var tab = Ext.getCmp('TAB_tspkerja');
                     tab.setActiveTab(1);
                 }
             }]
@@ -80,7 +81,9 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             xtype: 'datefield',
             fieldLabel: 'Order Date',
             labelWidth: 120,
-            flex: 1
+            flex: 1,
+            format: 'Y-m-d',
+            value: new Date()
         },{
             xtype: 'box',
             flex: 1
@@ -151,7 +154,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                             items: [{
                             xtype: 'textfield',
                             id: 'bahan_nama',
-                            name: 'spk_bahan_nama',
+                            name: 'spk_bahannama',
                             fieldStyle: 'background-color: #ffa144; background-image: none;',
                             labelWidth: 120,
                             fieldLabel: 'Produk',
@@ -629,10 +632,12 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             items: [{
                 xtype: 'datefield',
                 name: 'spk_tglkirim',
-                fieldLabel: 'Tanggal Kirim '
+                fieldLabel: 'Tanggal Kirim ',
+                format: 'Y-m-d',
+                value: new Date()
             },{
                 xtype: 'textfield',
-                name: 'spk_nopo',
+                name: 'spk_nosuratjalan',
                 fieldLabel: 'No. Surat Jalan'
             }]
         },{

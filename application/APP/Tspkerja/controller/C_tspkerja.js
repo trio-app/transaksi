@@ -63,7 +63,7 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
                     'TAB_tspkerja button[action=save_spk]': {
                         click: this.doSaveform
                     },
-                    'TAB_ttandaterimain GRID_ttandaterimain': {
+                    'TAB_tspkerja GRID_tspkerja': {
                         itemdblclick: this.onRowdblclick,
                         removeitem: this.deleteItem,
                         print_file: this.print_file
@@ -130,14 +130,14 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
 
     },
     doSaveform: function(){
-        var win = this.getFRM_tspkerja();
+        var form = this.getFRM_tspkerja();
         var store = Ext.getStore('Almindo.Tspkerja.store.ST_tspkerja');
-        var form = win.down('form');
         var values = form.getValues();
         var record = form.getRecord();
-        var action = win.getAction();
+        var action = form.getAction();
         var recValue = Ext.create('Almindo.Tspkerja.model.M_tspkerja', values);
         console.log(action);
+        console.log(values);
 
         if(action == 'edit'){
                 if(form.isValid()){
@@ -173,7 +173,7 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
                                                     createAlert('Update S. P. K.', 'Update Data Success', 'success');
                                             break;
                             }
-        win.down('form').getForm().reset();
+        win.getForm().reset();
         win.setAction('add');
 
                     },
@@ -185,23 +185,12 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
     },
     onRowdblclick: function(me, record, item, index){
         var form = this.getFRM_tspkerja();
-        
-        var grid = this.getGRID_ttandaterimain_invoice();
-        grid.store.reload();
-        
-        Ext.Ajax.request({
-            url: base_url + 'Tspkerja/getGrid',
-            params: {recdetail_doc: record.data.receipt_doc},
-            method: 'POST',
-            fields: ['recdetail_id','recdetail_doc','recdetail_invoice','recdetail_delivery','recdetail_po','recdetail_date','recdetail_price'],
-            success: function(transport){
-                form.setAction('edit');
-                form.setRecordIndex(index);
-                form.getForm().setValues(record.getData());
-                Ext.getCmp('TAB_ttandaterimain').setActiveTab(0);
-                grid.store.loadData(Ext.decode(transport.responseText));
-            }
-        });
+            form.setAction('edit');
+            form.setRecordIndex(index);
+            form.getForm().setValues(record.getData());
+            
+            Ext.getCmp('TAB_tspkerja').setActiveTab(0);
+
     },
     deleteItem: function(record){
         Ext.Msg.confirm('Delete Data', 'Are you sure?', function (button) {
@@ -219,7 +208,7 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
             closeAction: 'hide',
             items: [{ 
                      xtype: 'component',
-                     html : '<iframe src="'+ base_url +'Tspkerja/print_file/'+ record.data.receipt_id +'" width="100%" height="550px"></iframe>',
+                     html : '<iframe src="'+ base_url +'Tspkerja/print_file/'+ record.data.spk_id +'" width="100%" height="550px"></iframe>',
                   }]
         });
         previewPrint.show();
