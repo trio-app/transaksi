@@ -1,8 +1,10 @@
 Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
     extend: 'Ext.form.Panel',
     alias: 'widget.FRM_tspkerja',
+    id: 'FRM_tspkerja',
     frame: true,
     margin: '10 10 0 10',
+    xtype: 'form',
     config: {
         recordIndex: 0,
         action: ''
@@ -27,6 +29,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 readOnly: true,
                 labelWidth:120,
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
+                readOnly: true,
             },{
                 margin: '0 0 0 10',
                 action: 'btn_document',
@@ -69,7 +72,6 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             margin: '5 5 5 5',
             readOnly: false,
             labelWidth: 120,
-            fieldStyle: 'background-color: #ffa144; background-image: none;',
             xtype: 'textfield',
             flex: 1
         },{
@@ -111,11 +113,13 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         xtype: 'textfield',
                         fieldLabel: 'Customer',
                         fieldStyle: 'background-color: #ffa144; background-image: none;',
-                        labelWidth: 120
+                        labelWidth: 120,
+                        readOnly: true
                     },{
                         icon: base_url + 'system/img/user_add.gif',
                         xtype: 'button',
                         text: 'Pilih Customer',
+                        action: 'add_cust',
                         flex: 0,
                         width: 120,
                         margin: '0 10'
@@ -146,14 +150,19 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         },
                             items: [{
                             xtype: 'textfield',
+                            id: 'bahan_nama',
+                            name: 'spk_bahan_nama',
                             fieldStyle: 'background-color: #ffa144; background-image: none;',
                             labelWidth: 120,
-                            fieldLabel: 'Produk'
+                            fieldLabel: 'Produk',
+                            allowBlank: 'false',
+                            readOnly: true
                         },{
                             xtype: 'button',
-                            icon: base_url + 'system/img/user_add.gif',
+                            icon: base_url + 'system/images/icons/produk.png',
                             width: 120,
                             text: 'Pilih Produk',
+                            action: 'add_bahan',
                             flex: 0,
                             margin: '0 10'
                 }]
@@ -183,17 +192,33 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             fieldStyle: 'background-color: #ffa144; background-image: none;',
         },
         items: [{
+            id: 'bahan_jenis',
+            name: 'spk_jenisbahan',
             fieldLabel: 'Jenis Bahan ',
             labelWidth: 120,
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_merk',
+            name: 'spk_merk',
             fieldLabel: 'Merk Bahan ',
             margin: '0 5',
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_bentuk',
+            name: 'spk_bentuk',
             fieldLabel: 'Bentuk Label ',
             margin: '0 5',
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_porporasi',
+            name: 'spk_porporasi',
             fieldLabel: 'Porporasi ',
             margin: '0 0 0 5',
+            allowBlank: 'false',
+            readOnly: true
         }]
     },{
         xtype: 'container',
@@ -209,9 +234,6 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             items: [{
                 xtype: 'container',
                 layout: 'hbox',
-                defaults: {
-                    flex: 1
-                },
                 items: [{
                     xtype: 'container',
                     layout: 'hbox',
@@ -222,33 +244,105 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         width: 120
                     },{
                         xtype: 'numberfield',
+                        id: 'bahan_ukuranP',
+                        name: 'spk_ukuranP',
                         fieldStyle: 'background-color: #ffa144; background-image: none;',
                         flex: 1,
                         margin: '0 5',
+                        allowBlank: 'false',
+                        readOnly: true
                     },{
                         xtype: 'box',
                         html: 'x',
-                        margin: '5',
+                        margin: '0 5'
                     },{
                         xtype: 'numberfield',
+                        id: 'bahan_ukuranL',
+                        name: 'spk_ukuranL',
                         fieldStyle: 'background-color: #ffa144; background-image: none;',
                         flex: 1,
                         margin: '0 5',
+                        allowBlank: 'false',
+                        readOnly: true
                     }]
                 },{
                     xtype: 'container',
                     layout: 'hbox',
                     items: [{
                         xtype: 'numberfield',
+                        id: 'spk_matapisau',
+                        name: 'spk_matapisau',
                         fieldLabel: 'Baris Mata Pisau',
                         flex: 1,
                         margin: '0 5',
+                        allowBlank: 'false',
+                        listeners: {
+                            change: function(field, newVal, oldVal) {
+                                console.log("Calculating");
+                                var bahanP = Ext.getCmp('bahan_ukuranP').getValue();
+                                var matapisau = Ext.getCmp('spk_matapisau').getValue();
+                                var digunakanP = Ext.getCmp('ukuranP_digunakan');
+                                if (bahanP > 0 && matapisau <= 1) {
+                                    digunakanP.setValue( 
+                                        bahanP + 10
+                                    );
+                                }
+                                else if (bahanP > 0 && matapisau <= 2) {
+                                    digunakanP.setValue( 
+                                       (bahanP * matapisau)+ 5 + 3 + 3 
+                                    );
+                                }
+                                else if (bahanP > 0 && matapisau <= 3) {
+                                    digunakanP.setValue( 
+                                       (bahanP * matapisau)+ 5 + 5 + 3 + 3
+                                    );
+                                }
+                                else if (bahanP > 0 && matapisau <= 4) {
+                                    digunakanP.setValue( 
+                                       (bahanP * matapisau)+ 5 + 5 + 5 + 3 + 3 
+                                    );
+                                }
+                                else if (bahanP > 0 && matapisau <= 5) {
+                                    digunakanP.setValue( 
+                                       (bahanP * matapisau)+ 5 + 5 + 5 + 5 + 3 + 3
+                                    );
+                                }
+                        }  
+
+                      }
                     },{
                         xtype: 'numberfield',
+                        id: 'bahan_gap',
+                        name: 'spk_gap',
                         fieldLabel: 'GAP',
                         fieldStyle: 'background-color: #ffa144; background-image: none;',
                         flex: 1,
                         margin: '0 0 0 5',
+                        allowBlank: 'false',
+                        readOnly: true,
+                        listeners: {
+                            change: function(field, newVal, oldVal) {
+                                console.log("Calculating");
+                                var order = Ext.getCmp('spk_qtyorder').getValue();
+                                var upp = Ext.getCmp('spk_upporder').getValue();
+                                var order_baris = Ext.getCmp('spk_mataperbaris').getValue();
+                                var total = Ext.getCmp('spk_totalorder');
+                                var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
+                                var gap = Ext.getCmp('bahan_gap').getValue();
+                                var total_all = Ext.getCmp('total');
+                                
+                                if (order > 0 && upp > 0 && order_baris > 0) {
+                                    total.setValue( 
+                                        order * (order_baris / upp)
+                                    );
+                                    total_all.setValue(
+                                        (bahanL + gap) * order / 1000
+                                    );
+                                }
+
+                        }  
+
+                    }
                     }]
                 }]
             }]
@@ -262,11 +356,39 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             xtype: 'numberfield'
         },
         items: [{
+            id: 'spk_mataperbaris',
+            name: 'spk_mataperbaris',
             labelWidth: 120,
-            fieldLabel: 'Total baris Order '
+            fieldLabel: 'Total baris Order ',
+            allowBlank: 'false',
+            listeners: {
+                    change: function(field, newVal, oldVal) {
+                        console.log("Calculating");
+                        var order = Ext.getCmp('spk_qtyorder').getValue();
+                        var upp = Ext.getCmp('spk_upporder').getValue();
+                        var order_baris = Ext.getCmp('spk_mataperbaris').getValue();
+                        var total = Ext.getCmp('spk_totalorder');
+                        
+                        var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
+                        var gap = Ext.getCmp('bahan_gap').getValue();
+                        var total_all = Ext.getCmp('total');
+                        if (order > 0 && upp > 0 && order_baris > 0) {
+                            total.setValue( 
+                                (order_baris / upp) * order
+                            );
+                            total_all.setValue(
+                                (bahanL + gap) * order / 1000
+                            );
+                        }
+                        
+                }  
+
+            }
         },{
+            name: 'spk_jumlahpisau',
             margin: '0 5',
-            fieldLabel: 'Total Mata Pisau '
+            fieldLabel: 'Total Mata Pisau ',
+            allowBlank: 'false',
         },{
             margin: '0 5',
             xtype: 'box',
@@ -282,37 +404,85 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             fieldStyle: 'background-color: #ffa144; background-image: none;',
         },
         items: [{
+            id: 'bahan_warnacetakan',
+            name: 'spk_warnacetakan',
             fieldLabel: 'Warna Cetakan ',
             labelWidth: 120,
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_arahgulungan',
+            name: 'spk_arahgulungan',
             fieldLabel: 'Arah Gulungan ',
             margin: '0 5',
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_sensor',
+            name: 'sensor',
             fieldLabel: 'Sensor ',
             margin: '0 5',
+            allowBlank: 'false',
+            readOnly: true
         },{
+            id: 'bahan_core',
+            name: 'spk_core',
             fieldLabel: 'Core ',
             margin: '0 0 0 5',
+            allowBlank: 'false',
+            readOnly: true
         }]
     },{
         xtype: 'container',
         layout: 'hbox',
         margin: '5',
         defaults: {
-            flex: 1
+            flex: 1,
+            listeners: {
+                    change: function(field, newVal, oldVal) {
+                        console.log("Calculating");
+                        var order = Ext.getCmp('spk_qtyorder').getValue();
+                        var upp = Ext.getCmp('spk_upporder').getValue();
+                        var order_baris = Ext.getCmp('spk_mataperbaris').getValue();
+                        var total = Ext.getCmp('spk_totalorder');
+                        
+                        var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
+                        var gap = Ext.getCmp('bahan_gap').getValue();
+                        var total_all = Ext.getCmp('total');
+                        if (order > 0 && upp > 0 && order_baris > 0) {
+                            total.setValue( 
+                                (order_baris / upp) * order
+                            );
+                            total_all.setValue(
+                                (bahanL + gap) * order / 1000
+                            );
+                        }
+                        
+                }  
+
+            }
         },
         items: [{
+            id: 'spk_qtyorder',
+            name: 'spk_qtyorder',
             xtype: 'numberfield',
             labelWidth: 120,
-            fieldLabel: 'Qty Order '
+            fieldLabel: 'Qty Order ',
+            allowBlank: 'false',
         },{
+            id: 'spk_upporder',
+            name: 'spk_upporder',
             xtype: 'numberfield',
             fieldLabel: 'Qty UPP ',
             margin: '0 5',
+            allowBlank: 'false',
         },{
+            id: 'spk_totalorder',
+            name: 'spk_totalorder',
             xtype: 'numberfield',
             fieldLabel: 'Qty Total ',
             margin: '0 5',
+            allowBlank: 'false',
         },{
             margin: '0 0 0 5',
             xtype: 'container',
@@ -322,12 +492,20 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 labelWidth: 65
             },
             items: [{
+                id: 'bahan_qtyname',
+                name: 'spk_qtyname',
                 xtype: 'textfield',
-                fieldLabel: 'Qty Type '
+                fieldLabel: 'Qty',
+                allowBlank: 'false',
+                readOnly: true
             },{
+                id: 'bahan_totalname',
+                name: 'spk_totalname',
                 xtype: 'textfield',
                 margin: '0 0 0 5',
-                fieldLabel: 'Total Type '
+                fieldLabel: 'Total',
+                allowBlank: 'false',
+                readOnly: true
             }]
         }]
     },{
@@ -343,9 +521,13 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
         },
         items: [{
             xtype: 'textfield',
+            id: 'bahan_jenis2',
+            name: 'bahan_digunakan',
             margin: '0 5',
             fieldLabel: 'Jenis Bahan ',
             fieldStyle: 'background-color: #ffa144; background-image: none;',
+            allowBlank: 'false',
+            readOnly: true
         },{
             xtype: 'container',
             layout: 'hbox',
@@ -359,9 +541,13 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 flex: 0
             },{
                 xtype: 'numberfield',
+                id: 'ukuranP_digunakan',
+                name:'ukuranP_digunakan',
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
                 margin: '0 5',
-                width: 120
+                width: 120,
+                allowBlank: 'false',
+                readOnly: true
             },{
                 xtype: 'box',
                 margin: '5',
@@ -369,9 +555,12 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 flex: 0
             },{
                 xtype: 'numberfield',
-                fieldStyle: 'background-color: #ffa144; background-image: none;',
+                name: 'ukuranL_digunakan',
+                //fieldStyle: 'background-color: #ffa144; background-image: none;',
                 width: 120,
                 margin: '0 0 0 5',
+                allowBlank: 'false',
+                value: 1000,
             }]
         },{
             xtype: 'box',
@@ -381,24 +570,57 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
         layout: 'hbox',
         margin: '5 0',
         defaults: {
-            flex: 1
+            flex: 1                                          
         },
         items: [{
             xtype: 'container',
             margin: '0 5',
             layout: 'vbox',
+            defaults: {
+                listeners: {
+                    change: function(field, newVal, oldVal) {
+                        console.log("Calculating");
+                        var total_all = Ext.getCmp('total').getValue();
+                        var roll = Ext.getCmp('jml_roll');
+                        var digunakanP = Ext.getCmp('ukuranP_digunakan').getValue();
+                        var total_luas = Ext.getCmp('total2');
+
+                        if (total_all > 0 ) {
+                                roll.setValue(
+                                    total_all / 1000
+                                );
+
+                                total_luas.setValue(
+                                    (digunakanP / 1000) * total_all 
+                                );
+                        }
+                    }
+                }
+            },
             items: [{
                 xtype: 'numberfield',
+                id: 'jml_roll',
+                name:'jml_roll',
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
-                fieldLabel: 'Jumlah Roll '
+                fieldLabel: 'Jumlah Roll ',
+                allowBlank: 'false',
+                readOnly: true
             },{
                 xtype: 'numberfield',
+                id: 'total',
+                name: 'total',
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
-                fieldLabel: 'Total '
+                fieldLabel: 'Total ',
+                allowBlank: 'false',
+                readOnly: true
             },{
                 xtype: 'numberfield',
+                id: 'total2',
+                name: 'total2',
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
-                fieldLabel: 'Total M<sup>2</sup> '
+                fieldLabel: 'Total M<sup>2</sup> ',
+                allowBlank: 'false',
+                readOnly: true
             }]
         },{
             xtype: 'container',
@@ -406,13 +628,16 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             margin: '0 5',
             items: [{
                 xtype: 'datefield',
+                name: 'spk_tglkirim',
                 fieldLabel: 'Tanggal Kirim '
             },{
                 xtype: 'textfield',
+                name: 'spk_nopo',
                 fieldLabel: 'No. Surat Jalan'
             }]
         },{
             xtype: 'textarea',
+            name: 'keterangan_digunakan',
             fieldLabel: 'Keterangan ',
         }]
     }]

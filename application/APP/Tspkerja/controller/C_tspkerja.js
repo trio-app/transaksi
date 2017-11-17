@@ -3,9 +3,13 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
     views: [
         'Almindo.Tspkerja.view.TAB_tspkerja',
         'Almindo.Tspkerja.view.FRM_tspkerja',
+        'Almindo.Tspkerja.view.GRID_tspkerja',
+        'Almindo.Tspkerja.view.WIN_tspkcustomer',
+        'Almindo.Tspkerja.view.WIN_tspkbahan',
         
         
-        'Almindo.Mcustomer.view.GRID_mcustomer'
+        'Almindo.Mcustomer.view.GRID_mcustomer',
+        'Almindo.Mbahan.view.GRID_mbahan'
         
     ],
     stores: [
@@ -25,22 +29,38 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
         xtype: 'GRID_tspkerja',
         selector: 'GRID_tspkerja',
         autoCreate: true
+    },{
+        ref: 'WIN_tspkcustomer',
+        xtype: 'WIN_tspkcustomer',
+        selector: 'WIN_tspkcustomer',
+        autoCreate: true 
+    },{
+        ref: 'WIN_tspkbahan',
+        xtype: 'WIN_tspkbahan',
+        selector: 'WIN_tspkbahan',
+        autoCreate: true 
     }],
     init: function(){
             this.control({
-                    'FRM_ttandaterimain button[action=add_cust]': {
+                    'FRM_tspkerja button[action=add_cust]': {
                         click: this.showCust
+                    },
+                    'FRM_tspkerja button[action=add_bahan]': {
+                        click: this.showBahan
                     },
                     'FRM_tspkerja button[action=btn_document]': {
                         click: this.showDocument
                     },
-                    'WIN_ttincustomer > GRID_mcustomer': {
+                    'WIN_tspkcustomer > GRID_mcustomer': {
                         itemdblclick: this.getCustomer
+                    },
+                    'WIN_tspkbahan > GRID_mbahan': {
+                        itemdblclick: this.getBahan
                     },
                     'GRID_ttandaterimain_invoice button[action=add_invoice]': {
                         click: this.add_invoice
                     },
-                    'TAB_ttandaterimain button[action=save_invoice]': {
+                    'TAB_tspkerja button[action=save_spk]': {
                         click: this.doSaveform
                     },
                     'TAB_ttandaterimain GRID_ttandaterimain': {
@@ -69,7 +89,11 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
         }
     },
     showCust: function(){
-        var win = this.getWIN_ttincustomer();
+        var win = this.getWIN_tspkcustomer();
+        win.show();
+    },
+    showBahan: function(){
+        var win = this.getWIN_tspkbahan();
         win.show();
     },
     showDocument: function(){
@@ -77,14 +101,21 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
             url: base_url + 'Tspkerja/autoNum',
             method: 'POST',
             success: function(transport){
-                Ext.getCmp('receipt_doc').setValue(transport.responseText);
+                Ext.getCmp('spk_doc').setValue(transport.responseText);
             }
         }); 
     },
     getCustomer: function(me, record, item, index){
-        var win = this.getWIN_ttincustomer();
-        var form = this.getFRM_ttandaterimain();
+        var win = this.getWIN_tspkcustomer();
+        var form = this.getFRM_tspkerja();
         form.getForm().setValues(record.getData());
+        win.close();
+    },
+    getBahan: function(me, record, item, index){
+        var win = this.getWIN_tspkbahan();
+        var form = this.getFRM_tspkerja();
+        form.getForm().setValues(record.getData());
+        Ext.getCmp('bahan_jenis2').setValue(record.data.bahan_jenis);
         win.close();
     },
     add_invoice: function(me, record, item, index){
@@ -99,78 +130,61 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
 
     },
     doSaveform: function(){
-        var form = this.getFRM_ttandaterimain();
+        var win = this.getFRM_tspkerja();
+        var store = Ext.getStore('Almindo.Tspkerja.store.ST_tspkerja');
+        var form = win.down('form');
         var values = form.getValues();
-        var action = form.getAction();
-        var recValue = Ext.create('Almindo.Tspkerja.model.M_ttandaterimain', values);
+        var record = form.getRecord();
+        var action = win.getAction();
+        var recValue = Ext.create('Almindo.Tspkerja.model.M_tspkerja', values);
         console.log(action);
 
-        var grid = this.getGRID_ttandaterimain_invoice();
-        var data = [];
-        grid.store.each(function(rec){
-            data.push(rec.data);
-        });                                  
-
         if(action == 'edit'){
-            if(form.isValid() && (grid.store.getCount() > 0)){
-                this.doProsesCRUD('update',recValue,data);
-                //this.doSaveGrid('updateGrid', data);
-            }else{
-                alert('coy');
-            }
+                if(form.isValid()){
+                        this.doProsesCRUD('update',recValue);
+                }
         }else{
-            if(form.isValid() && (grid.store.getCount() > 0)){
-                this.doProsesCRUD('create',recValue,data);
-                //this.doSaveGrid('saveGrid', data);
-            }else{
-                alert('coy');
-            }
+                if(form.isValid()){
+                        this.doProsesCRUD('create',recValue);
+                }
         }
-    },doProsesCRUD : function (inAction,record,data){
-        var form = this.getFRM_ttandaterimain();
-        var grid = this.getGRID_ttandaterimain_invoice();
-        var grid2 = this.getGRID_ttandaterimain();
-        var store = grid.getStore();
-        var store2 = grid2.getStore();
-        Ext.Ajax.request({
+    },
+    doProsesCRUD : function (inAction,record){
+            var win = this.getFRM_tspkerja();
+            var grid = this.getGRID_tspkerja();
+            var store = grid.getStore();//Ext.getStore('ScontactStore');
+            Ext.Ajax.request({
                     url: base_url + 'Tspkerja/' +  inAction,
                     method: 'POST',
                     type:'json',
-                    params: [JSON.stringify(record.data),'||',JSON.stringify(data)],
+                    params: JSON.stringify(record.data),
                     success: function(response){
-                        switch(inAction) {
-                            case 'delete':
-                                    form.getForm().reset();
-                                    store.load();
-                                    store2.load();
-                                    createAlert('Delete Tanda Terima IN', 'Delete Data Success', 'success');
-                                    //Ext.example.msg("Delete Category","Delete Success"," verb", record.data['CategoryName'] );    
-                                break;
-                            case 'create' :
-                                    form.getForm().reset();
-                                    store.load();
-                                    store2.load();
-                                    createAlert('Insert Tanda Terima IN', 'Insert Data Success', 'success');
-                                break;
-                            case 'update' :
-                                    form.getForm().reset();
-                                    store.load();
-                                    store2.load();
-                                    createAlert('Update Tanda Terima IN', 'Update Data Success', 'success');
-                                break;
-                        }
-                        form.setAction('add');
+                            switch(inAction) {
+                                    case 'delete':
+                                                    store.load();
+                                                    createAlert('Delete S. P. K.', 'Delete Data Success', 'success');
+                                            break;
+                                    case 'create' :
+                                                    store.load();
+                                                    createAlert('Insert S. P. K.', 'Insert Data Success', 'success');
+                                            break;
+                                    case 'update' :
+                                                    store.load();
+                                                    createAlert('Update S. P. K.', 'Update Data Success', 'success');
+                                            break;
+                            }
+        win.down('form').getForm().reset();
+        win.setAction('add');
 
                     },
                     failure: function(response){
-                        //createAlert('Error ' + response.status, response.responseText, 'error');
-                        Ext.Msg.alert('server-side failure with status code ' + response.status  , response.responseText);
+                            Ext.Msg.alert('server-side failure with status code ' + response.status  , response.responseText);
 
                     }
-                });
+            });
     },
     onRowdblclick: function(me, record, item, index){
-        var form = this.getFRM_ttandaterimain();
+        var form = this.getFRM_tspkerja();
         
         var grid = this.getGRID_ttandaterimain_invoice();
         grid.store.reload();

@@ -19,19 +19,21 @@ Ext.define('Almindo.Tspkerja.view.TAB_tspkerja',{
         }],
         buttons: [{
             text: 'Save',
-            action: 'save_invoice'
+            action: 'save_spk'
         },{
             text: 'Reset',
             handler: function(){
-                var frm = Ext.getCmp('FRM_ttandaterimain');
-                var grid = Ext.getCmp('GRID_ttandaterimain_iinvoice');
+                var frm = Ext.getCmp('FRM_tspkerja');
                 frm.setAction('add');
                 frm.getForm().reset(); 
-                grid.store.reload();
             }
         }]
     }, {
         title: 'LIST DATA SURAT PERINTAH KERJA',
-        layoust: 'anchor'
+        layoust: 'anchor',
+        items: [{
+            xtype: 'GRID_tspkerja',
+            store: Ext.create('Almindo.Tspkerja.store.ST_tspkerja')
+        }]
     }]
 });

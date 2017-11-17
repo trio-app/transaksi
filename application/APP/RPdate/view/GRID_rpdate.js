@@ -10,21 +10,12 @@
     initComponent: function () {
       this.title = 'Packinglist';
 
-        this.tbar = Ext.create('Ext.PagingToolbar', {
-        store: this.store,
-        //displayInfo: false,
-        displayMsg: 'Total Data {0} - {1} of {2}',
-        //emptyMsg: "No Data Display"
-        items:[
-          '->',
-                {
-                    xtype: 'exporterbutton',
-                    text: 'Export',
-                    icon: extjs_url + 'resources/css/icons/grid.png',
-                    //format: 'excel',
-                    //title: 'Report Transaksi By Customer'
-                }]
-        });
+        this.tbar = [
+            {
+                xtype: 'exporterbutton',
+                text: 'Export',
+                icon: extjs_url + 'resources/css/icons/grid.png',
+            }],
         this.columns = [
                     {xtype: 'rownumberer'},
                     {header: 'Customer', dataIndex: 'customer_nama', width:150},

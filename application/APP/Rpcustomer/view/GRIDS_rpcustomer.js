@@ -3,24 +3,17 @@ Ext.define('Almindo.Rpcustomer.view.GRIDS_rpcustomer',{
                         alias: 'widget.GRIDS_rpcustomer',
                         id: 'GRIDS_rpcustomer',
                         height: 250,
-                        //store: 'SRCustomerDetail',
                         requires: ['Ext.ux.exporter.Exporter'],
                         initComponent: function(){
                             this.title = 'Packinglist Detail';
                             this.tbar = [
-                                //'->',
                                 {
                                     xtype: 'exporterbutton',
                                     text: 'Export',
-                                    icon: extjs_url + 'resources/css/icons/grid.png',
-                                    //format: 'excel',
-                                    //title: 'Report Transaksi Detail Customer'
-
-                                },
-                                //{text: 'Export Excel', action: 'exportdetail'}  
+                                    icon: extjs_url + 'resources/css/icons/grid.png'
+                                },  
                              ];
                             this.columns= [
-                                //{xtype: 'rownumberer'},
                                 {header: 'No. SJ', dataIndex: 'trdetail_sjap', width:100},
                                 {header: 'Item', dataIndex: 'item_nama', width:150},
                                 {header: 'PO.', dataIndex: 'trdetail_po', width:250},
@@ -31,7 +24,6 @@ Ext.define('Almindo.Rpcustomer.view.GRIDS_rpcustomer',{
                                 {header: 'Amount', dataIndex: 'trdetail_amount', width:100, xtype:'numbercolumn', format: '0,000,000.00'},
                                 {header: 'Berat Satuan (KG)', dataIndex: 'trdetail_weight', width:100},
                                 {header: 'Total Weight(KG)', dataIndex: 'trdetail_weight', width:100},
-                                //{header: 'UPP', dataIndex: '', width:100},
                                 {header: 'Total Pack', dataIndex: 'trdetail_pack', width:100},
                                 
                             ];

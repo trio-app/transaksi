@@ -1,17 +1,15 @@
-    Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain',{
+    Ext.define('Almindo.Tspkerja.view.GRID_tspkerja',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.GRID_ttandaterimain',
-    id: 'GRID_ttandaterimain',
-    title: 'List Data Tanda Terima IN',
+    alias: 'widget.GRID_tspkerja',
+    title: 'List Data Surat Perintah Kerja',
     height: 400,
-    frame: true,
     initComponent: function () {
         this.tbar = [
         {
-            text: 'Tambah Invoice',
+            text: 'Tambah SPK',
             icon: extjs_url + 'resources/ext-theme-classic/images/dd/drop-add.gif',
             handler: function(){
-                var tab = Ext.getCmp('TAB_ttandaterimain');
+                var tab = Ext.getCmp('TAB_tspkerja');
                 tab.setActiveTab(0);
             }
         },
@@ -25,9 +23,10 @@
         ];
         this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'No. Document', dataIndex: 'receipt_doc', flex: 1 },
+            { header: 'No. Document', dataIndex: 'spk_doc', flex: 1 },
+            { header: 'Nama Bahan', dataIndex: 'spk_bahannama', flex: 1},
             { header: 'Customer', dataIndex: 'customer_nama', flex: 1 },
-            { header: 'Date', dataIndex: 'receipt_date', flex: 1 },
+            { header: 'Date', dataIndex: 'spk_date', flex: 1 },
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
@@ -48,7 +47,7 @@
                 text: 'Print Document',
                 handler: function () { this.fireEvent('print_file', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/page_copy.png'
+                icon: extjs_url + 'resources/css/icons/page_copy.png',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {

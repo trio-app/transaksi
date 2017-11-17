@@ -49,7 +49,7 @@ class Tspkerja extends CI_Controller {
         public function create(){        
             $jsonData =  file_get_contents("php://input");
             $data = explode(',||,',$jsonData);            
-            $this->load->model('Cspkerja');
+            $this->load->model('C_tspkerja');
             $num = $this->C_tspkerja->insertDT(json_decode($data[0],true));
             //$this->Cspkerja->insertGrid(json_decode($data[1],true));
             $this->C_tspkerja->autoNum();
@@ -77,40 +77,7 @@ class Tspkerja extends CI_Controller {
             header('Content-type: application/json');
             print_r($this->R_tspkerja->getGrid($doc));
         }
-
-        public function customerSPK(){
-                $this->load->model('R_tspkerja');
-                $start = $this->input->post('start');
-                $limit = $this->input->post('limit');
-                $filter = $this->input->post('filter');
-                header('Content-type: application/json');
-                print_r( $this->R_tspkerja->load_customerSPK($start,$limit,$filter));          
-        }
-
-        public function bahanitemSPK(){
-                $this->load->model('Rspkerja');
-                $start = $this->input->post('start');
-                $limit = $this->input->post('limit');
-                $filter = $this->input->post('filter');
-                header('Content-type: application/json');
-                print_r( $this->Rspkerja->load_bahanitemSPK($start,$limit,$filter));          
-        }
         
-        public function createbahan(){        
-            $jsonData =  file_get_contents("php://input");        
-            //print_r(json_decode($jsonData,true));
-            $this->load->model('Cspkerja');
-            $this->Cspkerja->insertbahan(json_decode($jsonData,true));
-
-        }
-        
-        public function createcustomer(){        
-            $jsonData =  file_get_contents("php://input");        
-            //print_r(json_decode($jsonData,true));
-            $this->load->model('Cspkerja');
-            $this->Cspkerja->insertcustomer(json_decode($jsonData,true));
-
-        }
         public function reportPreview($id = NULL){
              ob_start();
                         $this->load->model('Rspkerja');
