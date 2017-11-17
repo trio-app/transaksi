@@ -103,7 +103,7 @@
 	     		recdetailout_invoice : '-',
 	     		recdetailout_delivery: '-',
 	     		recdetailout_po : '-',
-	     		recdetailout_date : '-',
+	     		recdetailout_date : new Date(),
 	     		recdetailout_price: 0,  
 	     	});
 	     },
