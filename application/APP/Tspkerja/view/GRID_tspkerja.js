@@ -27,6 +27,18 @@
             { header: 'Nama Bahan', dataIndex: 'spk_bahannama', flex: 1},
             { header: 'Customer', dataIndex: 'customer_nama', flex: 1 },
             { header: 'Date', dataIndex: 'spk_date', flex: 1 },
+            { header: 'STATUS',
+              flex: 1,
+              renderer: function(spk_status) {
+                  if (spk_status = PENDING) {
+                      return '<span style="color:red;">' + spk_status + '</span>';
+                  }else if (spk_status = PROSES) {
+                      return '<span style="color:yellow;">' + spk_status + '</span>';
+                  }
+                  return spk_status;
+              },
+              dataIndex: 'spk_status' 
+            },
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,

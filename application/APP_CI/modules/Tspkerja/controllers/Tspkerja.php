@@ -59,7 +59,7 @@ class Tspkerja extends CI_Controller {
             $jsonData =  file_get_contents("php://input");    
             $data = explode(',||,',$jsonData);
             $this->load->model('U_tspkerja');
-            $num = $this->U_tspkerja->updateDT(json_decode($jsonData,true));
+            $this->U_tspkerja->updateDT(json_decode($jsonData,true));
             //print_r($data);
             //$this->Uspkerja->updateGrid(json_decode($data[1],true),$num);
         }
@@ -78,10 +78,10 @@ class Tspkerja extends CI_Controller {
             print_r($this->R_tspkerja->getGrid($doc));
         }
         
-        public function reportPreview($id = NULL){
+        public function print_file($id = NULL){
              ob_start();
-                        $this->load->model('Rspkerja');
-                        $rec = $this->Rspkerja->reportPreview($id);
+                        $this->load->model('R_tspkerja');
+                        $rec = $this->R_tspkerja->reportPreview($id);
 
                         $data['spk_doc'] = $rec['spk_doc'];
                         $data['spk_nopo'] = $rec['spk_nopo'];
@@ -89,12 +89,12 @@ class Tspkerja extends CI_Controller {
                         $data['spk_date'] = date_format(date_create($rec['spk_date']), 'd F Y');
                         $data['spk_delivery'] = date_format(date_create($rec['spk_delivery']), 'd F Y');
                         $data['spk_tglkirim'] = date_format(date_create($rec['spk_delivery']), 'd F Y');
-                        $data['value']= $this->Rspkerja->reportPreview($id);
+                        $data['value']= $this->R_tspkerja->reportPreview($id);
 
                         //$data['recout_detail'] = $this->Rspkerja->reportDetail($rec['receiptout_doc']);
 
                         //print_r($this->Rpacking_list->reportPreview($id));
-                        $this->load->view('previewPrint', $data);
+                        $this->load->view('V_tprint', $data);
                         $html = ob_get_contents();
                ob_end_clean();
 

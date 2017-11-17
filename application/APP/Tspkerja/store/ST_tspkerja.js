@@ -37,7 +37,8 @@
                             'spk_tglkirim',
                             'spk_nosuratjalan',
                             'total',
-                            'total2']
+                            'total2',
+                            'spk_status']
 		});
                 
                 Ext.define('Almindo.Tspkerja.store.ST_tspkerja',{

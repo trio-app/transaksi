@@ -169,7 +169,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                             flex: 0,
                             margin: '0 10'
                 }]
-                },{
+                }/*,{
                     xtype: 'container',
                     layout: 'hbox',
                     defaults: {
@@ -182,7 +182,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         xtype: 'filefield',
                         fieldLabel: 'Gambar Mata Pisau'
                     }]
-                }]
+                }*/]
                 
         }]
     },{

@@ -86,7 +86,11 @@ function insertDT($dtrows)
                     
                         'spk_nosuratjalan' => $dtrows['spk_nosuratjalan'],
                     
+                        'spk_status' => PENDING,
+                    
                         'sys_create_user' => $this->session->userdata('user_login'),
+                    
+                        'sys_create_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
 
                 );
 

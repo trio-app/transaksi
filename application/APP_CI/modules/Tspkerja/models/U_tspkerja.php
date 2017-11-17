@@ -78,9 +78,11 @@ class U_tspkerja extends CI_Model {
                         'spk_nosuratjalan' => $dtrows['spk_nosuratjalan'],
                         
                         'sys_update_user' => $this->session->userdata('user_login'),
+                        
+                        'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
 
                 );
-                    $this->db->where('spk_id', $dtrows['spk_id']);
+                    $this->db->where('spk_doc', $dtrows['spk_doc']);
                     $this->db->update('tr_spk', $data);
 
                 }
