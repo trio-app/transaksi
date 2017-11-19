@@ -66,7 +66,9 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
                     'TAB_tspkerja GRID_tspkerja': {
                         itemdblclick: this.onRowdblclick,
                         removeitem: this.deleteItem,
-                        print_file: this.print_file
+                        print_file: this.print_file,
+                        PROSES: this.PROSES,
+                        FINISH: this.FINISH,
                     },
                     'GRID_ttandaterimain > toolbar > textfield[itemId=searchData]': {
                         specialkey: this.searchData
@@ -172,6 +174,14 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
                                                     store.load();
                                                     createAlert('Update S. P. K.', 'Update Data Success', 'success');
                                             break;
+                                    case 'PROSES' :
+                                                    store.load();
+                                                    createAlert('PROSES', 'DATA Sedang di PROSES');
+                                            break;
+                                    case 'FINISH' :
+                                                    store.load();
+                                                    createAlert('FINISH', 'DATA Sudah Selesai');
+                                            break;        
                             }
         win.getForm().reset();
         win.setAction('add');
@@ -196,6 +206,20 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
         Ext.Msg.confirm('Delete Data', 'Are you sure?', function (button) {
             if (button == 'yes') {
                 this.doProsesCRUD('delete',record);
+            }
+        }, this);
+    },
+    PROSES: function(record){
+        Ext.Msg.confirm('PROSES DATA', 'Are you sure?', function (button) {
+            if (button == 'yes') {
+                this.doProsesCRUD('PROSES',record);
+            }
+        }, this);
+    },
+    FINISH: function(record){
+        Ext.Msg.confirm('FINISH DATA', 'Are you sure?', function (button) {
+            if (button == 'yes') {
+                this.doProsesCRUD('FINISH',record);
             }
         }, this);
     },

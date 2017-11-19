@@ -87,6 +87,30 @@ class U_tspkerja extends CI_Model {
 
                 }
                 
+    function updatePROSES($dtrows)
+            {
+                $this->load->database();
+                $data = array(
+
+                        'spk_status' => PROSES,
+                );
+                $this->db->where('spk_doc', $dtrows['spk_doc']);
+                return $this->db->update('tr_spk', $data);
+                
+            }
+            
+    function updateFINISH($dtrows)
+            {
+                $this->load->database();
+                $data = array(
+
+                        'spk_status' => FINISH,
+                );
+                $this->db->where('spk_id', $dtrows['spk_id']);
+                return $this->db->update('tr_spk', $data);
+                
+            } 
+                
             
 
   

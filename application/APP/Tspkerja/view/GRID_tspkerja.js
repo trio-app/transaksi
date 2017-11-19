@@ -29,15 +29,34 @@
             { header: 'Date', dataIndex: 'spk_date', flex: 1 },
             { header: 'STATUS',
               flex: 1,
-              renderer: function(spk_status) {
-                  if (spk_status = PENDING) {
-                      return '<span style="color:red;">' + spk_status + '</span>';
-                  }else if (spk_status = PROSES) {
-                      return '<span style="color:yellow;">' + spk_status + '</span>';
-                  }
-                  return spk_status;
-              },
-              dataIndex: 'spk_status' 
+              dataIndex: 'spk_status',
+              renderer: function(val, metadata, record) {
+                    var backgroundColor = null;
+                    if (val) {
+                        if (val == 'TEST') {
+                            backgroundColor = "blue";
+                        	metadata.style = 'background-color: ' + backgroundColor + ';';
+                    		return '';
+                        }
+                        if (val == 'PENDING') {
+                            backgroundColor = "red";
+                        	metadata.style = 'background-color: ' + backgroundColor + ';';
+                    		return '';
+                        }
+                        if (val == 'PROSES') {
+                            backgroundColor = "yellow";
+                            metadata.style = 'background-color: ' + backgroundColor + ';';
+                            return val;
+                        }
+                        if (val == 'FINISH') {
+                            backgroundColor = "green";
+                            metadata.style = 'background-color: ' + backgroundColor + ';';
+                            return val;
+                        }
+                        return val;
+                    }
+                    
+                }
             },
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
@@ -48,6 +67,8 @@
         });
         this.addEvents('removeitem');
         this.addEvents('print_file');
+        this.addEvents('PROSES');
+        this.addEvents('FINISH');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
@@ -60,12 +81,26 @@
                 handler: function () { this.fireEvent('print_file', this.getSelected()) },
                 scope: this,
                 icon: extjs_url + 'resources/css/icons/page_copy.png',
+            }),
+            PROSES: Ext.create('Ext.Action', {
+                text: 'PROSES',
+                handler: function () { this.fireEvent('PROSES', this.getSelected()) },
+                scope: this,
+                icon: extjs_url + 'resources/css/icons/page_copy.png',
+            }),
+            FINISH: Ext.create('Ext.Action', {
+                text: 'FINISH',
+                handler: function () { this.fireEvent('FINISH', this.getSelected()) },
+                scope: this,
+                icon: extjs_url + 'resources/css/icons/page_copy.png',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
             items: [
                 this.actions.print_file,
-                this.actions.removeitem
+                this.actions.removeitem,
+                this.actions.PROSES,
+                this.actions.FINISH,
             ]
         });
         this.on({

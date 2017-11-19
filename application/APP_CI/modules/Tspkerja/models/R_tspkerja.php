@@ -27,61 +27,6 @@ class R_tspkerja extends CI_Model {
             return $row->spk_num;
 
         }
-
-        function load_customerSPK($start,$limit,$filter){
-           $dtfilter = json_decode($filter,true);
-
-            $this->load->database();
-            $this->db->select(' SQL_CALC_FOUND_ROWS m_customer.*
-                            ',FALSE);
-            $this->db->from('m_customer');
-            $this->db->where("m_customer.customer_id <>", 0);
-            $this->db->like('m_customer.customer_nama',$dtfilter[0]['value']);   
-            $this->db->limit($limit,$start);
-            $this->db->order_by("m_customer.customer_nama","ASC");
-            $query = $this->db->get();
-                            //return $db->last_query();
-            $rows = $query->result_array();
-
-
-            $query2 = $this->db->query('SELECT FOUND_ROWS() AS hasil');
-            $count = $query2->row('hasil');
-
-            $data = array(
-                        'TotalRows' => $count,
-                            'Rows' => $rows
-                         );
-            return json_encode($data);            
-        }
-        
-        function load_bahanitemSPK($start,$limit,$filter){
-           $dtfilter = json_decode($filter,true);
-
-            $this->load->database();
-            $this->db->select(' SQL_CALC_FOUND_ROWS m_bahan.*
-                            ',FALSE);
-            $this->db->from('m_bahan');
-            $this->db->where("m_bahan.bahan_id <>", 0);
-            $this->db->like('m_bahan.bahan_nama',$dtfilter[0]['value']);
-            $this->db->or_like('m_bahan.bahan_jenis', $dtfilter[0]['value']);
-            $this->db->or_like('m_bahan.bahan_ukuranP', $dtfilter[0]['value']);
-            $this->db->or_like('m_bahan.bahan_ukuranL', $dtfilter[0]['value']);
-            $this->db->limit($limit,$start);
-            $this->db->order_by("m_bahan.bahan_id","ASC");
-            $query = $this->db->get();
-                            //return $db->last_query();
-            $rows = $query->result_array();
-
-
-            $query2 = $this->db->query('SELECT FOUND_ROWS() AS hasil');
-            $count = $query2->row('hasil');
-
-            $data = array(
-                        'TotalRows' => $count,
-                            'Rows' => $rows
-                         );
-            return json_encode($data);            
-        }
         
         function load_default($start,$limit,$filter){
 

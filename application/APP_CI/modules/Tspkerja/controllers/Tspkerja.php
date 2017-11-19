@@ -68,7 +68,19 @@ class Tspkerja extends CI_Controller {
             $data = explode(',||,',$jsonData);
             $this->load->model('D_tspkerja');
             $this->D_tspkerja->deleteDT(json_decode($data[0],true));
-        }  
+        }
+        public function PROSES(){
+            $jsonData =  file_get_contents("php://input");  
+            $data = explode(',||,',$jsonData);
+            $this->load->model('U_tspkerja');
+            $this->U_tspkerja->updatePROSES(json_decode($data[0],true));
+        }
+        public function FINISH(){
+            $jsonData =  file_get_contents("php://input");  
+            $data = explode(',||,',$jsonData);
+            $this->load->model('U_tspkerja');
+            $this->U_tspkerja->updateFINISH(json_decode($data[0],true));
+        }
         
         public function getGrid(){
             $jsonData =  file_get_contents("php://input");

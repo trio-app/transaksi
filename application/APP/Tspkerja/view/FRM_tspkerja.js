@@ -43,7 +43,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             name:'spk_date',
             labelWidth:120,
             format: 'Y-m-d',
-            value: new Date()
+            //value: new Date()
         },{
             xtype: 'container',
             layout: 'hbox',
@@ -83,7 +83,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             labelWidth: 120,
             flex: 1,
             format: 'Y-m-d',
-            value: new Date()
+            //value: new Date()
         },{
             xtype: 'box',
             flex: 1
@@ -634,7 +634,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 name: 'spk_tglkirim',
                 fieldLabel: 'Tanggal Kirim ',
                 format: 'Y-m-d',
-                value: new Date()
+                //value: new Date()
             },{
                 xtype: 'textfield',
                 name: 'spk_nosuratjalan',
