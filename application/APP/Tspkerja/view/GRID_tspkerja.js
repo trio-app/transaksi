@@ -33,15 +33,10 @@
               renderer: function(val, metadata, record) {
                     var backgroundColor = null;
                     if (val) {
-                        if (val == 'TEST') {
-                            backgroundColor = "blue";
-                        	metadata.style = 'background-color: ' + backgroundColor + ';';
-                    		return '';
-                        }
                         if (val == 'PENDING') {
                             backgroundColor = "red";
                         	metadata.style = 'background-color: ' + backgroundColor + ';';
-                    		return '';
+                    		return val;
                         }
                         if (val == 'PROSES') {
                             backgroundColor = "yellow";
@@ -86,13 +81,13 @@
                 text: 'PROSES',
                 handler: function () { this.fireEvent('PROSES', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/page_copy.png',
+                icon: base_url + 'system/images/icons/loading.gif',
             }),
             FINISH: Ext.create('Ext.Action', {
                 text: 'FINISH',
                 handler: function () { this.fireEvent('FINISH', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/page_copy.png',
+                icon: base_url + 'system/images/icons/drop-yes.gif',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
