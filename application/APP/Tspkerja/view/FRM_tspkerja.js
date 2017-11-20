@@ -284,6 +284,12 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                                 var bahanP = Ext.getCmp('bahan_ukuranP').getValue();
                                 var matapisau = Ext.getCmp('spk_matapisau').getValue();
                                 var digunakanP = Ext.getCmp('ukuranP_digunakan');
+                                
+                                var order = Ext.getCmp('spk_qtyorder').getValue();
+                                var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
+                                var gap = Ext.getCmp('bahan_gap').getValue();
+                                var total_all = Ext.getCmp('total');
+                                
                                 if (bahanP > 0 && matapisau <= 1) {
                                     digunakanP.setValue( 
                                         bahanP + 10
@@ -309,6 +315,9 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                                        (bahanP * matapisau)+ 5 + 5 + 5 + 5 + 3 + 3
                                     );
                                 }
+                                total_all.setValue(
+                                        (bahanL + gap) * order / 1000 / matapisau
+                                    );
                         }  
 
                       }
@@ -327,18 +336,18 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                                 console.log("Calculating");
                                 var order = Ext.getCmp('spk_qtyorder').getValue();
                                 var upp = Ext.getCmp('spk_upporder').getValue();
-                                var order_baris = Ext.getCmp('spk_mataperbaris').getValue();
+                                var mata_pisau = Ext.getCmp('spk_matapisau').getValue();
                                 var total = Ext.getCmp('spk_totalorder');
+
                                 var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
                                 var gap = Ext.getCmp('bahan_gap').getValue();
                                 var total_all = Ext.getCmp('total');
-                                
-                                if (order > 0 && upp > 0 && order_baris > 0) {
+                                if (order > 0 && upp > 0 && mata_pisau > 0) {
                                     total.setValue( 
-                                        order * (order_baris / upp)
+                                         order / upp
                                     );
                                     total_all.setValue(
-                                        (bahanL + gap) * order / 1000
+                                        (bahanL + gap) * order / 1000 / mata_pisau
                                     );
                                 }
 
@@ -361,9 +370,9 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
             id: 'spk_mataperbaris',
             name: 'spk_mataperbaris',
             labelWidth: 120,
-            fieldLabel: 'Total baris Order ',
+            fieldLabel: 'Baris LINE ',
             allowBlank: 'false',
-            listeners: {
+            /* listeners: {
                     change: function(field, newVal, oldVal) {
                         console.log("Calculating");
                         var order = Ext.getCmp('spk_qtyorder').getValue();
@@ -385,7 +394,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         
                 }  
 
-            }
+            } */
         },{
             name: 'spk_jumlahpisau',
             margin: '0 5',
@@ -445,18 +454,18 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                         console.log("Calculating");
                         var order = Ext.getCmp('spk_qtyorder').getValue();
                         var upp = Ext.getCmp('spk_upporder').getValue();
-                        var order_baris = Ext.getCmp('spk_mataperbaris').getValue();
+                        var mata_pisau = Ext.getCmp('spk_matapisau').getValue();
                         var total = Ext.getCmp('spk_totalorder');
                         
                         var bahanL = Ext.getCmp('bahan_ukuranL').getValue();
                         var gap = Ext.getCmp('bahan_gap').getValue();
                         var total_all = Ext.getCmp('total');
-                        if (order > 0 && upp > 0 && order_baris > 0) {
+                        if (order > 0 && upp > 0 && mata_pisau > 0) {
                             total.setValue( 
-                                (order_baris / upp) * order
+                                 order / upp
                             );
                             total_all.setValue(
-                                (bahanL + gap) * order / 1000
+                                (bahanL + gap) * order / 1000 / mata_pisau
                             );
                         }
                         
@@ -612,7 +621,7 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
                 id: 'total',
                 name: 'total',
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
-                fieldLabel: 'Total ',
+                fieldLabel: 'Total M',
                 allowBlank: 'false',
                 readOnly: true
             },{
