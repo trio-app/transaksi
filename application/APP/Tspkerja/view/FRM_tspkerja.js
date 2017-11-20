@@ -4,7 +4,6 @@ Ext.define('Almindo.Tspkerja.view.FRM_tspkerja',{
     id: 'FRM_tspkerja',
     frame: true,
     margin: '10 10 0 10',
-    xtype: 'form',
     config: {
         recordIndex: 0,
         action: ''
