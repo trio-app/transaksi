@@ -42,14 +42,14 @@
         emptyMsg: "No Data Display"
         });
         this.addEvents('removeitem');
-        this.addEvents('add_img');
+        //this.addEvents('add_img');
         this.actions = {
-            add_img: Ext.create('Ext.Action', {
+           /* add_img: Ext.create('Ext.Action', {
                 text: 'Update Picture',
                 handler: function () { this.fireEvent('add_img', this.getSelected()) },
                 scope: this,
                 icon: extjs_url + 'resources/css/icons/image_add.png',
-            }),
+            }), */
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
                 handler: function () { this.fireEvent('removeitem', this.getSelected()) },
@@ -59,7 +59,7 @@
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
             items: [
-                this.actions.add_img,
+                //this.actions.add_img,
                 this.actions.removeitem
             ]
         });

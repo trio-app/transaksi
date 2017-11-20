@@ -1,7 +1,7 @@
 Ext.define('Almindo.Tspkerja.view.WIN_tspkbahan',{
     extend: 'Ext.window.Window',
     alias: 'widget.WIN_tspkbahan',
-    title   : 'Pilih Customer',
+    title   : 'Pilih Produk',
     width   : 750,
     layout  : 'fit',
     resizable: false,
