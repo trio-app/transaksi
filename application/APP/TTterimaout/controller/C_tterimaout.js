@@ -142,6 +142,7 @@
 	        var grid2 = this.getGRID_tterimaout();
 	        var store = grid.getStore();
 	        var store2 = grid2.getStore();
+                var box = Ext.MessageBox.wait('Proses Memuat Data Harap Tunggu.', 'Harap Tunggu');
 	        Ext.Ajax.request({
                     url: base_url + 'TTterimaout/' +  inAction,
                     method: 'POST',

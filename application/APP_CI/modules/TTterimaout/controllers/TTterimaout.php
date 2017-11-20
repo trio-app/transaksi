@@ -96,7 +96,7 @@ class TTterimaout extends CI_Controller {
                     $data['rec_detail'] = $this->R_tterimaout->reportDetail($rec['receiptout_doc']);
                     
                     //print_r($this->Rpacking_list->reportPreview($id));
-                    $this->load->view('previewPrint', $data);
+                    $this->load->view('V_tprint', $data);
                     $html = ob_get_contents();
           ob_end_clean();
                     

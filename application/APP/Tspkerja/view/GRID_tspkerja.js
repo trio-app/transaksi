@@ -27,7 +27,7 @@
             { header: 'Nama Bahan', dataIndex: 'spk_bahannama', flex: 1},
             { header: 'Customer', dataIndex: 'customer_nama', flex: 1 },
             { header: 'Date', dataIndex: 'spk_date', flex: 1 },
-            { header: 'STATUS',
+            { header: 'STATUS PEMBUATAN',
               flex: 1,
               dataIndex: 'spk_status',
               renderer: function(val, metadata, record) {

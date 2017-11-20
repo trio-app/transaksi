@@ -28,6 +28,7 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
                 readOnly: true,
                 labelWidth:120,
                 fieldStyle: 'background-color: #ffa144; background-image: none;',
+                allowBlank: false
             },{
                 margin: '0 0 0 10',
                 action: 'btn_document',
@@ -41,7 +42,8 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             name:'receipt_date',
             labelWidth:120,
             format: 'Y-m-d',
-            value: new Date()
+            value: new Date(),
+            allowBlank: false
         },{
             readOnly: true,
             xtype: 'textfield',
@@ -49,7 +51,8 @@ Ext.define('Almindo.Ttandaterimain.view.FRM_ttandaterimain',{
             name: 'receipt_from',
             labelWidth: 120,
             fieldStyle: 'background-color: #ffa144; background-image: none;',
-            value: 'ALMINDO PRATAMA CV.'
+            value: 'ALMINDO PRATAMA CV.',
+            allowBlank: false
             
         }]
     },{

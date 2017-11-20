@@ -48,7 +48,7 @@
 					<h4 style="color: #ff0000;"><?php echo $spk_nopo ?></h4>
 				</td>
 				<td rowspan="2" width="30">&nbsp;</td>
-				<td width="90">Delivery Date</td>
+				<td width="90">Order Date</td>
 				<td width="230" style="border-bottom: 1px solid;">
 					<b>
 						<span style="color: #ff0000;"><?php echo $spk_delivery ?></span>

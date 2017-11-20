@@ -22,6 +22,8 @@ class C_tterimaout extends CI_Model {
                                 'receiptout_to' => $dtrows['customer_id'],
 
                                 'sys_create_user' => $this->session->userdata('user_login'),
+                            
+                                'sys_create_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                         );
 
                         $this->db->insert('tr_receiptout', $data);
