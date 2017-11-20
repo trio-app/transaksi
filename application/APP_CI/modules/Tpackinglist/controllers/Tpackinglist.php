@@ -18,7 +18,8 @@ class Tpackinglist extends CI_Controller {
             $month = date('m');
             $year = date('Y');
             $num = $this->R_tpackinglist->autoNum();
-            $doc = $month . '.' . $num . '/AP/PL/' . $year;
+            $code = sprintf("%04s", $num);
+            $doc = $month . '.' . $code . '/AP/PL/' . $year;
             echo $doc;
             return $doc;
         }        
