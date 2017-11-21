@@ -100,6 +100,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         grid.store.add({
             recdetail_invoice : '-',
             recdetail_delivery : '-',
+            recdetail_faktur: '-',
             recdetail_po : '-',
             recdetail_date : '-',
             recdetail_price : 0,

@@ -29,6 +29,7 @@ function updateGrid($dtrows,$num){
                         'recdetail_doc' => $num,
                         'recdetail_invoice' => $value['recdetail_invoice'],
                         'recdetail_delivery' => $value['recdetail_delivery'],
+                        'recdetail_faktur' => $value['recdetail_faktur'],
                         'recdetail_po'=> $value['recdetail_po'],
                         'recdetail_date'=> $value['recdetail_date'],
                         'recdetail_price'=> $value['recdetail_price'],

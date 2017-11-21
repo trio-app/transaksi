@@ -54,6 +54,8 @@ function insertGrid($dtrows,$num){
                         'recdetail_invoice' => $value['recdetail_invoice'],
 
                         'recdetail_delivery' => $value['recdetail_delivery'],
+                        
+                        'recdetail_faktur' => $value['recdetail_faktur'],
 
                         'recdetail_po'=> $value['recdetail_po'],
 

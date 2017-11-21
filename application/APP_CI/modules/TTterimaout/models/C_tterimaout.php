@@ -46,12 +46,18 @@ class C_tterimaout extends CI_Model {
                                 'recdetailout_invoice' => $value['recdetailout_invoice'],
 
                                 'recdetailout_delivery' => $value['recdetailout_delivery'],
+                                
+                                'recdetailout_faktur' => $value['recdetailout_faktur'],
 
                                 'recdetailout_po'=> $value['recdetailout_po'],
 
                                 'recdetailout_date'=> $value['recdetailout_date'],
 
                                 'recdetailout_price'=> $value['recdetailout_price'],
+                                
+                                'sys_create_user' => $this->session->userdata('user_login'),
+                            
+                                'sys_create_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
 
                             );
 
