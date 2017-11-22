@@ -44,10 +44,16 @@
                             items: [
                                 {
                                     fieldLabel: 'User Name',
+                                    id: 'user',
                                     name: 'userid',
                                     width: '100%',
                                     allowBlank: false,
-                                    tabIndex: 1
+                                    tabIndex: 1,
+                                    listeners: {
+                                        afterrender: function(user){
+                                            user.focus(true);
+                                        }
+                                    }
                                 },
                                 {
                                     fieldLabel: 'Password',
