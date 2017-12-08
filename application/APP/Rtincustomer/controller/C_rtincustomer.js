@@ -32,9 +32,6 @@
                                         'GRIDS_rtincustomer > toolbar > button[action=exportdetail]': {
                                             click: this.exportDetail
                                         },
-                                        'GRID_rtincustomer > toolbar > textfield[itemId=searchData]': {
-                                          specialkey: this.searchData
-                                        },
                                         'FRM_rtincustomer button[itemId=searchfilter]': {
                                             click: this.filterasset
                                         },
@@ -44,16 +41,17 @@
 				});
 			},
 			filterasset: function (btn) {
-                            var grid = this.getGRID_rtincustomer();
+                            var grid = Ext.getCmp('GRID_rtincustomer');
                             var store = grid.getStore();
-                            var win = this.getFRM_rtincustomer();
-                            var values = win.down('form').getValues();
-                            
+                            var form = Ext.getCmp('FRM_rtincustomer');
+                            var values = form.down('form').getValues();
                             
                             store.remoteFilter = false;
                             store.clearFilter();
                             store.remoteFilter = true;
                             store.filter([{
+                                    property:'filtername',
+                                    anyMatch: true,
                                     value   : values
                                 } ]);
                         },getData: function(grid, record){

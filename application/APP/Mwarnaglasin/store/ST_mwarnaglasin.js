@@ -11,9 +11,11 @@ Ext.define('Almindo.Mwarnaglasin.store.ST_mwarnaglasin',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST',read: 'POST',update: 'POST',destroy: 'POST'},
 		api: {
-			read: base_url + 'Mwarnaglasin/read'
+			create: base_url + 'Mwarnaglasin/create',
+                        read: base_url + 'Mwarnaglasin/read',
+                        update: base_url + 'Mwarnaglasin/update',
 		},
 		reader: {
 			type: 'json',

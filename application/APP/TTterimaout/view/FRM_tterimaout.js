@@ -85,7 +85,7 @@ Ext.define('Almindo.TTterimaout.view.FRM_tterimaout',{
         },{
             icon: extjs_url + 'resources/ext-theme-classic/images/grid/group-by.gif',
             xtype: 'button',
-            text: 'View List Data Tanda Terima IN',
+            text: 'View List Data Tanda Terima OUT',
             handler: function(){
                 var tab = Ext.getCmp('TAB_tterimaout');
                 tab.setActiveTab(1);

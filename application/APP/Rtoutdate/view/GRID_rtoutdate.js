@@ -4,21 +4,7 @@ Ext.define('Almindo.Rtoutdate.view.GRID_rtoutdate',{
     title: 'Tanda Terima Out',
     border: 2,
     height: 250,
-    requires: ['Ext.ux.exporter.Exporter'],
     initComponent: function () {
-        this.tbar = [
-                   {
-                       xtype: 'exporterbutton',
-                       text: 'Export',
-                  },
-                   '->',
-                 {
-                     xtype: 'textfield',
-                     itemId: 'searchData',
-                     emptyText: 'Search Data',
-                     fieldStyle: 'text-align: left;align:right;'
-                 }
-               ];
            this.columns= [
                {header: 'No.', xtype: 'rownumberer'},
                {header: 'Customer', dataIndex: 'customer_nama', width:150},

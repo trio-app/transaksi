@@ -12,6 +12,18 @@ if ( ! function_exists('app_ver'))
     }   
 }
 
+if ( ! function_exists('app_id'))
+{
+    function app_id()
+    {
+        // version format : 
+        // major.minor[.build[.revision]]
+        // or
+        // major.minor[.maintenance[.build]]
+        return "ALMINDO";
+    }   
+}
+
 if ( ! function_exists('app_title'))
 {
     function app_title()

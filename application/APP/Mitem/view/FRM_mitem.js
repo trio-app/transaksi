@@ -67,9 +67,9 @@ Ext.define('Almindo.Mitem.view.FRM_mitem',{
             },{
                 id: 'btn_category',
                 xtype: 'button',
-                margin: '17 0 0 5',
+                margin: '22 0 0 5',
                 tooltip: 'Refresh List',
-                icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
+                icon: base_url + 'system/images/icons/refresh.gif',
                 handler: function(){
                     Ext.getCmp('item_category').store.reload();
                     Ext.getCmp('item_category').clearValue();
@@ -106,9 +106,9 @@ Ext.define('Almindo.Mitem.view.FRM_mitem',{
             },{
                 id: 'btn_unit',
                 xtype: 'button',
-                margin: '17 0 0 5',
+                margin: '22 0 0 5',
                 tooltip: 'Refresh List',
-                icon: extjs_url + 'resources/ext-theme-classic/images/grid/refresh.gif',
+                icon: base_url + 'system/images/icons/refresh.gif',
                 handler: function(){
                     Ext.getCmp('item_unit').store.reload();
                     Ext.getCmp('item_unit').clearValue();
@@ -149,7 +149,7 @@ Ext.define('Almindo.Mitem.view.FRM_mitem',{
         handler : function () { 
             var frm = this.up('panel');
             frm.down('form').getForm().reset(); 
-            frm.setAction('add');
+            frm.setActions('add');
         }
     }] 
 });

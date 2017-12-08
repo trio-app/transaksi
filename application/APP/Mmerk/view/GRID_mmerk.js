@@ -1,24 +1,16 @@
-	Ext.define('Almindo.Mmerk.view.GRID_mmerk',{
-		extend: 'Ext.grid.Panel',
-		alias: 'widget.GRID_mmerk',
-		title: 'Master Data Merk',
-		height: 400,
-                frame: true,
-		//store: Ext.create('Almindo.Mmerk.store.ST_mmerk'),
-		initComponent: function(){
-			this.tbar =[
-			'->',
-			{
-				xtype: 'textfield',
-				itemId: 'searchData',
-				emptyText: 'Search Data',
-				fielStyle: 'text-align: left; align:right;'
-			}
-			];
-		this.columns = [
+    Ext.define('Almindo.Mmerk.view.GRID_mmerk',{
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.GRID_mmerk',
+    title: 'Master Data Merk',
+    height: 400,
+    frame: true,
+    plugins: 'gridfilters',
+    //store: Ext.create('Almindo.Mcustomer.store.ST_mcustomer'),
+    initComponent: function () {
+        this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'Nama Merk ', dataIndex: 'merk_nama'},
-            { header: 'Description ', dataIndex: 'merk_desc'},
+            { header: 'Nama Merk ', dataIndex: 'merk_nama', flex: 1, filter: 'string' },
+            { header: 'Description ', dataIndex: 'merk_desc', flex: 1, filter: 'string' },          
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
@@ -26,13 +18,12 @@
         displayMsg: 'Total Data {0} - {1} of {2}',
         emptyMsg: "No Data Display"
         });
-        this.addEvents('removeitem');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
                 handler: function () { this.fireEvent('removeitem', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/delete.gif',
+                icon: base_url + 'system/images/icons/delete.gif',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {
@@ -57,5 +48,4 @@
         }
         return null;
     }
-
-});
+		});

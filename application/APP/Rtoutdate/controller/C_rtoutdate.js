@@ -32,9 +32,6 @@
                                         'GRIDS_rtoutdate > toolbar > button[action=exportdetail]': {
                                             click: this.exportDetail
                                         },
-                                        'GRID_rtoutdate > toolbar > textfield[itemId=searchData]': {
-                                          specialkey: this.searchData
-                                        },
                                         'FRM_rtoutdate button[itemId=searchfilter]': {
                                             click: this.filterasset
                                         },
@@ -44,16 +41,18 @@
 				});
 			},
 			filterasset: function (btn) {
-                            var grid = this.getGRID_rtoutdate();
+                            var grid = Ext.getCmp('GRID_rtoutdate');
                             var store = grid.getStore();
-                            var win = this.getFRM_rtoutdate();
-                            var values = win.down('form').getValues();
+                            var form = Ext.getCmp('FRM_rtoutdate');
+                            var values = form.down('form').getValues();
                             
                             
                             store.remoteFilter = false;
                             store.clearFilter();
                             store.remoteFilter = true;
                             store.filter([{
+                                    property:'filtername',
+                                    anyMatch: true,
                                     value   : values
                                 } ]);
                         },getData: function(grid, record){

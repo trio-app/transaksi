@@ -32,9 +32,6 @@
                                         'RCustomerSelectedGrid > toolbar > button[action=exportdetail]': {
                                             click: this.exportDetail
                                         },
-                                        'GRID_rpcustomer > toolbar > textfield[itemId=searchData]': {
-                                          specialkey: this.searchData
-                                        },
                                         'FRM_rpcustomer button[itemId=searchfilter]': {
                                             click: this.filterasset
                                         },
@@ -43,30 +40,19 @@
                                         }
 				});
 			},
-			searchData:function (f,e) {
-				var store = Ext.getStore('Almindo.Rpcustomer.store.ST_rpcustomer');//Ext.getStore('Almindo.Mwarnaglasin.store.ST_rpcustomer');//
-				if (e.getKey() == e.ENTER) {
-					store.remoteFilter = false;
-					store.clearFilter();
-					store.remoteFilter = true;
-					store.filter([{
-						property:'filtername',
-						anyMatch: true,
-						value   : f.value
-					} ]);
-				}
-
-			},filterasset: function (btn) {
-                            var grid = this.getGRID_rpcustomer();
+			filterasset: function (btn) {
+                            var grid = Ext.getCmp('GRID_rpcustomer');
                             var store = grid.getStore();
-                            var win = this.getFRM_rpcustomer();
-                            var values = win.down('form').getValues();
+                            var form = Ext.getCmp('FRM_rpcustomer');
+                            var values = form.down('form').getValues();
                             
                             
                             store.remoteFilter = false;
                             store.clearFilter();
                             store.remoteFilter = true;
-                            store.filter([{
+                            store.filter    ([{
+                                    property:'filtername',
+                                    anyMatch: true,
                                     value   : values
                                 } ]);
                         },getData: function(grid, record){

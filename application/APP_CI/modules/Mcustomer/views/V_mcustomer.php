@@ -13,12 +13,21 @@
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mcustomer'}]
+                    items:[
+                        Ext.create('Almindo.Mcustomer.view.FRM_mcustomer',{
+                            id: 'FRM_mcustomer'
+                        })
+                    ]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mcustomer', store: Ext.create('Almindo.Mcustomer.store.ST_mcustomer')}]
-                    }]
+                    items:[
+                        Ext.create('Almindo.Mcustomer.view.GRID_mcustomer',{
+                            id: 'GRID_mcustomer',
+                            store: Ext.create('Almindo.Mcustomer.store.ST_mcustomer')
+                        })
+                    ]
+                }]
                 
             });
         }

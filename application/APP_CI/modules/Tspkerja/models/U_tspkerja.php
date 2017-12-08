@@ -82,7 +82,7 @@ class U_tspkerja extends CI_Model {
                         'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
 
                 );
-                    $this->db->where('spk_doc', $dtrows['spk_doc']);
+                    $this->db->where('spk_id', $dtrows['spk_id']);
                     $this->db->update('tr_spk', $data);
 
                 }
@@ -94,7 +94,7 @@ class U_tspkerja extends CI_Model {
 
                         'spk_status' => PROSES,
                 );
-                $this->db->where('spk_doc', $dtrows['spk_doc']);
+                $this->db->where('spk_id', $dtrows['spk_id']);
                 return $this->db->update('tr_spk', $data);
                 
             }

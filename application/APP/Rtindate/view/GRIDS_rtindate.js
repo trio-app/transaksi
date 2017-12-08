@@ -1,20 +1,12 @@
 Ext.define('Almindo.Rtindate.view.GRIDS_rtindate',{
         extend: 'Ext.grid.Panel',
         alias: 'widget.GRIDS_rtindate',
-        id: 'GRIDS_rtindate',
         height: 250,
         border: 2,
         autoscroll:true,
         collapsible: true,
-        requires: ['Ext.ux.exporter.Exporter'],
         initComponent: function(){
            this.title = 'Tanda Terima IN Detail';
-            this.tbar = [
-                {
-                    xtype: 'exporterbutton',
-                    text: 'Export'
-                }
-             ];
             this.columns= [
                 {header: 'No. Invoice', dataIndex: 'recdetail_invoice', width:150},
                 {header: 'No. Surat Jalan', dataIndex: 'recdetail_delivery', width:100},

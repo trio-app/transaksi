@@ -1,4 +1,4 @@
- Ext.define('Almindo.RPdate.view.FRM_rpdate',{
+ Ext.define('Almindo.Rpdate.view.FRM_rpdate',{
                 extend: 'Ext.form.Panel',
                 title: 'Report Packinglist By Date',
                 alias: 'widget.FRM_rpdate',

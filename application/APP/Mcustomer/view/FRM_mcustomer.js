@@ -36,25 +36,25 @@ Ext.define('Almindo.Mcustomer.view.FRM_mcustomer',{
             flex: 1,
             fieldLabel: 'Alamat ',
             labelAlign: 'top',
-            allowBlank: false
+            allowBlank: true
         },{
             name: 'customer_telp',
             flex: 1,
             fieldLabel: 'No. Telp ',
             labelAlign: 'top',
-            allowBlank: false
+            allowBlank: true
         },{
             name: 'customer_cp',
             flex: 1,
             fieldLabel: 'Contact Person ',
             labelAlign: 'top',
-            allowBlank: false
+            allowBlank: true
         },{
             name: 'customer_email',
             flex: 1,
             fieldLabel: 'Email ',
             labelAlign: 'top',
-            allowBlank: false
+            allowBlank: true
         }]
 }],
     buttons: [{
@@ -65,7 +65,7 @@ Ext.define('Almindo.Mcustomer.view.FRM_mcustomer',{
         handler : function () { 
             var frm = this.up('panel');
             frm.down('form').getForm().reset(); 
-            frm.setAction('add');
+            frm.setActions('add');
         }
     }] 
 });

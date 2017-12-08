@@ -33,6 +33,11 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         xtype: 'GRID_ttandaterimain',
         selector: 'GRID_ttandaterimain',
         autoCreate: true
+    },{
+        ref: 'GRID_mcustomer',
+        xtype: 'GRID_mcustoemr',
+        selector: 'GRID_mcustomer',
+        autoCreate: true
     }],
     init: function(){
             this.control({
@@ -58,12 +63,29 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
                     },
                     'GRID_ttandaterimain > toolbar > textfield[itemId=searchData]': {
                         specialkey: this.searchData
+                    },
+                    'WIN_ttincustomer GRID_mcustomer > toolbar > textfield[itemId=searchData]': {
+                        specialkey: this.searchDataCustomer
                     }
                     
             });
     },
     searchData:function (f,e) {
         var grid = this.getGRID_ttandaterimain();
+        var store = grid.getStore();
+        if (e.getKey() == e.ENTER) {
+            store.remoteFilter = false;
+            store.clearFilter();
+            store.remoteFilter = true;
+            store.filter([{
+                    property:'filtername',
+                    anyMatch: true,
+                    value   : f.value
+                } ]);
+        }
+    },
+    searchDataCustomer:function (f,e) {
+        var grid = this.getGRID_mcustomer();
         var store = grid.getStore();
         if (e.getKey() == e.ENTER) {
             store.remoteFilter = false;
@@ -100,6 +122,7 @@ Ext.define('Almindo.Ttandaterimain.controller.C_ttandaterimain',{
         grid.store.add({
             recdetail_invoice : '-',
             recdetail_delivery : '-',
+            recdetail_faktur: '-',
             recdetail_po : '-',
             recdetail_date : '-',
             recdetail_price : 0,

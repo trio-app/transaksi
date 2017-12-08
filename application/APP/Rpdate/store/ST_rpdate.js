@@ -1,19 +1,19 @@
-	Ext.define('Almindo.RPdate.model.M_rpdate',{
+	Ext.define('Almindo.Rpdate.model.M_rpdate',{
 		extend: 'Ext.data.Model',
 		fields: ['Amount','transaksi_customer','transaksi_doc','transaksi_date','customer_nama','trdetail_doc','trdetail_amount']
 	});
 
-	Ext.define('Almindo.RPdate.store.ST_rpdate',{
+	Ext.define('Almindo.Rpdate.store.ST_rpdate',{
 		extend: 'Ext.data.Store',
-		model: 'Almindo.RPdate.model.M_rpdate',
+		model: 'Almindo.Rpdate.model.M_rpdate',
 		autoLoad: true,
 		autoSync: true,
 	                pageSize: 20,
 		proxy: {
 			type: 'ajax',
-	        actionMethods: 'POST',
+	        actionMethods: {read: 'POST'},
 			api: {
-				read: base_url + 'RpDate/read'
+				read: base_url + 'Rpdate/read'
 			},
 			reader: {
 				type: 'json',

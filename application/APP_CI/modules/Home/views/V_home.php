@@ -5,11 +5,9 @@
         <!-- application title -->
         <title><?php echo app_title() . ' - ' . strip_tags(app_ver()); ?></title>
         <!-- included file -->
-        <link rel="stylesheet" type="text/css" href="<?php echo extjs_url('packages/ext-theme-classic/build/resources/ext-theme-classic-all.css') ?>">
-        <script type="text/javascript" src="<?php echo extjs_url('ext-all-debug.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo extjs_url('notification.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo extjs_url('createAlert.js') ?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo extjs_url('resources/css/notification.css') ?>">
+        <link  href="<?php echo extjs_url().'build/classic/theme-classic/resources/theme-classic-all.css'; ?>" rel="stylesheet" />
+        <script src="<?php echo extjs_url().'build/ext-all.js'; ?>"></script>
+        <script src="<?php echo extjs_url().'build/classic/theme-classic/theme-classic.js'; ?>"></script>
         
     <script type="text/javascript">    
         // base variable        
@@ -21,7 +19,6 @@
         // function run when ready
         Ext.onReady(function(){
             // container
-            createAlert('Opening Application', 'Selamat Datang <b><?php echo $this->session->user_name; ?></b>', 'info');
         var dttransaction = Ext.create('Ext.data.TreeStore', {
             root: {
                 expanded: true
@@ -62,11 +59,11 @@
                                         scripts:true
                                     }
                                     });
-                            Ext.getCmp('contentTAB').doLayout();
+                            Ext.getCmp('contentTAB').updateLayout();
                             Ext.getCmp('contentTAB').setActiveTab(newtab);
                                 // console.log("buat baru" + record.internalId);
                     }else{
-                        Ext.getCmp('contentTAB').doLayout();
+                        Ext.getCmp('contentTAB').updateLayout();
                         Ext.getCmp('contentTAB').setActiveTab(thisTab);
                     }
                 }

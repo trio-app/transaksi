@@ -25,15 +25,29 @@
                items: [{
                     //columnWidth: 1/4,
                     width: '500',
-                    items:[{xtype: 'FRM_rtindate'}]
+                    items:[
+                        Ext.create('Almindo.Rtindate.view.FRM_rtindate',{
+                            id: 'FRM_rtindate'
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRID_rtindate', store: Ext.create('Almindo.Rtindate.store.ST_rtindate')}]
+                    items:[
+                        Ext.create('Almindo.Rtindate.view.GRID_rtindate',{
+                            id: 'GRID_rtindate',
+                            store: Ext.create('Almindo.Rtindate.store.ST_rtindate')
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRIDS_rtindate', store: Ext.create('Almindo.Rtindate.store.STS_rtindate')}]
+                    items:[
+                        Ext.create('Almindo.Rtindate.view.GRIDS_rtindate',{
+                            id: 'GRIDS_rtindate',
+                            store: Ext.create('Almindo.Rtindate.store.STS_rtindate')
+                        })
+                    ]
                     }]
                 });
                 

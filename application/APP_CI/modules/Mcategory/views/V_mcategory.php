@@ -13,11 +13,20 @@
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mcategory'}]
+                    items:[
+                        Ext.create('Almindo.Mcategory.view.FRM_mcategory',{
+                            id: 'FRM_mcategory'
+                        })
+                    ]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mcategory', store: Ext.create('Almindo.Mcategory.store.ST_mcategory')}]
+                    items:[
+                        Ext.create('Almindo.Mcategory.view.GRID_mcategory',{
+                            id: 'GRID_mcategory',
+                            store: Ext.create('Almindo.Mcategory.store.ST_mcategory')
+                        })
+                    ]
                     }]
                 
             });

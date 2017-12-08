@@ -20,11 +20,6 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
         selector: 'FRM_tspkerja',
         autoCreate: true
     },{
-        ref: 'WIN_tspkerja',
-        xtype: 'WIN_tspkerja',
-        selector: 'WIN_tspkerja',
-        autoCreate: true
-    },{
         ref: 'GRID_tspkerja',
         xtype: 'GRID_tspkerja',
         selector: 'GRID_tspkerja',
@@ -56,9 +51,6 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
                     },
                     'WIN_tspkbahan > GRID_mbahan': {
                         itemdblclick: this.getBahan
-                    },
-                    'GRID_ttandaterimain_invoice button[action=add_invoice]': {
-                        click: this.add_invoice
                     },
                     'TAB_tspkerja button[action=save_spk]': {
                         click: this.doSaveform
@@ -119,17 +111,6 @@ Ext.define('Almindo.Tspkerja.controller.C_tspkerja',{
         form.getForm().setValues(record.getData());
         Ext.getCmp('bahan_jenis2').setValue(record.data.bahan_jenis);
         win.close();
-    },
-    add_invoice: function(me, record, item, index){
-        var grid = this.getGRID_ttandaterimain_invoice();
-        grid.store.add({
-            recdetail_invoice : '-',
-            recdetail_delivery : '-',
-            recdetail_po : '-',
-            recdetail_date : '-',
-            recdetail_price : 0,
-        });
-
     },
     doSaveform: function(){
         var form = this.getFRM_tspkerja();

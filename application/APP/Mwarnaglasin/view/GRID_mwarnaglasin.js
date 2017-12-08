@@ -4,21 +4,13 @@
     title: 'Master Data warnaglasin',
     height: 400,
     frame: true,
+    plugins: 'gridfilters',
     //store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin'),
     initComponent: function () {
-        this.tbar = [
-          '->',
-        {
-            xtype: 'textfield',
-            itemId:'searchData',
-            emptyText: 'Search Data',
-            fieldStyle: 'text-align: left;align:right;'
-        }    
-        ];
         this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'Nama Warna Glasin ', dataIndex: 'warnaglasin_nama'},
-            { header: 'Description ', dataIndex: 'warnaglasin_desc'},
+            { header: 'Nama Warna Glasin ', dataIndex: 'warnaglasin_nama', filter: 'string'},
+            { header: 'Description ', dataIndex: 'warnaglasin_desc', filter: 'string'},
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
@@ -26,13 +18,12 @@
         displayMsg: 'Total Data {0} - {1} of {2}',
         emptyMsg: "No Data Display"
         });
-        this.addEvents('removeitem');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
                 handler: function () { this.fireEvent('removeitem', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/delete.gif',
+                icon: base_url + 'system/images/icons/delete.gif',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {

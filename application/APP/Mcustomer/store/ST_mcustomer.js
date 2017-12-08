@@ -11,9 +11,11 @@ Ext.define('Almindo.Mcustomer.store.ST_mcustomer',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST',read: 'POST',update: 'POST',destroy: 'POST'},
 		api: {
-			read: base_url + 'Mcustomer/read'
+			create: base_url + 'Mcustomer/create',
+                        read: base_url + 'Mcustomer/read',
+                        update: base_url + 'Mcustomer/update',
 		},
 		reader: {
 			type: 'json',

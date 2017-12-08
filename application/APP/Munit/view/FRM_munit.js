@@ -47,7 +47,7 @@ Ext.define('Almindo.Munit.view.FRM_munit',{
         handler : function () { 
             var frm = this.up('panel');
             frm.down('form').getForm().reset(); 
-            frm.setAction('add');
+            frm.setActions('add');
         }
     }] 
 });

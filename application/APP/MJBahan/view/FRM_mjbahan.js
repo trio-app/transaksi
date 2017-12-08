@@ -46,7 +46,7 @@ Ext.define('Almindo.MJBahan.view.FRM_mjbahan',{
         handler : function () { 
             var frm = this.up('panel');
             frm.down('form').getForm().reset(); 
-            frm.setAction('add');
+            frm.setActions('add');
         }
     }] 
 });

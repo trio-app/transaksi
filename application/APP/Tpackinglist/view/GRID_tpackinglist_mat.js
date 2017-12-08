@@ -13,7 +13,7 @@ Ext.define('Almindo.Tpackinglist.view.GRID_tpackinglist_mat',{
             'trdetail_po', 
             {name : 'trdetail_date', type: 'date',
                 convert: function(val, row){
-                    return Ext.Date.format(val, 'Y-m-d')
+                    return Ext.Date.format(new Date(val), 'Y-m-d')
                 }
             },
             'trdetail_qty', 

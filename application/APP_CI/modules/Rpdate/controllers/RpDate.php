@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Jakarta");
 defined('BASEPATH') OR exit ('No direct script access allowed');
 
-class RpDate extends MX_Controller{
+class Rpdate extends MX_Controller{
 
 
 

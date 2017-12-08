@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 'receiptout_to' => $dtrows['customer_id'],
                                 'receiptout_date' => $dtrows['receiptout_date'],
                                 'sys_update_user' => $this->session->userdata('user_login'),
+                                'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                         );
                             $this->db->where('receiptout_doc', $dtrows['receiptout_doc']);
 
@@ -30,9 +31,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 'recdetailout_doc' => $num,
                                 'recdetailout_invoice' => $value['recdetailout_invoice'],
                                 'recdetailout_delivery' => $value['recdetailout_delivery'],
+                                'recdetailout_faktur' => $value['recdetailout_faktur'],
                                 'recdetailout_po'=> $value['recdetailout_po'],
                                 'recdetailout_date'=> $value['recdetailout_date'],
                                 'recdetailout_price'=> $value['recdetailout_price'],
+                                'sys_update_user' => $this->session->userdata('user_login'),
+                                'sys_update_date' => mdate('%Y-%m-%d %H:%i:%s', time()),
                             );
                         };
             

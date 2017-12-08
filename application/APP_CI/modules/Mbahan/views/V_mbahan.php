@@ -15,11 +15,20 @@
                items: [{
                     columnWidth: 1/3,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mbahan'}]
+                    items:[
+                        Ext.create('Almindo.Mbahan.view.FRM_mbahan',{
+                            id: 'FRM_mbahan',
+                        })
+                    ]
                     },{
                     columnWidth: 2/3,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mbahan', store: Ext.create('Almindo.Mbahan.store.ST_mbahan')}]
+                    items:[
+                        Ext.create('Almindo.Mbahan.view.GRID_mbahan',{
+                            id: 'GRID_mbahan',
+                            store: Ext.create('Almindo.Mbahan.store.ST_mbahan')
+                        })
+                    ]
                     }]
                 
             });

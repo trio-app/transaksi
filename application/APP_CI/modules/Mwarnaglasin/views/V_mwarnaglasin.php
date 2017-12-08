@@ -13,11 +13,20 @@
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mwarnaglasin'}]
+                    items:[
+                        Ext.create('Almindo.Mwarnaglasin.view.FRM_mwarnaglasin',{
+                            id: 'FRM_mwarnaglasin'
+                        })
+                    ]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mwarnaglasin', store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin')}]
+                    items:[
+                        Ext.create('Almindo.Mwarnaglasin.view.GRID_mwarnaglasin',{
+                            id: 'GRID_mwarnaglasin',
+                            store: Ext.create('Almindo.Mwarnaglasin.store.ST_mwarnaglasin')
+                        })
+                    ]
                     }]
                 
             });

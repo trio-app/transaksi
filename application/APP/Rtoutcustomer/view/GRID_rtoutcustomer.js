@@ -3,15 +3,8 @@ Ext.define('Almindo.Rtoutcustomer.view.GRID_rtoutcustomer', {
     alias: 'widget.GRID_rtoutcustomer',
     autoScroll: true,
     height: 250,
-    requires: ['Ext.ux.exporter.Exporter'],
     initComponent: function () {
       this.title = 'Tanda Terima Out';
-      this.tbar = [
-                {
-                    xtype: 'exporterbutton',
-                    text: 'Export'
-                }
-      ];
       this.columns = [
         { xtype:'rownumberer'},  
         { header: 'Customer',dataIndex:'customer_nama', width:150},

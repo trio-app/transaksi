@@ -23,9 +23,7 @@ class R_tterimaout extends CI_Model{
 
             $this->load->database();
 
-            $this->db->select(' tr_receiptout_detail.*
-
-                            ',FALSE);
+            $this->db->select('tr_receiptout_detail.*',FALSE);
             $this->db->from('tr_receiptout_detail');
 
             $this->db->where('recdetailout_doc', $data);

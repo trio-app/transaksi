@@ -250,7 +250,7 @@ Ext.define('Almindo.Mbahan.view.FRM_mbahan',{
                 allowBlank: false,
                 editable: false,
                 margin: '0 0 0 10',
-                store: ['CONTINUES', 'BLACK MARK', 'COAK']
+                store: ['GAP','CONTINUES', 'BLACK MARK', 'COAK']
             }]
         }]
 }],
@@ -262,7 +262,7 @@ Ext.define('Almindo.Mbahan.view.FRM_mbahan',{
         handler : function () { 
             var frm = this.up('panel');
             frm.down('form').getForm().reset(); 
-            frm.setAction('add');
+            frm.setActions('add');
         }
     }] 
 });

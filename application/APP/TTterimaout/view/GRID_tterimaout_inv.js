@@ -9,9 +9,14 @@ Ext.define('Almindo.TTterimaout.view.GRID_tterimaout_inv',{
 		fields: [
 	        'recdetailout_doc',
 	        'recdetailout_invoice',
-	        'recdetailout_delivery', 
+	        'recdetailout_delivery',
+                'recdetailout_faktur',
 	        'recdetailout_po', 
-	        'recdetailout_date',
+	        {name: 'recdetailout_date', type: 'date',
+                    convert: function(val, row){
+                        return Ext.Date.format(new Date(val), 'Y-m-d')
+                    }
+                },
 	        {name : 'recdetailout_price', type: 'float' },        
      	],
 
@@ -64,7 +69,13 @@ Ext.define('Almindo.TTterimaout.view.GRID_tterimaout_inv',{
                     // defaults to textfield if no xtype is supplied
                     allowBlank: false
                 }            
-            },    
+            },
+            { header: 'No. Faktur Pajak', dataIndex: 'recdetailout_faktur', flex: 1,
+                editor: {
+                    // defaults to textfield if no xtype is supplied
+                    allowBlank: false
+                }            
+            },
             { header: 'PO.', dataIndex: 'recdetailout_po', flex: 1,
                 editor: {
                     // defaults to textfield if no xtype is supplied

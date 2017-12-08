@@ -4,24 +4,16 @@
     title: 'Master Data Customer',
     height: 400,
     frame: true,
+    plugins: 'gridfilters',
     //store: Ext.create('Almindo.Mcustomer.store.ST_mcustomer'),
     initComponent: function () {
-        this.tbar = [
-          '->',
-        {
-            xtype: 'textfield',
-            itemId:'searchData',
-            emptyText: 'Search Data',
-            fieldStyle: 'text-align: left;align:right;'
-        }    
-        ];
         this.columns = [
             { xtype: 'rownumberer' },
-            { header: 'Nama Perusaan ', dataIndex: 'customer_nama', flex: 1 },
-            { header: 'Alamat Lengkap', dataIndex: 'customer_alamat', flex: 1 },
-            { header: 'No. Telp', dataIndex: 'customer_telp', flex: 1 },
-            { header: 'Contact Peson', dataIndex:'customer_cp', flex: 1},
-            { header: 'Email ', dataIndex: 'customer_email', flex: 1 },           
+            { header: 'Nama Perusaan ', dataIndex: 'customer_nama', flex: 1, filter: 'string' },
+            { header: 'Alamat Lengkap', dataIndex: 'customer_alamat', flex: 1, filter: 'string' },
+            { header: 'No. Telp', dataIndex: 'customer_telp', flex: 1, filter: 'string'},
+            { header: 'Contact Peson', dataIndex:'customer_cp', flex: 1, filter: 'string'},
+            { header: 'Email ', dataIndex: 'customer_email', flex: 1, filter: 'string' },           
         ];
       this.bbar = Ext.create('Ext.PagingToolbar', {
         store: this.store,
@@ -29,13 +21,12 @@
         displayMsg: 'Total Data {0} - {1} of {2}',
         emptyMsg: "No Data Display"
         });
-        this.addEvents('removeitem');
         this.actions = {
             removeitem: Ext.create('Ext.Action', {
                 text: 'Delete Record',
                 handler: function () { this.fireEvent('removeitem', this.getSelected()) },
                 scope: this,
-                icon: extjs_url + 'resources/css/icons/delete.gif',
+                icon: base_url + 'system/images/icons/delete.gif',
             })
         };
         var contextMenu = Ext.create('Ext.menu.Menu', {

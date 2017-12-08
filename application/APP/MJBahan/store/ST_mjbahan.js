@@ -11,9 +11,11 @@ Ext.define('Almindo.MJBahan.store.ST_mjbahan',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST',read: 'POST',update: 'POST',destroy: 'POST'},
 		api: {
-			read: base_url + 'MJBahan/read'
+			create: base_url + 'MJBahan/create',
+                        read: base_url + 'MJBahan/read',
+                        update: base_url + 'MJBahan/update',
 		},
 		reader: {
 			type: 'json',

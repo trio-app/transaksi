@@ -1,4 +1,4 @@
-Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
+    Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
     extend: 'Ext.grid.Panel',
     alias: 'widget.GRID_ttandaterimain_invoice',
     id: 'GRID_ttandaterimain_invoice',
@@ -9,7 +9,8 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
         fields: [
             'recdetail_doc',
             'recdetail_invoice',
-            'recdetail_delivery', 
+            'recdetail_delivery',
+            'recdetail_faktur',
             'recdetail_po', 
             {name: 'recdetail_date', type: 'date',
                 convert: function(val, row){
@@ -64,7 +65,12 @@ Ext.define('Almindo.Ttandaterimain.view.GRID_ttandaterimain_invoice',{
                 editor: {
                     allowBlank: false
                 }
-            },    
+            },
+            { header: 'NO Faktur Pajak', dataIndex: 'recdetail_faktur', flex: 1,
+                editor: {
+                    allowBlank: false
+                }
+            },
             { header: 'PO.', dataIndex: 'recdetail_po', flex: 1,
                 editor: {
                     allowBlank: false

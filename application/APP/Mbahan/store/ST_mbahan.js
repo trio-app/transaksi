@@ -11,9 +11,11 @@ Ext.define('Almindo.Mbahan.store.ST_mbahan',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST', read: 'POST', update: 'POST', destroy: 'POST'},
 		api: {
-			read: base_url + 'Mbahan/read'
+			create: base_url + 'Mbahan/create',
+                        read: base_url + 'Mbahan/read',
+                        update: base_url + 'Mbahan/update',
 		},
 		reader: {
 			type: 'json',

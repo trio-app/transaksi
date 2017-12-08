@@ -60,7 +60,7 @@ if ( ! function_exists('extjs_url'))
 	 */
 	function extjs_url($uri = '', $protocol = NULL)
 	{
-		return 'http://' . $_SERVER['SERVER_NAME'] .':' . $_SERVER['SERVER_PORT'] . '/extjs/' . $uri;
+		return 'http://' . $_SERVER['SERVER_NAME'] .':' . $_SERVER['SERVER_PORT'] . '/ext-6.2.0/' . $uri;
 	}
 }
 // ------------------------------------------------------------------------

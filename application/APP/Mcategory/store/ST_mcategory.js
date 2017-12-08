@@ -11,9 +11,11 @@ Ext.define('Almindo.Mcategory.store.ST_mcategory',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST',read: 'POST',update: 'POST',destroy: 'POST'},
 		api: {
-			read: base_url + 'Mcategory/read'
+                        create: base_url + 'Mcategory/create',
+			read: base_url + 'Mcategory/read',
+                        update: base_url + 'Mcategory/update',
 		},
 		reader: {
 			type: 'json',

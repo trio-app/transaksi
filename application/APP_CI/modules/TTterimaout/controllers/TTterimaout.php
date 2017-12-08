@@ -68,7 +68,7 @@ class TTterimaout extends CI_Controller {
         
     public function getGrid(){
         $jsonData =  file_get_contents("php://input");
-        $doc = $this->input->post('recdetail_doc');
+        $doc = $this->input->post('recdetailout_doc');
         $this->load->model('R_tterimaout');
         header('Content-type: application/json');
         print_r($this->R_tterimaout->getGrid($doc));
@@ -96,7 +96,7 @@ class TTterimaout extends CI_Controller {
                     $data['rec_detail'] = $this->R_tterimaout->reportDetail($rec['receiptout_doc']);
                     
                     //print_r($this->Rpacking_list->reportPreview($id));
-                    $this->load->view('previewPrint', $data);
+                    $this->load->view('V_tprint', $data);
                     $html = ob_get_contents();
           ob_end_clean();
                     

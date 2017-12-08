@@ -13,11 +13,20 @@
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_munit'}]
+                    items:[
+                        Ext.create('Almindo.Munit.view.FRM_munit',{
+                            id: 'FRM_munit'
+                        })
+                    ]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_munit', store: Ext.create('Almindo.Munit.store.ST_munit')}]
+                    items:[
+                        Ext.create('Almindo.Munit.view.GRID_munit',{
+                            id: 'GRID_munit',
+                            store: Ext.create('Almindo.Munit.store.ST_munit')
+                        })
+                    ]
                     }]
                 
             });

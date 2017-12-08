@@ -6,15 +6,8 @@
     autoScroll: true,
     //frame:true,
     height: 250,
-    requires: ['Ext.ux.exporter.Exporter'],
     initComponent: function () {
       this.title = 'Packinglist';
-      this.tbar = [
-        {
-            xtype: 'exporterbutton',
-            text: 'Export',
-            icon: extjs_url + 'resources/css/icons/grid.png'
-        }];
       this.columns = [
         { xtype:'rownumberer'},  
         { header: 'Customer',dataIndex:'customer_nama',width:150},

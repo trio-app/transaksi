@@ -5,11 +5,9 @@
         <!-- application title -->
         <title><?php echo app_title() . ' - ' . strip_tags(app_ver()); ?></title>
         <!-- included file -->
-        <link rel="stylesheet" type="text/css" href="<?php echo extjs_url('packages/ext-theme-classic/build/resources/ext-theme-classic-all.css') ?>">
-        <script type="text/javascript" src="<?php echo extjs_url('ext-all-debug.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo extjs_url('notification.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo extjs_url('createAlert.js') ?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo extjs_url('resources/css/notification.css') ?>">
+        <link  href="<?php echo extjs_url().'build/classic/theme-classic/resources/theme-classic-all.css'; ?>" rel="stylesheet" />
+         <script src="<?php echo extjs_url().'build/ext-all-debug.js'; ?>"></script>
+         <script src="<?php echo extjs_url().'build/classic/theme-classic/theme-classic.js'; ?>"></script>
         
     <script type="text/javascript">    
         // base variable        
@@ -44,10 +42,16 @@
                             items: [
                                 {
                                     fieldLabel: 'User Name',
+                                    id: 'user',
                                     name: 'userid',
                                     width: '100%',
                                     allowBlank: false,
-                                    tabIndex: 1
+                                    tabIndex: 1,
+                                    listeners: {
+                                        afterrender: function(me){
+                                            me.focus(true);
+                                        }
+                                    }
                                 },
                                 {
                                     fieldLabel: 'Password',
@@ -60,26 +64,35 @@
                             ],
                             buttons: [{
                                 text: 'Login',
-                                tabIndex: 3,
-                                formBind:true,
-                                handler: function(btn) {
-                                    var selection = Ext.getCmp('formLogin').getForm().getFieldValues();
-                                    if (Ext.getCmp('formLogin').getForm().isValid()) {
-                                        Ext.Ajax.request({
-                                            url: base_url + 'Login/Signin',
-                                            method: 'POST',
-                                            type: 'json',
-                                            params: JSON.stringify(Ext.getCmp('formLogin').getForm().getFieldValues()),
-                                                success: function(response){
-                                                    if(response.responseText == 'success'){
-                                                        createAlert('Login Success', 'Selamat Datang User', 'info');
+                                formBind:true,	
+                                handler: function(me) {
+                                        var form = me.up('form').getForm();
+                                        console.log(form);
+                                        form.submit({
+                                                url: base_url + 'Login/Signin',
+                                                waitMsg: 'Please Wait',
+                                                success: function(fp, o){
+                                                        Ext.toast({
+                                                            html: o.result.msg,
+                                                            title: 'Notification',
+                                                            width: 200,
+                                                            align: 'tr'
+                                                        });
                                                         window.location.assign(base_url + 'Home');
-                                                    }else{
-                                                        createAlert('Login Failed', 'Periksa Kembali User Name dan Password', 'error');
-                                                    }
+        //										Ext.MessageBox.alert('Status', o.result.msg, function(){
+        //											window.location.assign(base_url + 'Home');
+        //										});
+                                                },
+                                                failure: function(fp, o){
+                                                        Ext.toast({
+                                                            html: o.result.msg,
+                                                            title: 'Notification',
+                                                            width: 200,
+                                                            align: 'tr'
+                                                        });
                                                 }
                                         });
-                                    }
+
                                 }
                             }]                              
 			})

@@ -1,18 +1,9 @@
 Ext.define('Almindo.Rpcustomer.view.GRIDS_rpcustomer',{
                         extend: 'Ext.grid.Panel',
                         alias: 'widget.GRIDS_rpcustomer',
-                        id: 'GRIDS_rpcustomer',
                         height: 250,
-                        requires: ['Ext.ux.exporter.Exporter'],
                         initComponent: function(){
                             this.title = 'Packinglist Detail';
-                            this.tbar = [
-                                {
-                                    xtype: 'exporterbutton',
-                                    text: 'Export',
-                                    icon: extjs_url + 'resources/css/icons/grid.png'
-                                },  
-                             ];
                             this.columns= [
                                 {header: 'No. SJ', dataIndex: 'trdetail_sjap', width:100},
                                 {header: 'Item', dataIndex: 'item_nama', width:150},

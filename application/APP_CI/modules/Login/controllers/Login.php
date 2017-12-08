@@ -14,25 +14,37 @@ class Login extends MX_Controller{
     }
     
     public function Signin(){
-		$JSONData = file_get_contents('php://input');
-
-		$this->load->model('R_login');
-		$data	= $this->R_login->Signin(json_decode($JSONData, TRUE));
-		if(count($data)==1){
-			$this->session->set_userdata('isLogin', TRUE);
-			$this->session->set_userdata($data[0]);
+        $data = array(
+          'userid' => $this->input->post('userid'),
+          'userpass' =>$this->input->post('userpass'),
+        );
+        
+        $this->load->model('R_login');
+        $acc = $this->R_login->Signin($data);
+        if(!empty($acc)){
+            $login = array(
+                'user_login' => $acc[0]['user_login'],
+                'user_name' => $acc[0]['user_name'],
+            );
+        }
+        
+        if(count($acc)==1){
+            $this->session->set_userdata('isLogin', TRUE);
+            $this->session->set_userdata('app_id', app_id());
+            $this->session->set_userdata($login);
                         //print_r($data[0]);
-			echo 'success';
-		}else{
-			echo 'failed';
-		}
+            echo '{"success": 1, "msg": "Login Berhasil. Klik untuk melanjutkan"}';
+        }else{
+                echo '{"failed": 1, "msg": "Login Gagal. Periksa kembali Username atau Password"}';
+        }
     }
     
-	public function signOut(){
-		$session_array = array('user_id', 'user_name', 'user_group');
-		$this->session->unset_userdata($session_array);
-		$this->session->unset_userdata('isLogin');
-		redirect('Login');
-	}    
+    
+    public function signOut(){
+            $session_array = array('user_id', 'user_name', 'user_group');
+            $this->session->unset_userdata($session_array);
+            $this->session->unset_userdata('isLogin');
+            redirect('Login');
+    }    
 }
 

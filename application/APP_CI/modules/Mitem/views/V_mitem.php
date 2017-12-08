@@ -13,11 +13,19 @@
                items: [{
                     columnWidth: 1/4,
                     padding: '0 5 5 5',
-                    items:[{xtype: 'FRM_mitem'}]
+                    items:[
+                        Ext.create('Almindo.Mitem.view.FRM_mitem',{
+                            id: 'FRM_mitem'
+                        })
+                    ]
                     },{
                     columnWidth: 3/4,
                     padding: '0 0 5 5',
-                    items:[{xtype: 'GRID_mitem', store: Ext.create('Almindo.Mitem.store.ST_mitem')}]
+                    items:[Ext.create('Almindo.Mitem.view.GRID_mitem',{
+                            id: 'GRID_mitem',
+                            store: Ext.create('Almindo.Mitem.store.ST_mitem')
+                        })
+                    ]
                     }]
                 
             });

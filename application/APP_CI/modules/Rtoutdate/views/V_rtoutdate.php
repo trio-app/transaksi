@@ -25,15 +25,29 @@
                items: [{
                     //columnWidth: 1/4,
                     width: '500',
-                    items:[{xtype: 'FRM_rtoutdate'}]
+                    items:[
+                        Ext.create('Almindo.Rtoutdate.view.FRM_rtoutdate',{
+                            id: 'FRM_rtoutdate'
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRID_rtoutdate', store: Ext.create('Almindo.Rtoutdate.store.ST_rtoutdate')}]
+                    items:[
+                        Ext.create('Almindo.Rtoutdate.view.GRID_rtoutdate',{
+                            id: 'GRID_rtoutdate',
+                            store: Ext.create('Almindo.Rtoutdate.store.ST_rtoutdate')
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRIDS_rtoutdate', store: Ext.create('Almindo.Rtoutdate.store.STS_rtoutdate')}]
+                    items:[
+                        Ext.create('Almindo.Rtoutdate.view.GRIDS_rtoutdate',{
+                            id: 'GRIDS_rtoutdate',
+                            store: Ext.create('Almindo.Rtoutdate.store.STS_rtoutdate')
+                        })
+                    ]
                     }]
                 });
                 

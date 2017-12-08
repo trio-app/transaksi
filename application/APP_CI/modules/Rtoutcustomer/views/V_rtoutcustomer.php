@@ -25,15 +25,29 @@
                items: [{
                     //columnWidth: 1/4,
                     width: '500',
-                    items:[{xtype: 'FRM_rtoutcustomer'}]
+                    items:[
+                        Ext.create('Almindo.Rtoutcustomer.view.FRM_rtoutcustomer',{
+                            id: 'FRM_rtoutcustomer',
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRID_rtoutcustomer', store: Ext.create('Almindo.Rtoutcustomer.store.ST_rtoutcustomer')}]
+                    items:[
+                        Ext.create('Almindo.Rtoutcustomer.view.GRID_rtoutcustomer',{
+                            id: 'GRID_rtoutcustomer',
+                            store: Ext.create('Almindo.Rtoutcustomer.store.ST_rtoutcustomer')
+                        })
+                    ]
                     },{
                     //columnWidth: 3/4,
                     width: '500',
-                    items:[{xtype: 'GRIDS_rtoutcustomer', store: Ext.create('Almindo.Rtoutcustomer.store.STS_rtoutcustomer')}]
+                    items:[
+                        Ext.create('Almindo.Rtoutcustomer.view.GRIDS_rtoutcustomer',{
+                            id: 'GRIDS_rtoutcustomer',
+                            store: Ext.create('Almindo.Rtoutcustomer.store.STS_rtoutcustomer')
+                        })
+                    ]
                     }]
                 });
                 

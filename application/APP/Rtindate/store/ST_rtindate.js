@@ -11,7 +11,7 @@
                             pageSize: 20,
                             proxy: {
 				type: 'ajax',
-                                actionMethods: 'POST',
+                                actionMethods: {read: 'POST'},
 				api: {
 					read: base_url + 'Rtindate/read'
 				},

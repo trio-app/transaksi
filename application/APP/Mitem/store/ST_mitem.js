@@ -11,9 +11,11 @@ Ext.define('Almindo.Mitem.store.ST_mitem',{
                 pageSize: 20,
 	proxy: {
 		type: 'ajax',
-        actionMethods: 'POST',
+        actionMethods: {create: 'POST',read: 'POST',update: 'POST',destroy: 'POST'},
 		api: {
-			read: base_url + 'Mitem/read'
+                        create: base_url + 'Mitem/create',
+			read: base_url + 'Mitem/read',
+                        update: base_url + 'Mitem/update',
 		},
 		reader: {
 			type: 'json',

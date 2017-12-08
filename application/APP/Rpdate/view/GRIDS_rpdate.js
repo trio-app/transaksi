@@ -1,24 +1,11 @@
-                    Ext.define('Almindo.RPdate.view.GRIDS_rpdate',{
+                    Ext.define('Almindo.Rpdate.view.GRIDS_rpdate',{
                         extend: 'Ext.grid.Panel',
                         alias: 'widget.GRIDS_rpdate',
                         id: 'GRIDS_rpdate',
                         height: 250,
                         //store: 'SRCustomerDetail',
-                        requires: ['Ext.ux.exporter.Exporter'],
                             initComponent: function(){
                                 this.title = 'Packinglist Detail';
-                                this.tbar = [
-                                    //'->',
-                                    {
-                                        xtype: 'exporterbutton',
-                                        text: 'Export',
-                                        icon: extjs_url + 'resources/css/icons/grid.png',
-                                        //format: 'excel',
-                                        //title: 'Report Transaksi Detail Customer'
-
-                                    },
-                                    //{text: 'Export Excel', action: 'exportdetail'}  
-                                 ];
                                  this.columns= [
                                     //{xtype: 'rownumberer'},
                                     {header: 'No. SJ', dataIndex: 'trdetail_sjap', width:100},

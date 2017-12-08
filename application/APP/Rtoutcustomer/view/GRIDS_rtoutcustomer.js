@@ -1,17 +1,9 @@
 Ext.define('Almindo.Rtoutcustomer.view.GRIDS_rtoutcustomer',{
     extend: 'Ext.grid.Panel',
     alias: 'widget.GRIDS_rtoutcustomer',
-    id: 'GRIDS_rtoutcustomer',
     height: 250,
-    requires: ['Ext.ux.exporter.Exporter'],
     initComponent: function(){
         this.title = 'Tanda Terima Out Detail';
-        this.tbar = [
-            {
-                xtype: 'exporterbutton',
-                text: 'Export'
-            }
-         ];
         this.columns= [
             {header: 'No. Invoice', dataIndex: 'recdetailout_invoice', width:100},
             {header: 'No. Surat Jalan', dataIndex: 'recdetailout_delivery', width:150},

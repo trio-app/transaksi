@@ -1,18 +1,9 @@
  Ext.define('Almindo.Rtincustomer.view.GRIDS_rtincustomer',{
                         extend: 'Ext.grid.Panel',
                         alias: 'widget.GRIDS_rtincustomer',
-                        id: 'GRIDS_rtincustomer',
                         height: 250,
-                        requires: ['Ext.ux.exporter.Exporter'],
                         initComponent: function(){
                             this.title = 'Tanda Terima IN Detail';
-                            this.tbar = [
-                                {
-                                    xtype: 'exporterbutton',
-                                    text: 'Export',
-                                },
-                                    '->',
-                             ];
                             this.columns= [
                                 //{xtype: 'rownumberer'},
                                 {header: 'No. Invoice', dataIndex: 'recdetail_invoice', width:100},
