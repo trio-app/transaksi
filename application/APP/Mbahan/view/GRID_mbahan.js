@@ -32,6 +32,11 @@
         displayMsg: 'Total Data {0} - {1} of {2}',
         emptyMsg: "No Data Display"
         });
+<<<<<<< HEAD
+=======
+        this.addEvents('removeitem');
+        //this.addEvents('add_img');
+>>>>>>> cb8e396250b5fbdc251d5260af1402826657d5a8
         this.actions = {
            /* add_img: Ext.create('Ext.Action', {
                 text: 'Update Picture',

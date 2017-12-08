@@ -48,8 +48,13 @@
                                     allowBlank: false,
                                     tabIndex: 1,
                                     listeners: {
+<<<<<<< HEAD
                                         afterrender: function(me){
                                             me.focus(true);
+=======
+                                        afterrender: function(user){
+                                            user.focus(true);
+>>>>>>> cb8e396250b5fbdc251d5260af1402826657d5a8
                                         }
                                     }
                                 },

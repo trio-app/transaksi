@@ -14,7 +14,11 @@ Ext.define('Almindo.TTterimaout.view.GRID_tterimaout_inv',{
 	        'recdetailout_po', 
 	        {name: 'recdetailout_date', type: 'date',
                     convert: function(val, row){
+<<<<<<< HEAD
                         return Ext.Date.format(new Date(val), 'Y-m-d')
+=======
+                        return Ext.Date.format(val, 'Y-m-d')
+>>>>>>> cb8e396250b5fbdc251d5260af1402826657d5a8
                     }
                 },
 	        {name : 'recdetailout_price', type: 'float' },        
